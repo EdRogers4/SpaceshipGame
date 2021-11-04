@@ -4,20 +4,41 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    //Scripts
+    public Enemies scriptEnemies;
+
+    //Lists
+    public List<GameObject> listProjectiles;
+
+    //Game Objects, Vectors & Transforms
     public GameObject ship;
-    public GameObject targetMove;
+    public Transform targetMove;
+    public GameObject gunFront;
+    public GameObject projectile;
     public Camera cameraMain;
-    public bool isMoving;
-    public bool isTapped;
     public Vector3 targetMovePosition;
 
+    //Bools
+    public bool isMoving;
+    public bool isTapped;
+    public bool isShoot;
+
     //Stats
-    public float thrust = 10.0f;
+    public float thrust;
     public float handling;
+    public float velocity;
 
     //Private
     public float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
+
+    public void Shoot()
+    {
+        var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
+        listProjectiles.Add(newProjectile);
+        newProjectile.GetComponent<Projectile>().scriptShip = this;
+        isShoot = false;
+    }
 
     void Update()
     {
@@ -25,10 +46,23 @@ public class Ship : MonoBehaviour
         {
             isMoving = true;
             isTapped = true;
+            isShoot = true;
+            Shoot();
         }
         else if (Input.GetMouseButtonUp(0))
         {
             isTapped = false;
+        }
+
+        if (listProjectiles.Count > 0)
+        {
+            for (int i = 0; i < listProjectiles.Count; i++)
+            {
+                if (listProjectiles[i] != null)
+                {
+                    listProjectiles[i].transform.position += listProjectiles[i].transform.up * Time.deltaTime * velocity;
+                }
+            }
         }
 
         if (isMoving)
@@ -40,8 +74,8 @@ public class Ship : MonoBehaviour
 
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000))
                 {
-                    targetMovePosition = new Vector3(hit.point.x, targetMove.transform.position.y, hit.point.z);
-                    targetMove.transform.position = targetMovePosition;
+                    targetMovePosition = new Vector3(hit.point.x, targetMove.position.y, hit.point.z);
+                    targetMove.position = targetMovePosition;
                 }
             }
             
@@ -68,6 +102,10 @@ public class Ship : MonoBehaviour
 
                 // Calculate a rotation a step closer to the target and applies rotation to this object
                 transform.rotation = Quaternion.LookRotation(newDirection);
+            }
+            else if (distanceTargetMove <= minimumDistanceToTarget && isMoving)
+            {
+                isMoving = false;
             }
         }
     }
