@@ -12,7 +12,8 @@ public class Ship : MonoBehaviour
 
     //Game Objects, Vectors & Transforms
     public GameObject ship;
-    public Transform targetMove;
+    public GameObject targetMove;
+    public GameObject targetEnemy;
     public GameObject gunFront;
     public GameObject projectile;
     public Transform[] pointShoot;
@@ -27,8 +28,11 @@ public class Ship : MonoBehaviour
     public float handling;
     public float velocity;
     public float cooldown;
+    public float targeting;
 
     //Private
+    private float distanceEnemy;
+    private float distanceEnemyShortest;
     private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
@@ -36,8 +40,9 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
+        distanceEnemyShortest = targeting;
+        StartCoroutine(TargetEnemy());
         StartCoroutine(Shoot());
-        Debug.Log("Point Shoot length: " + pointShoot.Length);
     }
 
     public IEnumerator Shoot()
@@ -46,7 +51,7 @@ public class Ship : MonoBehaviour
 
         for (int i = 0; i < pointShoot.Length; i++)
         {
-            if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, 200f))
+            if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, targeting))
             {
                 if (hitAim.transform.tag == "Enemy")
                 {
@@ -54,14 +59,31 @@ public class Ship : MonoBehaviour
                     listProjectiles.Add(newProjectile);
                     newProjectile.GetComponent<Projectile>().scriptShip = this;
                 }
-                else
-                {
-                    Debug.Log("Hit: " + hitAim.transform.name);
-                }
             }
         }
 
         StartCoroutine(Shoot());
+    }
+
+    public IEnumerator TargetEnemy()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
+        {
+            distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
+
+            if (distanceEnemy > 0 && distanceEnemy < targeting)
+            {
+                if (distanceEnemy <= distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceEnemy;
+                    targetEnemy = scriptEnemies.listEnemy[i];
+                }
+            }
+        }
+
+        StartCoroutine(TargetEnemy());
     }
 
     void Update()
@@ -94,8 +116,8 @@ public class Ship : MonoBehaviour
                 //Find tapped area on screen
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitTapped, 1000))
                 {
-                    targetMovePosition = new Vector3(hitTapped.point.x, targetMove.position.y, hitTapped.point.z);
-                    targetMove.position = targetMovePosition;
+                    targetMovePosition = new Vector3(hitTapped.point.x, targetMove.transform.position.y, hitTapped.point.z);
+                    targetMove.transform.position = targetMovePosition;
                 }
             }
             
@@ -127,6 +149,23 @@ public class Ship : MonoBehaviour
             {
                 isMoving = false;
             }
+        }
+        else if (targetEnemy != null)
+        {
+            // Determine which direction to rotate towards
+            Vector3 targetDirection = targetEnemy.transform.position - transform.position;
+
+            // The step size is equal to speed times frame time.
+            float singleStep = handling * Time.deltaTime;
+
+            // Rotate the forward vector towards the target direction by one step
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+
+            // Draw a ray pointing at our target in
+            Debug.DrawRay(transform.position, newDirection, Color.red);
+
+            // Calculate a rotation a step closer to the target and applies rotation to this object
+            transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 }
