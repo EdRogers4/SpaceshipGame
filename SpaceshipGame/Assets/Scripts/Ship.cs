@@ -53,7 +53,7 @@ public class Ship : MonoBehaviour
         {
             if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, targeting))
             {
-                if (hitAim.transform.tag == "Enemy")
+                if (hitAim.transform.tag == "Enemy" && targetEnemy != null)
                 {
                     var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
                     listProjectiles.Add(newProjectile);
@@ -113,7 +113,6 @@ public class Ship : MonoBehaviour
         {
             if (isTapped)
             {
-                //Find tapped area on screen
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitTapped, 1000))
                 {
                     targetMovePosition = new Vector3(hitTapped.point.x, targetMove.transform.position.y, hitTapped.point.z);
@@ -121,28 +120,14 @@ public class Ship : MonoBehaviour
                 }
             }
             
-            //Get distance between the ship and the destination it is moving to
             distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
 
-            //If distance between the ship and its destination is greater than 
             if (distanceTargetMove > minimumDistanceToTarget)
             {
-                //Move ship forward
                 ship.transform.position += transform.forward * Time.deltaTime * thrust;
-
-                // Determine which direction to rotate towards
                 Vector3 targetDirection = targetMovePosition - transform.position;
-
-                // The step size is equal to speed times frame time.
                 float singleStep = handling * Time.deltaTime;
-
-                // Rotate the forward vector towards the target direction by one step
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-                // Draw a ray pointing at our target in
-                Debug.DrawRay(transform.position, newDirection, Color.red);
-
-                // Calculate a rotation a step closer to the target and applies rotation to this object
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
             else if (distanceTargetMove <= minimumDistanceToTarget && isMoving)
@@ -152,19 +137,9 @@ public class Ship : MonoBehaviour
         }
         else if (targetEnemy != null)
         {
-            // Determine which direction to rotate towards
             Vector3 targetDirection = targetEnemy.transform.position - transform.position;
-
-            // The step size is equal to speed times frame time.
             float singleStep = handling * Time.deltaTime;
-
-            // Rotate the forward vector towards the target direction by one step
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-
-            // Draw a ray pointing at our target in
-            Debug.DrawRay(transform.position, newDirection, Color.red);
-
-            // Calculate a rotation a step closer to the target and applies rotation to this object
             transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
