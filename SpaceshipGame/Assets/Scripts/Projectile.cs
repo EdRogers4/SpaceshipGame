@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public Ship scriptShip;
+    public Enemies scriptEnemies;
 
     void Start()
     {
@@ -21,11 +22,14 @@ public class Projectile : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
+            collision.gameObject.GetComponent<Enemy>().shield -= scriptShip.blasters;
+
+            if (collision.gameObject.GetComponent<Enemy>().shield <= 0f)
+            {
+                scriptEnemies.listEnemy.Remove(collision.gameObject);
+                Destroy(collision.gameObject);
+            }
             DestroyProjectile();
-        }
-        else
-        {
-            Debug.Log("Projectile Hit: " + collision.transform.name);
         }
     }
 

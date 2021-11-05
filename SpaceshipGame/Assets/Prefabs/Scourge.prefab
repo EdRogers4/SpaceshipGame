@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4617618887742789174}
   - component: {fileID: 8781816854905515095}
   - component: {fileID: -840298567712153276}
+  - component: {fileID: 2187032401658638646}
   m_Layer: 0
   m_Name: Scourge
   m_TagString: Enemy
@@ -113,6 +114,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!114 &2187032401658638646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2519086299027489358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d3d8ec6e69ce444a2a8ea009cee855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shield: 10
 --- !u!1001 &8205168661083741012
 PrefabInstance:
   m_ObjectHideFlags: 0

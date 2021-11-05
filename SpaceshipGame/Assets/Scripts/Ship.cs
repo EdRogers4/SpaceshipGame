@@ -29,6 +29,7 @@ public class Ship : MonoBehaviour
     public float velocity;
     public float cooldown;
     public float targeting;
+    public float blasters;
 
     //Private
     private float distanceEnemy;
@@ -58,6 +59,7 @@ public class Ship : MonoBehaviour
                     var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
                     listProjectiles.Add(newProjectile);
                     newProjectile.GetComponent<Projectile>().scriptShip = this;
+                    newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 }
             }
         }
