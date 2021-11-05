@@ -494,8 +494,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptEnemies: {fileID: 1730435883}
   listProjectiles: []
-  cam: {fileID: 1749457245}
-  target: {fileID: 0}
   ship: {fileID: 264208658}
   targetMove: {fileID: 792672278}
   targetEnemy: {fileID: 0}
@@ -518,9 +516,8 @@ MonoBehaviour:
   targetMovePosition: {x: 0, y: 0, z: 0}
   isMoving: 0
   isTapped: 0
-  isTargetEnemyVisible: 0
   thrust: 20
-  handling: 5
+  handling: 2
   velocity: 50
   cooldown: 0.1
   targeting: 150
