@@ -8,7 +8,6 @@ public class Enemies : MonoBehaviour
     public List<GameObject> listEnemy;
     public List<Transform> listSpawnpoint;
     public GameObject prefabEnemy;
-    public bool isSpawn;
 
     //Private Spawn Variables
     private GameObject spawnedEnemy;
@@ -24,24 +23,25 @@ public class Enemies : MonoBehaviour
     public float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
 
-    void Start()
+    private void Start()
     {
-        isSpawn = true;
+        StartCoroutine(SpawnEnemy());
+    }
+
+    public IEnumerator SpawnEnemy()
+    {
+        for (int i = 0; i < listSpawnpoint.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabEnemy, listSpawnpoint[i].position, Quaternion.identity);
+            listEnemy.Add(spawnedEnemy);
+        }
+
+        yield return new WaitForSeconds(15.0f);
+        StartCoroutine(SpawnEnemy());
     }
 
     void Update()
     {
-        if (isSpawn)
-        {
-            for (int i = 0; i < listSpawnpoint.Count; i++)
-            {
-                spawnedEnemy = Instantiate(prefabEnemy, listSpawnpoint[i].position, Quaternion.identity);
-                listEnemy.Add(spawnedEnemy);
-            }
-
-            isSpawn = false;
-        }
-
         for (int i = 0; i < listEnemy.Count; i++)
         {
             //Get distance between the ship and the destination it is moving to

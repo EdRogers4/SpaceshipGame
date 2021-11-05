@@ -25,15 +25,19 @@ public class Ship : MonoBehaviour
 
     //Stats
     public float thrust;
+    public float thrustHigh;
+    public float thrustLow;
+    public float acceleration;
+    public float decceleration;
     public float handling;
     public float velocity;
     public float cooldown;
     public float targeting;
     public float blasters;
 
-    //Private
+    //Distance
     private float distanceEnemy;
-    private float distanceEnemyShortest;
+    public float distanceEnemyShortest;
     private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
@@ -127,6 +131,12 @@ public class Ship : MonoBehaviour
             if (distanceTargetMove > minimumDistanceToTarget)
             {
                 ship.transform.position += transform.forward * Time.deltaTime * thrust;
+
+                if (thrust < thrustHigh)
+                {
+                    thrust += acceleration;
+                }
+
                 Vector3 targetDirection = targetMovePosition - transform.position;
                 float singleStep = handling * Time.deltaTime;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
@@ -137,12 +147,21 @@ public class Ship : MonoBehaviour
                 isMoving = false;
             }
         }
-        else if (targetEnemy != null)
+        else
         {
+            ship.transform.position += transform.forward * Time.deltaTime * (thrust / 4f);
+
+            if (thrust > thrustLow)
+            {
+                thrust -= decceleration;
+            }
+
+            /*
             Vector3 targetDirection = targetEnemy.transform.position - transform.position;
             float singleStep = handling * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
+            */
         }
     }
 }
