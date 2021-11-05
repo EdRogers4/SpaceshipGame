@@ -15,29 +15,53 @@ public class Ship : MonoBehaviour
     public Transform targetMove;
     public GameObject gunFront;
     public GameObject projectile;
-    public Camera cameraMain;
+    public Transform[] pointShoot;
     public Vector3 targetMovePosition;
 
     //Bools
     public bool isMoving;
     public bool isTapped;
-    public bool isShoot;
 
     //Stats
     public float thrust;
     public float handling;
     public float velocity;
+    public float cooldown;
 
     //Private
-    public float distanceTargetMove;
+    private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
+    private RaycastHit hitTapped;
+    private RaycastHit hitAim;
 
-    public void Shoot()
+    private void Start()
     {
-        var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
-        listProjectiles.Add(newProjectile);
-        newProjectile.GetComponent<Projectile>().scriptShip = this;
-        isShoot = false;
+        StartCoroutine(Shoot());
+        Debug.Log("Point Shoot length: " + pointShoot.Length);
+    }
+
+    public IEnumerator Shoot()
+    {
+        yield return new WaitForSeconds(cooldown);
+
+        for (int i = 0; i < pointShoot.Length; i++)
+        {
+            if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, 200f))
+            {
+                if (hitAim.transform.tag == "Enemy")
+                {
+                    var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
+                    listProjectiles.Add(newProjectile);
+                    newProjectile.GetComponent<Projectile>().scriptShip = this;
+                }
+                else
+                {
+                    Debug.Log("Hit: " + hitAim.transform.name);
+                }
+            }
+        }
+
+        StartCoroutine(Shoot());
     }
 
     void Update()
@@ -46,8 +70,6 @@ public class Ship : MonoBehaviour
         {
             isMoving = true;
             isTapped = true;
-            isShoot = true;
-            Shoot();
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -70,11 +92,9 @@ public class Ship : MonoBehaviour
             if (isTapped)
             {
                 //Find tapped area on screen
-                RaycastHit hit;
-
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 1000))
+                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitTapped, 1000))
                 {
-                    targetMovePosition = new Vector3(hit.point.x, targetMove.position.y, hit.point.z);
+                    targetMovePosition = new Vector3(hitTapped.point.x, targetMove.position.y, hitTapped.point.z);
                     targetMove.position = targetMovePosition;
                 }
             }
