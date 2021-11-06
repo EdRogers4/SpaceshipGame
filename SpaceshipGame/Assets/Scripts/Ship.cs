@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Ship : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Ship : MonoBehaviour
     //Bools
     public bool isMoving;
     public bool isTapped;
+    public bool isShoot;
 
     //Stats
     public float thrust;
@@ -52,9 +54,10 @@ public class Ship : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = targeting;
         StartCoroutine(TargetEnemy());
-        StartCoroutine(Shoot());
+        //StartCoroutine(Shoot());
     }
 
+    /*
     public IEnumerator Shoot()
     {
         yield return new WaitForSeconds(cooldown);
@@ -76,6 +79,43 @@ public class Ship : MonoBehaviour
         }
 
         StartCoroutine(Shoot());
+    }
+    */
+
+    public void ShootProjectileOn()
+    {
+        if (!isShoot)
+        {
+            isShoot = true;
+            StopCoroutine(ShootProjectile());
+            StartCoroutine(ShootProjectile());
+        }
+    }
+
+    public void ShootProjectileOff()
+    {
+        isShoot = false;
+        StopCoroutine(ShootProjectile());
+    }
+
+    public IEnumerator ShootProjectile()
+    {
+        if (isShoot)
+        {
+            var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
+            listProjectiles.Add(newProjectile);
+            newProjectile.GetComponent<Projectile>().scriptShip = this;
+            newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+            newProjectile.transform.parent = instances.transform;
+            audioSource.PlayOneShot(clipShoot, 0.1f);
+        }
+
+        yield return new WaitForSeconds(cooldown);
+
+        if (isShoot)
+        {
+            StartCoroutine(ShootProjectile());
+        }
     }
 
     public IEnumerator TargetEnemy()
@@ -103,6 +143,7 @@ public class Ship : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             isMoving = true;
             isTapped = true;
         }
