@@ -6,7 +6,6 @@ public class Projectile : MonoBehaviour
 {
     public Ship scriptShip;
     public Enemies scriptEnemies;
-    public bool isHit;
 
     void Start()
     {
@@ -21,14 +20,14 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == "Enemy" && !isHit)
+        if (collision.transform.tag == "Enemy")
         {
-            isHit = true;
             collision.gameObject.GetComponent<Enemy>().shield -= scriptShip.blasters;
 
             if (collision.gameObject.GetComponent<Enemy>().shield <= 0f)
             {
                 scriptEnemies.listEnemy.Remove(collision.gameObject);
+                scriptEnemies.EnemyDestroyed();
                 scriptShip.distanceEnemyShortest = scriptShip.targeting;
                 Destroy(collision.gameObject);
             }
