@@ -26,10 +26,13 @@ public class Projectile : MonoBehaviour
 
             if (collision.gameObject.GetComponent<Enemy>().shield <= 0f)
             {
+                collision.gameObject.GetComponent<Enemy>().particleDestroyed.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+                collision.gameObject.GetComponent<Enemy>().particleDestroyed.Play();
+                scriptEnemies.DestroyParticle(collision.gameObject.GetComponent<Enemy>().particleDestroyed.gameObject);
                 scriptEnemies.listEnemy.Remove(collision.gameObject);
+                scriptEnemies.enemyDestroyed = collision.gameObject;
                 scriptEnemies.EnemyDestroyed();
                 scriptShip.distanceEnemyShortest = scriptShip.targeting;
-                Destroy(collision.gameObject);
             }
 
             DestroyProjectile();

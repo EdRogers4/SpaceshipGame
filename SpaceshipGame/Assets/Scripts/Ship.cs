@@ -18,6 +18,7 @@ public class Ship : MonoBehaviour
     public GameObject projectile;
     public Transform[] pointShoot;
     public Vector3 targetMovePosition;
+    public GameObject instances;
 
     //Bools
     public bool isMoving;
@@ -68,6 +69,7 @@ public class Ship : MonoBehaviour
                     listProjectiles.Add(newProjectile);
                     newProjectile.GetComponent<Projectile>().scriptShip = this;
                     newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                    newProjectile.transform.parent = instances.transform;
                     audioSource.PlayOneShot(clipShoot, 0.1f);
                 }
             }

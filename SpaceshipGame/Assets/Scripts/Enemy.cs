@@ -5,4 +5,5 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float shield;
+    public ParticleSystem particleDestroyed;
 }

@@ -9,11 +9,15 @@ public class Enemies : MonoBehaviour
     public List<Transform> listSpawnpoint;
     public GameObject prefabEnemy;
 
+    //World Objects
+    public GameObject particlesObject;
+
     //Private Spawn Variables
     private GameObject spawnedEnemy;
 
     //Enemy Targets
     public GameObject ship;
+    public GameObject enemyDestroyed;
 
     //Enemy Stats
     public float thrust;
@@ -22,6 +26,9 @@ public class Enemies : MonoBehaviour
     //Audio
     private AudioSource audioSource;
     public AudioClip[] clipDestroyed;
+
+    //Particles
+    private ParticleSystem particleDestroyed;
 
     //Private
     public float distanceTargetMove;
@@ -45,9 +52,16 @@ public class Enemies : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
-    public void EnemyDestroyed()
+    public IEnumerator DestroyParticle(GameObject particle)
+    {
+        yield return new WaitForSeconds(5.0f);
+        Destroy(particle);
+    }
+
+        public void EnemyDestroyed()
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
+        Destroy(enemyDestroyed);
     }
 
     void Update()
