@@ -35,6 +35,9 @@ public class Ship : MonoBehaviour
     public float targeting;
     public float blasters;
 
+    public AudioSource audioSource;
+    public AudioClip clipShoot;
+
     //Distance
     private float distanceEnemy;
     public float distanceEnemyShortest;
@@ -45,6 +48,7 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = targeting;
         StartCoroutine(TargetEnemy());
         StartCoroutine(Shoot());
@@ -64,6 +68,7 @@ public class Ship : MonoBehaviour
                     listProjectiles.Add(newProjectile);
                     newProjectile.GetComponent<Projectile>().scriptShip = this;
                     newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                    audioSource.PlayOneShot(clipShoot, 0.1f);
                 }
             }
         }
