@@ -516,6 +516,10 @@ MonoBehaviour:
   - {fileID: 402257584}
   targetMovePosition: {x: 0, y: 0, z: 0}
   instances: {fileID: 2076841868}
+  isMoveUp: 0
+  isMoveDown: 0
+  isMoveLeft: 0
+  isMoveRight: 0
   isMoving: 0
   isTapped: 0
   isShoot: 0
@@ -2529,7 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6309f6dca3fa8534985e257434f15ced, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 150
   rb: {fileID: 792672284}
 --- !u!54 &792672284
 Rigidbody:

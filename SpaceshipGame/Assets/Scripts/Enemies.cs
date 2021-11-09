@@ -45,6 +45,7 @@ public class Enemies : MonoBehaviour
         for (int i = 0; i < listSpawnpoint.Count; i++)
         {
             spawnedEnemy = Instantiate(prefabEnemy, listSpawnpoint[i].position, Quaternion.identity);
+            spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
         }
 

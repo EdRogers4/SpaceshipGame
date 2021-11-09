@@ -21,6 +21,13 @@ public class Ship : MonoBehaviour
     public Vector3 targetMovePosition;
     public GameObject instances;
 
+    //Input
+    public bool isMoveUp;
+    public bool isMoveDown;
+    public bool isMoveLeft;
+    public bool isMoveRight;
+    private Vector3 previousPosition;
+
     //Bools
     public bool isMoving;
     public bool isTapped;
@@ -51,9 +58,10 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
+        previousPosition = targetMove.transform.position;
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = targeting;
-        StartCoroutine(TargetEnemy());
+        //StartCoroutine(TargetEnemy());
         //StartCoroutine(Shoot());
     }
 
@@ -79,6 +87,27 @@ public class Ship : MonoBehaviour
         }
 
         StartCoroutine(Shoot());
+    }
+
+    public IEnumerator TargetEnemy()
+    {
+        yield return new WaitForSeconds(1.0f);
+
+        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
+        {
+            distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
+
+            if (distanceEnemy > 0 && distanceEnemy < targeting)
+            {
+                if (distanceEnemy <= distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceEnemy;
+                    targetEnemy = scriptEnemies.listEnemy[i];
+                }
+            }
+        }
+
+        StartCoroutine(TargetEnemy());
     }
     */
 
@@ -118,29 +147,22 @@ public class Ship : MonoBehaviour
         }
     }
 
-    public IEnumerator TargetEnemy()
-    {
-        yield return new WaitForSeconds(1.0f);
-
-        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
-        {
-            distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
-
-            if (distanceEnemy > 0 && distanceEnemy < targeting)
-            {
-                if (distanceEnemy <= distanceEnemyShortest)
-                {
-                    distanceEnemyShortest = distanceEnemy;
-                    targetEnemy = scriptEnemies.listEnemy[i];
-                }
-            }
-        }
-
-        StartCoroutine(TargetEnemy());
-    }
-
     void Update()
     {
+        if (previousPosition != targetMove.transform.position)
+        {
+            isMoving = true;
+            isTapped = true;
+        }
+        else
+        {
+            isMoving = false;
+            isTapped = false;
+        }
+
+        previousPosition = targetMove.transform.position;
+
+        /*
         if (Input.GetMouseButtonDown(0))
         {
             if (EventSystem.current.IsPointerOverGameObject()) return;
@@ -151,6 +173,7 @@ public class Ship : MonoBehaviour
         {
             isTapped = false;
         }
+        */
 
         if (listProjectiles.Count > 0)
         {
@@ -165,6 +188,7 @@ public class Ship : MonoBehaviour
 
         if (isMoving)
         {
+            /*
             if (isTapped)
             {
                 if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitTapped, 1000))
@@ -173,7 +197,9 @@ public class Ship : MonoBehaviour
                     targetMove.transform.position = targetMovePosition;
                 }
             }
-            
+            */
+
+            targetMovePosition = new Vector3(targetMove.transform.position.x, targetMove.transform.position.y, targetMove.transform.position.z);
             distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
 
             if (distanceTargetMove > minimumDistanceToTarget)
