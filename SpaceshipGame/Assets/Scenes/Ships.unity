@@ -504,7 +504,7 @@ MonoBehaviour:
   targetMove: {fileID: 792672278}
   targetEnemy: {fileID: 0}
   gunFront: {fileID: 913196375}
-  projectile: {fileID: 5904699300575218201, guid: 1a06e0c98eccbe043896e35310f752e6, type: 3}
+  projectile: {fileID: 2516364455895546687, guid: 6788d6382beaaba4088cea5fa1b1be7b, type: 3}
   pointShoot:
   - {fileID: 709552143}
   - {fileID: 208650676}
@@ -2777,13 +2777,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 913196375}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.6}
   m_LocalScale: {x: 0.060000032, y: 0.060000014, z: 0.060000014}
   m_Children: []
   m_Father: {fileID: 264208662}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &913196377
 BoxCollider:
   m_ObjectHideFlags: 0

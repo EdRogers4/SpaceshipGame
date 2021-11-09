@@ -127,7 +127,7 @@ public class Ship : MonoBehaviour
             {
                 if (listProjectiles[i] != null)
                 {
-                    listProjectiles[i].transform.position += listProjectiles[i].transform.up * Time.deltaTime * velocity;
+                    listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
                 }
             }
         }
