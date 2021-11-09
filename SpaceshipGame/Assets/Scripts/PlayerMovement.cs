@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool isKeyboard;
     public float moveSpeed;
     public Rigidbody rb;
+    public VariableJoystick variableJoystick;
+
     private Vector3 moveDirection;
+    private float moveX;
+    private float moveZ;
 
     void Update()
     {
@@ -20,8 +25,16 @@ public class PlayerMovement : MonoBehaviour
 
     void ProcessInputs()
     {
-        float moveX = -Input.GetAxisRaw("Horizontal");
-        float moveZ = -Input.GetAxisRaw("Vertical");
+        if (isKeyboard)
+        {
+            moveX = -Input.GetAxisRaw("Horizontal");
+            moveZ = -Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            moveX = -variableJoystick.Horizontal;
+            moveZ = -variableJoystick.Vertical;
+        }
 
         moveDirection = new Vector3(moveX, transform.position.y, moveZ).normalized;
     }
