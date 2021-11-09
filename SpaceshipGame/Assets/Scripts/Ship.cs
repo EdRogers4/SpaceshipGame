@@ -22,10 +22,6 @@ public class Ship : MonoBehaviour
     public GameObject instances;
 
     //Input
-    public bool isMoveUp;
-    public bool isMoveDown;
-    public bool isMoveLeft;
-    public bool isMoveRight;
     private Vector3 previousPosition;
 
     //Bools
@@ -40,12 +36,14 @@ public class Ship : MonoBehaviour
     public float acceleration;
     public float decceleration;
     public float handling;
+    public float handlingHigh;
+    public float handlingLow;
     public float velocity;
     public float cooldown;
     public float targeting;
     public float blasters;
 
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public AudioClip clipShoot;
 
     //Distance
@@ -61,55 +59,7 @@ public class Ship : MonoBehaviour
         previousPosition = targetMove.transform.position;
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = targeting;
-        //StartCoroutine(TargetEnemy());
-        //StartCoroutine(Shoot());
     }
-
-    /*
-    public IEnumerator Shoot()
-    {
-        yield return new WaitForSeconds(cooldown);
-
-        for (int i = 0; i < pointShoot.Length; i++)
-        {
-            if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, targeting))
-            {
-                if (hitAim.transform.tag == "Enemy" && targetEnemy != null)
-                {
-                    var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
-                    listProjectiles.Add(newProjectile);
-                    newProjectile.GetComponent<Projectile>().scriptShip = this;
-                    newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-                    newProjectile.transform.parent = instances.transform;
-                    audioSource.PlayOneShot(clipShoot, 0.1f);
-                }
-            }
-        }
-
-        StartCoroutine(Shoot());
-    }
-
-    public IEnumerator TargetEnemy()
-    {
-        yield return new WaitForSeconds(1.0f);
-
-        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
-        {
-            distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
-
-            if (distanceEnemy > 0 && distanceEnemy < targeting)
-            {
-                if (distanceEnemy <= distanceEnemyShortest)
-                {
-                    distanceEnemyShortest = distanceEnemy;
-                    targetEnemy = scriptEnemies.listEnemy[i];
-                }
-            }
-        }
-
-        StartCoroutine(TargetEnemy());
-    }
-    */
 
     public void ShootProjectileOn()
     {
@@ -149,6 +99,15 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown("space"))
+        {
+            ShootProjectileOn();
+        }
+        else if (Input.GetKeyUp("space"))
+        {
+            ShootProjectileOff();
+        }
+
         if (previousPosition != targetMove.transform.position)
         {
             isMoving = true;
@@ -161,19 +120,6 @@ public class Ship : MonoBehaviour
         }
 
         previousPosition = targetMove.transform.position;
-
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
-            isMoving = true;
-            isTapped = true;
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            isTapped = false;
-        }
-        */
 
         if (listProjectiles.Count > 0)
         {
@@ -188,17 +134,6 @@ public class Ship : MonoBehaviour
 
         if (isMoving)
         {
-            /*
-            if (isTapped)
-            {
-                if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitTapped, 1000))
-                {
-                    targetMovePosition = new Vector3(hitTapped.point.x, targetMove.transform.position.y, hitTapped.point.z);
-                    targetMove.transform.position = targetMovePosition;
-                }
-            }
-            */
-
             targetMovePosition = new Vector3(targetMove.transform.position.x, targetMove.transform.position.y, targetMove.transform.position.z);
             distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
 
@@ -209,6 +144,11 @@ public class Ship : MonoBehaviour
                 if (thrust < thrustHigh)
                 {
                     thrust += acceleration;
+                }
+
+                if (handling < handlingHigh)
+                {
+                    handling += acceleration;
                 }
 
                 Vector3 targetDirection = targetMovePosition - transform.position;
@@ -230,12 +170,15 @@ public class Ship : MonoBehaviour
                 thrust -= decceleration;
             }
 
-            /*
-            Vector3 targetDirection = targetEnemy.transform.position - transform.position;
+            if (handling > handlingLow)
+            {
+                handling -= decceleration;
+            }
+
+            Vector3 targetDirection = targetMovePosition - transform.position;
             float singleStep = handling * Time.deltaTime;
             Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
             transform.rotation = Quaternion.LookRotation(newDirection);
-            */
         }
     }
 }

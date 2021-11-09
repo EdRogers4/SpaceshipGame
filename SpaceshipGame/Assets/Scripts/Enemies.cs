@@ -49,7 +49,7 @@ public class Enemies : MonoBehaviour
             listEnemy.Add(spawnedEnemy);
         }
 
-        yield return new WaitForSeconds(15.0f);
+        yield return new WaitForSeconds(30.0f);
         StartCoroutine(SpawnEnemy());
     }
 
