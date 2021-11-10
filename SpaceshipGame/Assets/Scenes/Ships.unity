@@ -4592,6 +4592,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
   - {fileID: 8300000, guid: ae0c1ccce714a444d915b363d828684c, type: 3}
+  particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   distanceTargetMove: 0
 --- !u!4 &1730435884
 Transform:

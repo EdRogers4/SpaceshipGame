@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ProtonMissileBlue Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1943049586886934, guid: a6ec7b9220605f5468c94619bc473e20, type: 3}
+      propertyPath: m_TagString
+      value: Proton
+      objectReference: {fileID: 0}
     - target: {fileID: 4865487205730616, guid: a6ec7b9220605f5468c94619bc473e20, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -98,19 +102,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1943049586886934, guid: a6ec7b9220605f5468c94619bc473e20, type: 3}
   m_PrefabInstance: {fileID: 4625522891994393255}
   m_PrefabAsset: {fileID: 0}
---- !u!135 &1264737531112525522
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4627395433913328561}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.35249704
-  m_Center: {x: -0.011964142, y: 0.01928401, z: -0.011893764}
 --- !u!54 &8810310155565589094
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -127,3 +118,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!135 &1264737531112525522
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4627395433913328561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35249704
+  m_Center: {x: -0.011964142, y: 0.01928401, z: -0.011893764}

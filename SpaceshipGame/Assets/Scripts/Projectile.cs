@@ -37,6 +37,10 @@ public class Projectile : MonoBehaviour
 
             DestroyProjectile();
         }
+        else if (collision.transform.tag == "Proton")
+        {
+            scriptEnemies.ProtonDestroyed(collision.gameObject);
+        }
     }
 
     public void DestroyProjectile()

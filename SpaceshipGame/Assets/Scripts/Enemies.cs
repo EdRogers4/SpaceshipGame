@@ -17,6 +17,7 @@ public class Enemies : MonoBehaviour
     //Private Spawn Variables
     private GameObject spawnedEnemy;
     private GameObject spawnedEnemyProjectile;
+    private ParticleSystem spawnedParticle;
 
     //Enemy Targets
     public GameObject ship;
@@ -34,6 +35,7 @@ public class Enemies : MonoBehaviour
 
     //Particles
     private ParticleSystem particleDestroyed;
+    public ParticleSystem particleProtonDestroyed;
 
     //Private
     public float distanceTargetMove;
@@ -65,10 +67,18 @@ public class Enemies : MonoBehaviour
         Destroy(particle);
     }
 
-        public void EnemyDestroyed()
+    public void EnemyDestroyed()
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
         Destroy(enemyDestroyed);
+    }
+
+    public void ProtonDestroyed(GameObject destroyed)
+    {
+        spawnedParticle = Instantiate(particleProtonDestroyed, destroyed.transform.position, destroyed.transform.rotation);
+        spawnedParticle.gameObject.transform.parent = particlesObject.transform;
+        listProton.Remove(destroyed);
+        Destroy(destroyed);
     }
 
     void FixedUpdate()
