@@ -524,8 +524,8 @@ MonoBehaviour:
   isMoving: 0
   isTapped: 0
   isShoot: 0
-  thrust: 20
-  thrustHigh: 50
+  thrust: 5
+  thrustHigh: 80
   thrustLow: 5
   acceleration: 1
   decceleration: 0.15
@@ -4565,6 +4565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listEnemy: []
+  listProton: []
   listSpawnpoint:
   - {fileID: 2023016534}
   - {fileID: 1451800527}
@@ -4578,12 +4579,15 @@ MonoBehaviour:
   - {fileID: 653360376}
   - {fileID: 1632946423}
   - {fileID: 629430341}
-  prefabEnemy: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
+  prefabFrigate: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
+  prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
   particlesObject: {fileID: 1447112349}
   ship: {fileID: 264208658}
   enemyDestroyed: {fileID: 0}
-  thrust: 2
-  handling: 0.5
+  thrustFrigate: 5
+  handlingFrigate: 2
+  velocityProton: 15
+  targetingProton: 2
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
