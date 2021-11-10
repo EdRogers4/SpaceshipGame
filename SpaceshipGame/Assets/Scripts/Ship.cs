@@ -30,6 +30,7 @@ public class Ship : MonoBehaviour
     public bool isShoot;
 
     //Stats
+    public float shields;
     public float thrust;
     public float thrustHigh;
     public float thrustLow;

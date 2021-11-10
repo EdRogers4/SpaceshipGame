@@ -524,6 +524,7 @@ MonoBehaviour:
   isMoving: 0
   isTapped: 0
   isShoot: 0
+  shields: 100
   thrust: 5
   thrustHigh: 80
   thrustLow: 5
