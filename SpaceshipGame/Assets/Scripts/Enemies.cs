@@ -79,6 +79,7 @@ public class Enemies : MonoBehaviour
         spawnedParticle.gameObject.transform.parent = particlesObject.transform;
         listProton.Remove(destroyed);
         Destroy(destroyed);
+        DestroyParticle(spawnedParticle.gameObject);
     }
 
     void FixedUpdate()

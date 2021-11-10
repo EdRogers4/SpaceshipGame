@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         spawnedProjectile = Instantiate(scriptEnemies.prefabProton, gun.transform.position, gun.transform.rotation);
         scriptEnemies.listProton.Add(spawnedProjectile);
+        spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
     }
     /*
  *
