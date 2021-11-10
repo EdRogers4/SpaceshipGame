@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scriptEnemies: {fileID: 0}
+  blasters: 10

@@ -22,19 +22,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().shield -= scriptShip.blasters;
-
-            if (collision.gameObject.GetComponent<Enemy>().shield <= 0f)
-            {
-                collision.gameObject.GetComponent<Enemy>().particleDestroyed.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
-                collision.gameObject.GetComponent<Enemy>().particleDestroyed.Play();
-                scriptEnemies.DestroyParticle(collision.gameObject.GetComponent<Enemy>().particleDestroyed.gameObject);
-                scriptEnemies.listEnemy.Remove(collision.gameObject);
-                scriptEnemies.enemyDestroyed = collision.gameObject;
-                scriptEnemies.EnemyDestroyed();
-                scriptShip.distanceEnemyShortest = scriptShip.targeting;
-            }
-
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(scriptShip.blasters);
             DestroyProjectile();
         }
         else if (collision.transform.tag == "Proton")

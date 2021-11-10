@@ -1,25 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
-    //World
+    [Header("World")]
     public ParticleSystem particleDestroyed;
     private GameObject spawnedProjectile;
     public GameObject gun;
 
-    //Scripts
+    [Header("Scripts")]
     public Enemies scriptEnemies;
 
-    //Stats
+    [Header("Stats")]
     public float shield;
+    public float startShield;
     public float reloadTime;
     public float reloadMinimum;
     public float reloadMaximum;
- 
+
+    [Header("UI")]
+    public Image shieldBar;
+
     private void Start()
     {
+        shield = startShield;
         reloadTime = Random.Range(reloadMinimum, reloadMaximum);
         StartCoroutine(Shoot());
     }
@@ -32,6 +38,24 @@ public class Enemy : MonoBehaviour
         spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
         spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
     }
+
+    public void TakeDamage(float amount)
+    {
+        shield -= amount;
+        shieldBar.fillAmount = shield / startShield;
+
+        if (shield <= 0f)
+        {
+            particleDestroyed.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+            particleDestroyed.Play();
+            scriptEnemies.DestroyParticle(particleDestroyed.gameObject);
+            scriptEnemies.listEnemy.Remove(this.gameObject);
+            scriptEnemies.enemyDestroyed = this.gameObject;
+            scriptEnemies.EnemyDestroyed();
+            scriptEnemies.scriptShip.distanceEnemyShortest = scriptEnemies.scriptShip.targeting;
+        }
+    }
+
     /*
  *
 public IEnumerator Shoot()

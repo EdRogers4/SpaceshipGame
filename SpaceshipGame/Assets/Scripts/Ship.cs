@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class Ship : MonoBehaviour
 {
-    //Scripts
+    [Header("Scripts")]
     public Enemies scriptEnemies;
 
-    //Lists
+    [Header("Lists")]
     public List<GameObject> listProjectiles;
 
-    //Game Objects, Vectors & Transforms
+    [Header("World")]
     public GameObject ship;
     public GameObject targetMove;
     public GameObject targetEnemy;
@@ -24,13 +25,14 @@ public class Ship : MonoBehaviour
     //Input
     private Vector3 previousPosition;
 
-    //Bools
+    [Header("Bools")]
     public bool isMoving;
     public bool isTapped;
     public bool isShoot;
 
-    //Stats
-    public float shields;
+    [Header("Stats")]
+    public float shield;
+    public float startShield;
     public float thrust;
     public float thrustHigh;
     public float thrustLow;
@@ -44,16 +46,20 @@ public class Ship : MonoBehaviour
     public float targeting;
     public float blasters;
 
+    [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip clipShoot;
 
-    //Distance
+    [Header("Distance")]
     private float distanceEnemy;
     public float distanceEnemyShortest;
     private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
     private RaycastHit hitAim;
+
+    [Header("UI")]
+    public Image shieldBar;
 
     private void Start()
     {
@@ -76,6 +82,12 @@ public class Ship : MonoBehaviour
     {
         isShoot = false;
         StopCoroutine(ShootProjectile());
+    }
+
+    public void TakeDamage(float amount)
+    {
+        shield -= amount;
+        shieldBar.fillAmount = shield / startShield;
     }
 
     public IEnumerator ShootProjectile()
