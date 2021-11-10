@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -840298567712153276}
   - component: {fileID: 2187032401658638646}
   m_Layer: 0
-  m_Name: Scourge
+  m_Name: Frigate
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
