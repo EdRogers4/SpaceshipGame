@@ -61,6 +61,7 @@ public class Ship : MonoBehaviour
 
     [Header("UI")]
     public Image shieldBar;
+    public GameObject screenGameOver;
 
     [Header("Particles")]
     public ParticleSystem particleDestroyed;
@@ -99,6 +100,7 @@ public class Ship : MonoBehaviour
             shipModel.SetActive(false);
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             isDead = true;
+            screenGameOver.SetActive(true);
         }
     }
 
