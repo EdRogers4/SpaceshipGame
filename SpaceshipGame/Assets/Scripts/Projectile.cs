@@ -6,6 +6,9 @@ public class Projectile : MonoBehaviour
 {
     public Ship scriptShip;
     public Enemies scriptEnemies;
+    public ParticleSystem particleExplode;
+
+    private ParticleSystem newParticleExplode;
 
     void Start()
     {
@@ -23,6 +26,13 @@ public class Projectile : MonoBehaviour
         if (collision.transform.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(scriptShip.blasters);
+
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                newParticleExplode = Instantiate(particleExplode, collision.contacts[0].point, transform.rotation);
+                newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
+            }
+
             DestroyProjectile();
         }
         else if (collision.transform.tag == "Proton")

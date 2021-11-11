@@ -86,20 +86,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1116459431216068, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
   m_PrefabInstance: {fileID: 2515290396945250555}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &3365932676259255341
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2516364455895546687}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &6938458667274625572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -116,6 +102,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!136 &3365932676259255341
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2516364455895546687}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6230507546390670880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,3 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
