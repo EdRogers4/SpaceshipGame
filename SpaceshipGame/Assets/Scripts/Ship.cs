@@ -14,6 +14,7 @@ public class Ship : MonoBehaviour
 
     [Header("World")]
     public GameObject ship;
+    public GameObject shipModel;
     public GameObject targetMove;
     public GameObject targetEnemy;
     public GameObject gunFront;
@@ -27,8 +28,8 @@ public class Ship : MonoBehaviour
 
     [Header("Bools")]
     public bool isMoving;
-    public bool isTapped;
     public bool isShoot;
+    public bool isDead;
 
     [Header("Stats")]
     public float shield;
@@ -61,6 +62,9 @@ public class Ship : MonoBehaviour
     [Header("UI")]
     public Image shieldBar;
 
+    [Header("Particles")]
+    public ParticleSystem particleDestroyed;
+
     private void Start()
     {
         previousPosition = targetMove.transform.position;
@@ -88,11 +92,19 @@ public class Ship : MonoBehaviour
     {
         shield -= amount;
         shieldBar.fillAmount = shield / startShield;
+
+        if (shield <= 0f)
+        {
+            particleDestroyed.Play();
+            shipModel.SetActive(false);
+            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            isDead = true;
+        }
     }
 
     public IEnumerator ShootProjectile()
     {
-        if (isShoot)
+        if (isShoot && !isDead)
         {
             var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
             listProjectiles.Add(newProjectile);
@@ -104,7 +116,7 @@ public class Ship : MonoBehaviour
 
         yield return new WaitForSeconds(cooldown);
 
-        if (isShoot)
+        if (isShoot && !isDead)
         {
             StartCoroutine(ShootProjectile());
         }
@@ -112,56 +124,80 @@ public class Ship : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown("space"))
+        if (!isDead)
         {
-            ShootProjectileOn();
-        }
-        else if (Input.GetKeyUp("space"))
-        {
-            ShootProjectileOff();
-        }
-
-        if (previousPosition != targetMove.transform.position)
-        {
-            isMoving = true;
-            isTapped = true;
-        }
-        else
-        {
-            isMoving = false;
-            isTapped = false;
-        }
-
-        previousPosition = targetMove.transform.position;
-
-        if (listProjectiles.Count > 0)
-        {
-            for (int i = 0; i < listProjectiles.Count; i++)
+            if (Input.GetKeyDown("space"))
             {
-                if (listProjectiles[i] != null)
+                ShootProjectileOn();
+            }
+            else if (Input.GetKeyUp("space"))
+            {
+                ShootProjectileOff();
+            }
+
+            if (previousPosition != targetMove.transform.position)
+            {
+                isMoving = true;
+            }
+            else
+            {
+                isMoving = false;
+            }
+
+            previousPosition = targetMove.transform.position;
+
+            if (listProjectiles.Count > 0)
+            {
+                for (int i = 0; i < listProjectiles.Count; i++)
                 {
-                    listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
+                    if (listProjectiles[i] != null)
+                    {
+                        listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
+                    }
                 }
             }
-        }
 
-        if (isMoving)
-        {
-            targetMovePosition = new Vector3(targetMove.transform.position.x, targetMove.transform.position.y, targetMove.transform.position.z);
-            distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
+            if (isMoving)
+            {
+                targetMovePosition = new Vector3(targetMove.transform.position.x, targetMove.transform.position.y, targetMove.transform.position.z);
+                distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
 
-            if (distanceTargetMove > minimumDistanceToTarget)
+                if (distanceTargetMove > minimumDistanceToTarget)
+                {
+                    ship.transform.position += transform.forward * Time.deltaTime * thrust;
+
+                    if (thrust < thrustHigh)
+                    {
+                        thrust += acceleration;
+                    }
+
+                    if (handling < handlingHigh)
+                    {
+                        handling += acceleration;
+                    }
+
+                    Vector3 targetDirection = targetMovePosition - transform.position;
+                    float singleStep = handling * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+                    transform.rotation = Quaternion.LookRotation(newDirection);
+                }
+                else if (distanceTargetMove <= minimumDistanceToTarget && isMoving)
+                {
+                    isMoving = false;
+                }
+            }
+            else
             {
                 ship.transform.position += transform.forward * Time.deltaTime * thrust;
 
-                if (thrust < thrustHigh)
+                if (thrust > thrustLow)
                 {
-                    thrust += acceleration;
+                    thrust -= decceleration;
                 }
 
-                if (handling < handlingHigh)
+                if (handling > handlingLow)
                 {
-                    handling += acceleration;
+                    handling -= decceleration;
                 }
 
                 Vector3 targetDirection = targetMovePosition - transform.position;
@@ -169,29 +205,6 @@ public class Ship : MonoBehaviour
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
-            else if (distanceTargetMove <= minimumDistanceToTarget && isMoving)
-            {
-                isMoving = false;
-            }
-        }
-        else
-        {
-            ship.transform.position += transform.forward * Time.deltaTime * (thrust / 4f);
-
-            if (thrust > thrustLow)
-            {
-                thrust -= decceleration;
-            }
-
-            if (handling > handlingLow)
-            {
-                handling -= decceleration;
-            }
-
-            Vector3 targetDirection = targetMovePosition - transform.position;
-            float singleStep = handling * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
         }
     }
 }

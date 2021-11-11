@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
     public Rigidbody rb;
     public VariableJoystick variableJoystick;
+    public Ship scriptShip;
 
     private Vector3 moveDirection;
     private float moveX;
@@ -15,12 +16,18 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        ProcessInputs();
+        if (!scriptShip.isDead)
+        {
+            ProcessInputs();
+        }
     }
 
     void FixedUpdate()
     {
-        Move();
+        if (!scriptShip.isDead)
+        {
+            Move();
+        }
     }
 
     void ProcessInputs()

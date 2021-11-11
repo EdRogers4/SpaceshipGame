@@ -15,5 +15,10 @@ public class Proton : MonoBehaviour
             scriptEnemies.ProtonDestroyed(this.gameObject);
             scriptEnemies.scriptShip.TakeDamage(blasters);
         }
+        else if (collision.transform.tag == "Enemy")
+        {
+            scriptEnemies.ProtonDestroyed(this.gameObject);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(blasters);
+        }
     }
 }
