@@ -81,6 +81,7 @@ public class Ship : MonoBehaviour
     [Header("UI")]
     public Image shieldBar;
     public GameObject screenGameOver;
+    public Image[] imageDead;
 
     [Header("Particles")]
     public ParticleSystem particleDestroyed;
@@ -287,26 +288,32 @@ public class Ship : MonoBehaviour
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(false);
                     isDeadFighter = true;
+                    imageDead[0].enabled = true;
                     break;
                 case "Bomber":
                     shipModel[1].gameObject.SetActive(false);
                     isDeadBomber = true;
+                    imageDead[1].enabled = true;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(false);
                     isDeadVanguard = true;
+                    imageDead[2].enabled = true;
                     break;
                 case "Scout":
                     shipModel[3].gameObject.SetActive(false);
                     isDeadScout = true;
+                    imageDead[3].enabled = true;
                     break;
                 case "Breaker":
                     shipModel[4].gameObject.SetActive(false);
                     isDeadBreaker = true;
+                    imageDead[4].enabled = true;
                     break;
                 case "Interceptor":
                     shipModel[5].gameObject.SetActive(false);
                     isDeadInterceptor = true;
+                    imageDead[5].enabled = true;
                     break;
                 default:
                     print("Not a ship");

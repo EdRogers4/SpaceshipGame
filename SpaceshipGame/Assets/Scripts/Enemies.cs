@@ -86,31 +86,37 @@ public class Enemies : MonoBehaviour
 
     void FixedUpdate()
     {
-        for (int i = 0; i < listEnemy.Count; i++)
+        if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Bomber" && !scriptShip.isDeadBomber)
+            || (scriptShip.shipName == "Vanguard" && !scriptShip.isDeadVanguard) || (scriptShip.shipName == "Scout" && !scriptShip.isDeadScout)
+            || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker) || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor))
         {
-            distanceTargetMove = Vector3.Distance(listEnemy[i].transform.position, ship.transform.position);
-
-            if (distanceTargetMove > minimumDistanceToTarget)
+            for (int i = 0; i < listEnemy.Count; i++)
             {
-                listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustFrigate;
-                Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
-                float singleStep = handlingFrigate * Time.deltaTime;
-                Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
-                listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+
+                distanceTargetMove = Vector3.Distance(listEnemy[i].transform.position, ship.transform.position);
+
+                if (distanceTargetMove > minimumDistanceToTarget)
+                {
+                    listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustFrigate;
+                    Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                    float singleStep = handlingFrigate * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                }
             }
-        }
 
-        for (int i = 0; i < listProton.Count; i++)
-        {
-            distanceTargetMove = Vector3.Distance(listProton[i].transform.position, ship.transform.position);
-
-            if (distanceTargetMove > minimumDistanceToTarget)
+            for (int i = 0; i < listProton.Count; i++)
             {
-                listProton[i].transform.position += listProton[i].transform.forward * Time.deltaTime * velocityProton;
-                Vector3 targetDirection = ship.transform.position - listProton[i].transform.position;
-                float singleStep = targetingProton * Time.deltaTime;
-                Vector3 newDirection = Vector3.RotateTowards(listProton[i].transform.forward, targetDirection, singleStep, 0.0f);
-                listProton[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                distanceTargetMove = Vector3.Distance(listProton[i].transform.position, ship.transform.position);
+
+                if (distanceTargetMove > minimumDistanceToTarget)
+                {
+                    listProton[i].transform.position += listProton[i].transform.forward * Time.deltaTime * velocityProton;
+                    Vector3 targetDirection = ship.transform.position - listProton[i].transform.position;
+                    float singleStep = targetingProton * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listProton[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listProton[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                }
             }
         }
     }
