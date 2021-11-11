@@ -5,13 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameSettings : MonoBehaviour
 {
+    static float volume;
+
     public bool isPause;
     public bool isSettings;
     public bool isMenu;
 
+    private AudioSource audioSource;
+
     void Start()
     {
-
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -66,6 +70,18 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             isPause = false;
+        }
+    }
+
+    public void ToggleMusic(bool music)
+    {
+        if (music)
+        {
+            audioSource.enabled = true;
+        }
+        else
+        {
+            audioSource.enabled = false;
         }
     }
 

@@ -1821,7 +1821,7 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &264208660
@@ -1943,9 +1943,19 @@ MonoBehaviour:
   isMoving: 0
   isShoot: 0
   isDead: 0
+  isDeadFighter: 0
+  isDeadBomber: 0
+  isDeadVanguard: 0
+  isDeadScout: 0
+  isDeadBreaker: 0
+  isDeadInterceptor: 0
   shipName: Fighter
-  shield: 40
-  startShield: 40
+  shieldFighter: 60
+  shieldBomber: 80
+  shieldVanguard: 70
+  shieldScout: 50
+  shieldBreaker: 90
+  shieldInterceptor: 40
   thrust: 0
   thrustHigh: 60
   thrustLow: 0
@@ -4782,6 +4792,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: ToggleMusic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   onTurnOff:
     m_PersistentCalls:
       m_Calls:
@@ -4808,6 +4830,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: ToggleMusic
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &598540008
 MonoBehaviour:

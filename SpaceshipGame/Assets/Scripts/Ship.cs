@@ -31,11 +31,28 @@ public class Ship : MonoBehaviour
     public bool isMoving;
     public bool isShoot;
     public bool isDead;
+    public bool isDeadFighter;
+    public bool isDeadBomber;
+    public bool isDeadVanguard;
+    public bool isDeadScout;
+    public bool isDeadBreaker;
+    public bool isDeadInterceptor;
 
     [Header("Stats")]
     public string shipName;
-    public float shield;
-    public float startShield;
+    public float shieldFighter;
+    public float shieldBomber;
+    public float shieldVanguard;
+    public float shieldScout;
+    public float shieldBreaker;
+    public float shieldInterceptor;
+    private float startShieldFighter;
+    private float startShieldBomber;
+    private float startShieldVanguard;
+    private float startShieldScout;
+    private float startShieldBreaker;
+    private float startShieldInterceptor;
+
     public float thrust;
     public float thrustHigh;
     public float thrustLow;
@@ -73,114 +90,134 @@ public class Ship : MonoBehaviour
         previousPosition = targetMove.transform.position;
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = 200f;
+        startShieldFighter = 60.0f;
+        startShieldBomber = 80.0f;
+        startShieldVanguard = 70.0f;
+        startShieldScout = 50.0f;
+        startShieldBreaker = 90.0f;
+        startShieldInterceptor = 40.0f;
     }
 
     public void SwitchShip(string name)
     {
-        switch (shipName)
+        if ((name == "Fighter" && shieldFighter <= 0f) || (name == "Bomber" && shieldBomber <= 0f) || (name == "Vanguard" && shieldVanguard <= 0f) ||
+            (name == "Scout" && shieldScout <= 0f) || (name == "Breaker" && shieldBreaker <= 0f) || (name == "Interceptor" && shieldInterceptor <= 0f))
         {
-            case "Fighter":
-                shipModel[0].gameObject.SetActive(false);
-                break;
-            case "Bomber":
-                shipModel[1].gameObject.SetActive(false);
-                break;
-            case "Vanguard":
-                shipModel[2].gameObject.SetActive(false);
-                break;
-            case "Scout":
-                shipModel[3].gameObject.SetActive(false);
-                break;
-            case "Breaker":
-                shipModel[4].gameObject.SetActive(false);
-                break;
-            case "Interceptor":
-                shipModel[5].gameObject.SetActive(false);
-                break;
-            default:
-                print("Not a ship");
-                break;
+            return;
         }
-
-        shipName = name;
-
-        switch (shipName)
+        else
         {
-            case "Fighter":
-                shipModel[0].gameObject.SetActive(true); 
-                startShield = 60.0f;
-                thrustHigh = 60.0f;
-                scriptPlayerMovement.moveSpeed = 60.0f;
-                acceleration = 1.0f;
-                decceleration = 0.5f;
-                handlingHigh = 4.0f;
-                velocity = 200.0f;
-                cooldown = 0.1f;
-                blasters = 3.0f;
-                break;
-            case "Bomber":
-                shipModel[1].gameObject.SetActive(true);
-                startShield = 80.0f;
-                thrustHigh = 30.0f;
-                scriptPlayerMovement.moveSpeed = 30.0f;
-                acceleration = 2.0f;
-                decceleration = 1.0f;
-                handlingHigh = 8.0f;
-                velocity = 50.0f;
-                cooldown = 0.5f;
-                blasters = 8.0f;
-                break;
-            case "Vanguard":
-                shipModel[2].gameObject.SetActive(true);
-                startShield = 70.0f;
-                thrustHigh = 90.0f;
-                scriptPlayerMovement.moveSpeed = 90.0f;
-                acceleration = 10.0f;
-                decceleration = 10.0f;
-                handlingHigh = 4.0f;
-                velocity = 200.0f;
-                cooldown = 0.5f;
-                blasters = 5.0f;
-                break;
-            case "Scout":
-                shipModel[3].gameObject.SetActive(true);
-                startShield = 50.0f;
-                thrustHigh = 60.0f;
-                scriptPlayerMovement.moveSpeed = 60.0f;
-                acceleration = 2.0f;
-                decceleration = 6.0f;
-                handlingHigh = 2.0f;
-                velocity = 125.0f;
-                cooldown = 1.0f;
-                blasters = 5.0f;
-                break;
-            case "Breaker":
-                shipModel[4].gameObject.SetActive(true);
-                startShield = 90.0f;
-                thrustHigh = 30.0f;
-                scriptPlayerMovement.moveSpeed = 30.0f;
-                acceleration = 1.0f;
-                decceleration = 0.5f;
-                handlingHigh = 2.0f;
-                velocity = 50.0f;
-                cooldown = 1.0f;
-                blasters = 10.0f;
-                break;
-            case "Interceptor":
-                shipModel[5].gameObject.SetActive(true);
-                startShield = 40.0f;
-                thrustHigh = 120.0f;
-                scriptPlayerMovement.moveSpeed = 120.0f;
-                acceleration = 10.0f;
-                decceleration = 10.0f;
-                handlingHigh = 8.0f;
-                velocity = 125.0f;
-                cooldown = 0.1f;
-                blasters = 1.0f;
-                break;
-            default:
-                print("Not a ship");
-                break;
+            switch (shipName)
+            {
+                case "Fighter":
+                    shipModel[0].gameObject.SetActive(false);
+                    break;
+                case "Bomber":
+                    shipModel[1].gameObject.SetActive(false);
+                    break;
+                case "Vanguard":
+                    shipModel[2].gameObject.SetActive(false);
+                    break;
+                case "Scout":
+                    shipModel[3].gameObject.SetActive(false);
+                    break;
+                case "Breaker":
+                    shipModel[4].gameObject.SetActive(false);
+                    break;
+                case "Interceptor":
+                    shipModel[5].gameObject.SetActive(false);
+                    break;
+                default:
+                    print("Not a ship");
+                    break;
+            }
+
+            shipName = name;
+
+            switch (shipName)
+            {
+                case "Fighter":
+                    shipModel[0].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldFighter / startShieldFighter;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 60.0f;
+                    scriptPlayerMovement.moveSpeed = 60.0f;
+                    acceleration = 1.0f;
+                    decceleration = 0.5f;
+                    handlingHigh = 4.0f;
+                    velocity = 200.0f;
+                    cooldown = 0.1f;
+                    blasters = 3.0f;
+                    break;
+                case "Bomber":
+                    shipModel[1].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldBomber / startShieldBomber;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 30.0f;
+                    scriptPlayerMovement.moveSpeed = 30.0f;
+                    acceleration = 2.0f;
+                    decceleration = 1.0f;
+                    handlingHigh = 8.0f;
+                    velocity = 50.0f;
+                    cooldown = 0.5f;
+                    blasters = 8.0f;
+                    break;
+                case "Vanguard":
+                    shipModel[2].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldVanguard / startShieldVanguard;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 90.0f;
+                    scriptPlayerMovement.moveSpeed = 90.0f;
+                    acceleration = 10.0f;
+                    decceleration = 10.0f;
+                    handlingHigh = 4.0f;
+                    velocity = 200.0f;
+                    cooldown = 0.5f;
+                    blasters = 5.0f;
+                    break;
+                case "Scout":
+                    shipModel[3].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldScout / startShieldScout;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 60.0f;
+                    scriptPlayerMovement.moveSpeed = 60.0f;
+                    acceleration = 2.0f;
+                    decceleration = 6.0f;
+                    handlingHigh = 2.0f;
+                    velocity = 125.0f;
+                    cooldown = 1.0f;
+                    blasters = 5.0f;
+                    break;
+                case "Breaker":
+                    shipModel[4].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 30.0f;
+                    scriptPlayerMovement.moveSpeed = 30.0f;
+                    acceleration = 1.0f;
+                    decceleration = 0.5f;
+                    handlingHigh = 2.0f;
+                    velocity = 50.0f;
+                    cooldown = 1.0f;
+                    blasters = 10.0f;
+                    break;
+                case "Interceptor":
+                    shipModel[5].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
+                    thrustHigh = 120.0f;
+                    scriptPlayerMovement.moveSpeed = 120.0f;
+                    acceleration = 10.0f;
+                    decceleration = 10.0f;
+                    handlingHigh = 8.0f;
+                    velocity = 125.0f;
+                    cooldown = 0.1f;
+                    blasters = 1.0f;
+                    break;
+                default:
+                    print("Not a ship");
+                    break;
+            }
         }
     }
 
@@ -202,35 +239,74 @@ public class Ship : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        shield -= amount;
-        shieldBar.fillAmount = shield / startShield;
+        switch (shipName)
+        {
+            case "Fighter":
+                shieldFighter -= amount;
+                shieldBar.fillAmount = shieldFighter / startShieldFighter;
+                break;
+            case "Bomber":
+                shieldBomber -= amount;
+                shieldBar.fillAmount = shieldBomber / startShieldBomber;
+                break;
+            case "Vanguard":
+                shieldVanguard -= amount;
+                shieldBar.fillAmount = shieldVanguard / startShieldVanguard;
+                break;
+            case "Scout":
+                shieldScout -= amount;
+                shieldBar.fillAmount = shieldScout / startShieldScout;
+                break;
+            case "Breaker":
+                shieldBreaker -= amount;
+                shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+                break;
+            case "Interceptor":
+                shieldInterceptor -= amount;
+                shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+                break;
+            default:
+                print("Not a ship");
+                break;
+        }
 
-        if (shield <= 0f)
+        if (shieldFighter <= 0f && shieldBomber <= 0f && shieldVanguard <= 0f && shieldScout <= 0f && shieldBreaker <= 0f && shieldInterceptor <= 0f)
+        {
+            isDead = true;
+            screenGameOver.SetActive(true);
+        }
+
+        if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Vanguard" && shieldVanguard <= 0f) ||
+        (shipName == "Scout" && shieldScout <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f))
         {
             particleDestroyed.Play();
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
-            isDead = true;
-            screenGameOver.SetActive(true);
 
             switch (shipName)
             {
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(false);
+                    isDeadFighter = true;
                     break;
                 case "Bomber":
                     shipModel[1].gameObject.SetActive(false);
+                    isDeadBomber = true;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(false);
+                    isDeadVanguard = true;
                     break;
                 case "Scout":
                     shipModel[3].gameObject.SetActive(false);
+                    isDeadScout = true;
                     break;
                 case "Breaker":
                     shipModel[4].gameObject.SetActive(false);
+                    isDeadBreaker = true;
                     break;
                 case "Interceptor":
                     shipModel[5].gameObject.SetActive(false);
+                    isDeadInterceptor = true;
                     break;
                 default:
                     print("Not a ship");

@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
             scriptEnemies.listEnemy.Remove(this.gameObject);
             scriptEnemies.enemyDestroyed = this.gameObject;
             scriptEnemies.EnemyDestroyed();
-            scriptEnemies.scriptShip.distanceEnemyShortest = scriptEnemies.scriptShip.targeting;
+            scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
         }
     }
 
