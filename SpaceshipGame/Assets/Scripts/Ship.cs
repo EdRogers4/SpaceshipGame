@@ -30,6 +30,7 @@ public class Ship : MonoBehaviour
     [Header("Bools")]
     public bool isMoving;
     public bool isShoot;
+    public bool isShooting;
     public bool isDead;
     public bool isDeadFighter;
     public bool isDeadBomber;
@@ -99,6 +100,33 @@ public class Ship : MonoBehaviour
         startShieldInterceptor = 40.0f;
     }
 
+    public IEnumerator ShootProjectile()
+    {
+        if (isShoot && !isDead)
+        {
+            isShooting = true;
+            var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
+            listProjectiles.Add(newProjectile);
+            newProjectile.GetComponent<Projectile>().scriptShip = this;
+            newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+            newProjectile.transform.parent = instances.transform;
+            audioSource.PlayOneShot(clipShoot, 0.1f);
+        }
+
+        yield return new WaitForSeconds(cooldown);
+        isShooting = false;
+
+        if (isShoot && !isDead)
+        {
+            StartCoroutine(ShootProjectile());
+        }
+        else
+        {
+            StopCoroutine(ShootProjectile());
+        }
+    }
+
+
     public void SwitchShip(string name)
     {
         if ((name == "Fighter" && shieldFighter <= 0f) || (name == "Bomber" && shieldBomber <= 0f) || (name == "Vanguard" && shieldVanguard <= 0f) ||
@@ -160,7 +188,7 @@ public class Ship : MonoBehaviour
                     decceleration = 1.0f;
                     handlingHigh = 8.0f;
                     velocity = 50.0f;
-                    cooldown = 0.5f;
+                    cooldown = 0.25f;
                     blasters = 8.0f;
                     break;
                 case "Vanguard":
@@ -322,33 +350,16 @@ public class Ship : MonoBehaviour
         }
     }
 
-    public IEnumerator ShootProjectile()
-    {
-        if (isShoot && !isDead)
-        {
-            var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
-            listProjectiles.Add(newProjectile);
-            newProjectile.GetComponent<Projectile>().scriptShip = this;
-            newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-            newProjectile.transform.parent = instances.transform;
-            audioSource.PlayOneShot(clipShoot, 0.1f);
-        }
-
-        yield return new WaitForSeconds(cooldown);
-
-        if (isShoot && !isDead)
-        {
-            StartCoroutine(ShootProjectile());
-        }
-    }
-
     void Update()
     {
         if (!isDead)
         {
             if (Input.GetKeyDown("space"))
             {
-                ShootProjectileOn();
+                if (!isShooting)
+                {
+                    ShootProjectileOn();
+                }
             }
             else if (Input.GetKeyUp("space"))
             {
