@@ -343,10 +343,9 @@ public class Ship : MonoBehaviour
 
     public void ShootProjectileOn()
     {
-        if (!isShoot)
+        if (!isShoot && !isShooting)
         {
             isShoot = true;
-            StopCoroutine(ShootProjectile());
             StartCoroutine(ShootProjectile());
         }
     }
