@@ -288,6 +288,7 @@ public class Ship : MonoBehaviour
                     velocity = 100.0f;
                     cooldown = 0.25f;
                     blasters = 10.0f;
+                    targeting = 2.0f;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(true);
@@ -301,6 +302,7 @@ public class Ship : MonoBehaviour
                     velocity = 300.0f;
                     cooldown = 0.30f;
                     blasters = 10.0f;
+                    targeting = 0.0f;
                     break;
                 case "Scout":
                     shipModel[3].gameObject.SetActive(true);
@@ -342,6 +344,7 @@ public class Ship : MonoBehaviour
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 5.0f;
+                    targeting = 1.0f;
                     break;
                 default:
                     print("Not a ship");
@@ -469,7 +472,7 @@ public class Ship : MonoBehaviour
 
             if (distanceProton > 0 && distanceProton < 1000f)
             {
-                if (distanceProton <= distanceEnemyShortest)
+                if (distanceProton < distanceEnemyShortest)
                 {
                     distanceEnemyShortest = distanceProton;
                     targetEnemy = scriptEnemies.listProton[i];
@@ -489,7 +492,7 @@ public class Ship : MonoBehaviour
 
             if (distanceEnemy > 0 && distanceEnemy < 1000f)
             {
-                if (distanceEnemy <= distanceEnemyShortest)
+                if (distanceEnemy < distanceEnemyShortest)
                 {
                     distanceEnemyShortest = distanceEnemy;
                     targetEnemy = scriptEnemies.listEnemy[i];
@@ -514,16 +517,16 @@ public class Ship : MonoBehaviour
             }
         }
 
-        if (shipName == "Scout" || shipName == "Breaker")
+        if (shipName == "Scout" || shipName == "Breaker" || shipName == "Bomber" || shipName == "Interceptor")
         {
             if (targetEnemy != null)
             {
                 for (int i = 0; i < listProjectiles.Count; i++)
                 {
-                    float step = targeting * Time.deltaTime;
-                    listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
+                    //float step = targeting * Time.deltaTime;
+                    //listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
                     Vector3 targetDirection = targetEnemy.transform.position - listProjectiles[i].transform.position;
-                    float singleStep = handling * Time.deltaTime;
+                    float singleStep = targeting * Time.deltaTime;
                     Vector3 newDirection = Vector3.RotateTowards(listProjectiles[i].transform.forward, targetDirection, singleStep, 0.0f);
                     listProjectiles[i].transform.rotation = Quaternion.LookRotation(newDirection);
                 }
