@@ -288,7 +288,7 @@ public class Ship : MonoBehaviour
                     velocity = 100.0f;
                     cooldown = 0.25f;
                     blasters = 10.0f;
-                    targeting = 2.0f;
+                    targeting = 0.0f;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(true);
@@ -344,7 +344,7 @@ public class Ship : MonoBehaviour
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 5.0f;
-                    targeting = 1.0f;
+                    targeting = 0.0f;
                     break;
                 default:
                     print("Not a ship");
@@ -357,7 +357,12 @@ public class Ship : MonoBehaviour
 
     public void ShootProjectileOn()
     {
-        if (!isShoot && !isShooting)
+        if ((shipName == "Fighter" && isDeadFighter) || (shipName == "Bomber" && isDeadBomber) || (shipName == "Vanguard" && isDeadVanguard) ||
+            (shipName == "Scout" && isDeadScout) || (shipName == "Breaker" && isDeadBreaker) || (shipName == "Interceptor" && isDeadInterceptor))
+        {
+            return;
+        }
+        else if (!isShoot && !isShooting)
         {
             isShoot = true;
             StartCoroutine(ShootProjectile());
