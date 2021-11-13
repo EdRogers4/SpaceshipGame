@@ -2126,7 +2126,7 @@ MonoBehaviour:
   handlingLow: 0
   velocity: 200
   cooldown: 0.1
-  targeting: 0
+  targeting: 10
   blasters: 3
   scriptEnemies: {fileID: 1730435883}
   scriptPlayerMovement: {fileID: 792672283}

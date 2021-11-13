@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour
 
     public IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(5.0f);
         DestroyProjectile();
     }
 
@@ -33,7 +33,10 @@ public class Projectile : MonoBehaviour
                 newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
             }
 
-            DestroyProjectile();
+            if (scriptShip.shipName != "Vanguard")
+            {
+                DestroyProjectile();
+            }
         }
         else if (collision.transform.tag == "Proton")
         {

@@ -95,6 +95,7 @@ public class Ship : MonoBehaviour
     [Header("Distance")]
     private float distanceEnemy;
     public float distanceEnemyShortest;
+    private float distanceProton;
     private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
@@ -117,12 +118,12 @@ public class Ship : MonoBehaviour
         startShieldBomber = 80.0f;
         startShieldVanguard = 70.0f;
         startShieldScout = 50.0f;
-        startShieldBreaker = 90.0f;
+        startShieldBreaker = 120.0f;
         startShieldInterceptor = 40.0f;
         acceleration = 10.0f;
-        targeting = 200f;
 
         StartCoroutine(TargetEnemy());
+        StartCoroutine(TargetProton());
     }
 
     public IEnumerator ShootProjectile()
@@ -297,9 +298,9 @@ public class Ship : MonoBehaviour
                     acceleration = 10.0f;
                     decceleration = 10.0f;
                     handlingHigh = 4.0f;
-                    velocity = 200.0f;
-                    cooldown = 0.35f;
-                    blasters = 5.0f;
+                    velocity = 300.0f;
+                    cooldown = 0.25f;
+                    blasters = 10.0f;
                     break;
                 case "Scout":
                     shipModel[3].gameObject.SetActive(true);
@@ -309,10 +310,11 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 4.0f;
-                    velocity = 125.0f;
-                    cooldown = 1.0f;
-                    blasters = 5.0f;
+                    handlingHigh = 3.0f;
+                    velocity = 250.0f;
+                    cooldown = 0.25f;
+                    blasters = 3.0f;
+                    targeting = 10.0f;
                     break;
                 case "Breaker":
                     shipModel[4].gameObject.SetActive(true);
@@ -326,6 +328,7 @@ public class Ship : MonoBehaviour
                     velocity = 50.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
+                    targeting = 20.0f;
                     break;
                 case "Interceptor":
                     shipModel[5].gameObject.SetActive(true);
@@ -344,6 +347,8 @@ public class Ship : MonoBehaviour
                     print("Not a ship");
                     break;
             }
+
+            thrust = thrustLow;
         }
     }
 
@@ -456,13 +461,33 @@ public class Ship : MonoBehaviour
         }
     }
 
+    public IEnumerator TargetProton()
+    {
+        for (int i = 0; i < scriptEnemies.listProton.Count; i++)
+        {
+            distanceProton = Vector3.Distance(ship.transform.position, scriptEnemies.listProton[i].transform.position);
+
+            if (distanceProton > 0 && distanceProton < 1000f)
+            {
+                if (distanceProton <= distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceProton;
+                    targetEnemy = scriptEnemies.listProton[i];
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        StartCoroutine(TargetProton());
+    }
+
     public IEnumerator TargetEnemy()
     {
         for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
         {
             distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
 
-            if (distanceEnemy > 0 && distanceEnemy < targeting)
+            if (distanceEnemy > 0 && distanceEnemy < 1000f)
             {
                 if (distanceEnemy <= distanceEnemyShortest)
                 {
@@ -495,7 +520,7 @@ public class Ship : MonoBehaviour
             {
                 for (int i = 0; i < listProjectiles.Count; i++)
                 {
-                    float step = turnSpeed * Time.deltaTime;
+                    float step = targeting * Time.deltaTime;
                     listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
                     Vector3 targetDirection = targetEnemy.transform.position - listProjectiles[i].transform.position;
                     float singleStep = handling * Time.deltaTime;
