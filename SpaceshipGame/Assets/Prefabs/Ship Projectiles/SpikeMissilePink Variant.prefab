@@ -17,15 +17,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4089076492349880, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_LocalScale.x
-      value: 50
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4089076492349880, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_LocalScale.y
-      value: 50
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4089076492349880, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_LocalScale.z
-      value: 50
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 4089076492349880, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_LocalPosition.x
@@ -130,4 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  isExploding: 0
   particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
+  prefabRocketExplosion: {fileID: 0}
+  prefabNukeExplosion: {fileID: 0}

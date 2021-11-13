@@ -11,18 +11,85 @@ public class Projectile : MonoBehaviour
     public GameObject prefabRocketExplosion;
     public GameObject prefabNukeExplosion;
 
+    private float distanceEnemy;
+    private float distanceProton;
+    private float distanceEnemyShortest;
+    private GameObject targetEnemy;
+
     private ParticleSystem newParticleExplode;
     private GameObject newPrefabExplosive;
 
     void Start()
     {
+        distanceEnemyShortest = 1000f;
         StartCoroutine(DelayDestroy());
+
+        if (scriptShip.shipName == "Bomber" || scriptShip.shipName == "Breaker" || scriptShip.shipName == "Interceptor")
+        {
+            StartCoroutine(TargetProton());
+            StartCoroutine(TargetEnemy());
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Vanguard" || scriptShip.shipName == "Scout")
+        {
+            return;
+        }
+        else if (targetEnemy != null && (scriptShip.shipName == "Bomber" || scriptShip.shipName == "Breaker" || scriptShip.shipName == "Interceptor"))
+        {
+            Vector3 targetDirection = targetEnemy.transform.position - transform.position;
+            float singleStep = scriptShip.targeting * Time.deltaTime;
+            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+            transform.rotation = Quaternion.LookRotation(newDirection);
+        }
     }
 
     public IEnumerator DelayDestroy()
     {
         yield return new WaitForSeconds(5.0f);
         DestroyProjectile();
+    }
+
+    public IEnumerator TargetProton()
+    {
+        for (int i = 0; i < scriptEnemies.listProton.Count; i++)
+        {
+            distanceProton = Vector3.Distance(transform.position, scriptEnemies.listProton[i].transform.position);
+
+            if (distanceProton > 0 && distanceProton < 1000f)
+            {
+                if (distanceProton < distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceProton;
+                    targetEnemy = scriptEnemies.listProton[i];
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        StartCoroutine(TargetProton());
+    }
+
+    public IEnumerator TargetEnemy()
+    {
+        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
+        {
+            distanceEnemy = Vector3.Distance(transform.position, scriptEnemies.listEnemy[i].transform.position);
+
+            if (distanceEnemy > 0 && distanceEnemy < 1000f)
+            {
+                if (distanceEnemy < distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceEnemy;
+                    targetEnemy = scriptEnemies.listEnemy[i];
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        StartCoroutine(TargetEnemy());
     }
 
     void OnCollisionEnter(Collision collision)

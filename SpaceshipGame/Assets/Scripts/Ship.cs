@@ -266,7 +266,6 @@ public class Ship : MonoBehaviour
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldFighter / startShieldFighter;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 60.0f;
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
@@ -275,11 +274,11 @@ public class Ship : MonoBehaviour
                     velocity = 200.0f;
                     cooldown = 0.1f;
                     blasters = 3.0f;
+                    targeting = 0.0f;
                     break;
                 case "Bomber":
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBomber / startShieldBomber;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 30.0f;
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 2.0f;
@@ -288,12 +287,11 @@ public class Ship : MonoBehaviour
                     velocity = 100.0f;
                     cooldown = 0.25f;
                     blasters = 10.0f;
-                    targeting = 0.0f;
+                    targeting = 0.5f;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldVanguard / startShieldVanguard;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 90.0f;
                     scriptPlayerMovement.moveSpeed = 90.0f;
                     acceleration = 10.0f;
@@ -307,7 +305,6 @@ public class Ship : MonoBehaviour
                 case "Scout":
                     shipModel[3].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldScout / startShieldScout;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 60.0f;
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 2.0f;
@@ -321,7 +318,6 @@ public class Ship : MonoBehaviour
                 case "Breaker":
                     shipModel[4].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 30.0f;
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 1.0f;
@@ -335,7 +331,6 @@ public class Ship : MonoBehaviour
                 case "Interceptor":
                     shipModel[5].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
-                    gameObject.GetComponent<CapsuleCollider>().enabled = true;
                     thrustHigh = 120.0f;
                     scriptPlayerMovement.moveSpeed = 120.0f;
                     acceleration = 10.0f;
@@ -344,13 +339,14 @@ public class Ship : MonoBehaviour
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 5.0f;
-                    targeting = 0.0f;
+                    targeting = 0.5f;
                     break;
                 default:
                     print("Not a ship");
                     break;
             }
 
+            gameObject.GetComponent<CapsuleCollider>().enabled = true;
             thrust = thrustLow;
         }
     }
@@ -522,7 +518,7 @@ public class Ship : MonoBehaviour
             }
         }
 
-        if (shipName == "Scout" || shipName == "Breaker" || shipName == "Bomber" || shipName == "Interceptor")
+        if (shipName == "Scout")
         {
             if (targetEnemy != null)
             {
