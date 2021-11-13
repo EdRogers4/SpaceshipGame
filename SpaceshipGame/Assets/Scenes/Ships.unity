@@ -1912,6 +1912,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptEnemies: {fileID: 1730435883}
   scriptPlayerMovement: {fileID: 792672283}
+  scriptGameSettings: {fileID: 1749457248}
   listProjectiles: []
   ship: {fileID: 264208658}
   shipModel:
@@ -1941,6 +1942,7 @@ MonoBehaviour:
   - {fileID: 402257584}
   targetMovePosition: {x: 0, y: 0, z: 0}
   instances: {fileID: 2076841868}
+  previousPosition: {x: 0, y: 0, z: 0}
   isMoving: 0
   isShoot: 0
   isShooting: 0
@@ -1962,7 +1964,7 @@ MonoBehaviour:
   thrustHigh: 60
   thrustLow: 0
   acceleration: 1
-  decceleration: 0.5
+  decceleration: 10
   handling: 4
   handlingHigh: 4
   handlingLow: 0
@@ -7647,7 +7649,19 @@ MonoBehaviour:
   m_Group: {fileID: 1171663583}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: SetGameDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &874633252
 GameObject:
@@ -11026,7 +11040,19 @@ MonoBehaviour:
   m_Group: {fileID: 1171663583}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: SetGameDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &1283541470
 GameObject:
@@ -16239,6 +16265,7 @@ MonoBehaviour:
   isPause: 0
   isSettings: 0
   isMenu: 0
+  difficulty: 0
 --- !u!1001 &1780196793
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18283,7 +18310,19 @@ MonoBehaviour:
   m_Group: {fileID: 1171663583}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: SetGameDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &2076841868
 GameObject:

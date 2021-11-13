@@ -9,6 +9,7 @@ public class Ship : MonoBehaviour
     [Header("Scripts")]
     public Enemies scriptEnemies;
     public PlayerMovement scriptPlayerMovement;
+    public GameSettings scriptGameSettings;
 
     [Header("Lists")]
     public List<GameObject> listProjectiles;
@@ -25,7 +26,7 @@ public class Ship : MonoBehaviour
     public GameObject instances;
 
     //Input
-    private Vector3 previousPosition;
+    public Vector3 previousPosition;
 
     [Header("Bools")]
     public bool isMoving;
@@ -98,6 +99,7 @@ public class Ship : MonoBehaviour
         startShieldScout = 50.0f;
         startShieldBreaker = 90.0f;
         startShieldInterceptor = 40.0f;
+        acceleration = 10.0f;
     }
 
     public IEnumerator ShootProjectile()
@@ -162,6 +164,8 @@ public class Ship : MonoBehaviour
             }
 
             shipName = name;
+            particleDestroyed.gameObject.transform.parent = transform;
+            particleDestroyed.gameObject.transform.position = transform.position;
 
             switch (shipName)
             {
@@ -172,7 +176,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 60.0f;
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
-                    decceleration = 0.5f;
+                    decceleration = 10.0f;
                     handlingHigh = 4.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
@@ -185,7 +189,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 30.0f;
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 2.0f;
-                    decceleration = 1.0f;
+                    decceleration = 10.0f;
                     handlingHigh = 8.0f;
                     velocity = 50.0f;
                     cooldown = 0.25f;
@@ -211,7 +215,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 60.0f;
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 2.0f;
-                    decceleration = 6.0f;
+                    decceleration = 10.0f;
                     handlingHigh = 2.0f;
                     velocity = 125.0f;
                     cooldown = 1.0f;
@@ -224,7 +228,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 30.0f;
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 1.0f;
-                    decceleration = 0.5f;
+                    decceleration = 10.0f;
                     handlingHigh = 2.0f;
                     velocity = 50.0f;
                     cooldown = 1.0f;
@@ -268,6 +272,15 @@ public class Ship : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
+        if (scriptGameSettings.difficulty == 1)
+        {
+            amount = amount / 2.0f;
+        }
+        else if (scriptGameSettings.difficulty == 2)
+        {
+            amount = amount * 2.0f;
+        }
+
         switch (shipName)
         {
             case "Fighter":
@@ -308,6 +321,7 @@ public class Ship : MonoBehaviour
         if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Vanguard" && shieldVanguard <= 0f) ||
         (shipName == "Scout" && shieldScout <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f))
         {
+            particleDestroyed.gameObject.transform.parent = instances.transform;
             particleDestroyed.Play();
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
@@ -372,7 +386,7 @@ public class Ship : MonoBehaviour
             }
             else
             {
-                isMoving = false;
+                //isMoving = false;
             }
 
             previousPosition = targetMove.transform.position;

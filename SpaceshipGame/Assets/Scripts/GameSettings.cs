@@ -10,6 +10,7 @@ public class GameSettings : MonoBehaviour
     public bool isPause;
     public bool isSettings;
     public bool isMenu;
+    public int difficulty; //0 = normal. 1 = easy, 2 = hard
 
     private AudioSource audioSource;
 
@@ -18,9 +19,9 @@ public class GameSettings : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
     }
 
-    void Update()
+    public void SetGameDifficulty(int level)
     {
-        
+        difficulty = level;
     }
 
     public void TogglePauseSettings()
