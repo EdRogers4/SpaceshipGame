@@ -90,7 +90,12 @@ public class Ship : MonoBehaviour
 
     [Header("Audio")]
     private AudioSource audioSource;
-    public AudioClip clipShoot;
+    public AudioClip[] clipShootFighter;
+    public AudioClip[] clipShootBomber;
+    public AudioClip[] clipShootVanguard;
+    public AudioClip[] clipShootScout;
+    public AudioClip[] clipShootBreaker;
+    public AudioClip[] clipShootInterceptor;
 
     [Header("Distance")]
     private float distanceEnemy;
@@ -139,14 +144,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootFighter[0], 0.2f);
 
                 var newProjectile2 = Instantiate(projectileFighter, barrelRightFighter.transform.position, barrelRightFighter.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootFighter[0], 0.2f);
             }
             else if (shipName == "Bomber")
             {
@@ -155,7 +160,7 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.8f);
             }
             else if (shipName == "Vanguard")
             {
@@ -164,7 +169,7 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootVanguard[Random.Range(0, clipShootVanguard.Length)], 0.5f);
             }
             else if (shipName == "Scout")
             {
@@ -173,14 +178,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootScout[Random.Range(0, clipShootScout.Length)], 0.5f);
 
                 var newProjectile2 = Instantiate(projectileScout, barrelRightScout.transform.position, barrelRightScout.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootScout[Random.Range(0, clipShootScout.Length)], 0.5f);
             }
             else if (shipName == "Breaker")
             {
@@ -189,7 +194,7 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.6f);
             }
             else if (shipName == "Interceptor")
             {
@@ -198,14 +203,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.5f);
 
                 var newProjectile2 = Instantiate(projectileInterceptor, barrelRightInterceptor.transform.position, barrelRightInterceptor.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShoot, 0.1f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.5f);
             }
         }
 
@@ -285,7 +290,7 @@ public class Ship : MonoBehaviour
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
                     velocity = 100.0f;
-                    cooldown = 0.25f;
+                    cooldown = 0.35f;
                     blasters = 10.0f;
                     targeting = 0.5f;
                     break;
