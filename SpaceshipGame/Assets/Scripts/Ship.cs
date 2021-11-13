@@ -82,6 +82,9 @@ public class Ship : MonoBehaviour
     public GameObject projectileBreaker;
     public GameObject projectileInterceptor;
 
+    [Header("Physics")]
+    public float turnSpeed;
+
     //Input
     public Vector3 previousPosition;
 
@@ -117,6 +120,9 @@ public class Ship : MonoBehaviour
         startShieldBreaker = 90.0f;
         startShieldInterceptor = 40.0f;
         acceleration = 10.0f;
+        targeting = 200f;
+
+        StartCoroutine(TargetEnemy());
     }
 
     public IEnumerator ShootProjectile()
@@ -303,7 +309,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 2.0f;
+                    handlingHigh = 4.0f;
                     velocity = 125.0f;
                     cooldown = 1.0f;
                     blasters = 5.0f;
@@ -316,7 +322,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 2.0f;
+                    handlingHigh = 4.0f;
                     velocity = 50.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
@@ -450,6 +456,56 @@ public class Ship : MonoBehaviour
         }
     }
 
+    public IEnumerator TargetEnemy()
+    {
+        for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
+        {
+            distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
+
+            if (distanceEnemy > 0 && distanceEnemy < targeting)
+            {
+                if (distanceEnemy <= distanceEnemyShortest)
+                {
+                    distanceEnemyShortest = distanceEnemy;
+                    targetEnemy = scriptEnemies.listEnemy[i];
+                }
+            }
+        }
+
+        yield return new WaitForSeconds(0.25f);
+        StartCoroutine(TargetEnemy());
+    }
+
+    private void FixedUpdate()
+    {
+        if (listProjectiles.Count > 0)
+        {
+            for (int i = 0; i < listProjectiles.Count; i++)
+            {
+                if (listProjectiles[i] != null)
+                {
+                    listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
+                }
+            }
+        }
+
+        if (shipName == "Scout" || shipName == "Breaker")
+        {
+            if (targetEnemy != null)
+            {
+                for (int i = 0; i < listProjectiles.Count; i++)
+                {
+                    float step = turnSpeed * Time.deltaTime;
+                    listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
+                    Vector3 targetDirection = targetEnemy.transform.position - listProjectiles[i].transform.position;
+                    float singleStep = handling * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listProjectiles[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listProjectiles[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                }
+            }
+        }
+    }
+
     void Update()
     {
         if (!isDead)
@@ -476,17 +532,6 @@ public class Ship : MonoBehaviour
             }
 
             previousPosition = targetMove.transform.position;
-
-            if (listProjectiles.Count > 0)
-            {
-                for (int i = 0; i < listProjectiles.Count; i++)
-                {
-                    if (listProjectiles[i] != null)
-                    {
-                        listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
-                    }
-                }
-            }
 
             if (isMoving)
             {
