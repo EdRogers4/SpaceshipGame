@@ -6,28 +6,6 @@ using UnityEngine.UI;
 
 public class Ship : MonoBehaviour
 {
-    [Header("Scripts")]
-    public Enemies scriptEnemies;
-    public PlayerMovement scriptPlayerMovement;
-    public GameSettings scriptGameSettings;
-
-    [Header("Lists")]
-    public List<GameObject> listProjectiles;
-
-    [Header("World")]
-    public GameObject ship;
-    public GameObject[] shipModel;
-    public GameObject targetMove;
-    public GameObject targetEnemy;
-    public GameObject gunFront;
-    public GameObject projectile;
-    public Transform[] pointShoot;
-    public Vector3 targetMovePosition;
-    public GameObject instances;
-
-    //Input
-    public Vector3 previousPosition;
-
     [Header("Bools")]
     public bool isMoving;
     public bool isShoot;
@@ -68,6 +46,45 @@ public class Ship : MonoBehaviour
     public float targeting;
     public float blasters;
 
+    [Header("Scripts")]
+    public Enemies scriptEnemies;
+    public PlayerMovement scriptPlayerMovement;
+    public GameSettings scriptGameSettings;
+
+    [Header("Lists")]
+    public List<GameObject> listProjectiles;
+
+    [Header("World")]
+    public GameObject ship;
+    public GameObject[] shipModel;
+    public GameObject targetMove;
+    public GameObject targetEnemy;
+    public Transform[] pointShoot;
+    public Vector3 targetMovePosition;
+    public GameObject instances;
+
+    [Header("Barrels")]
+    public GameObject barrelLeftFighter;
+    public GameObject barrelRightFighter;
+    public GameObject barrelBomber;
+    public GameObject barrelVanguard;
+    public GameObject barrelLeftScout;
+    public GameObject barrelRightScout;
+    public GameObject barrelBreaker;
+    public GameObject barrelLeftInterceptor;
+    public GameObject barrelRightInterceptor;
+
+    [Header("Projectiles")]
+    public GameObject projectileFighter;
+    public GameObject projectileBomber;
+    public GameObject projectileVanguard;
+    public GameObject projectileScout;
+    public GameObject projectileBreaker;
+    public GameObject projectileInterceptor;
+
+    //Input
+    public Vector3 previousPosition;
+
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip clipShoot;
@@ -107,12 +124,23 @@ public class Ship : MonoBehaviour
         if (isShoot && !isDead)
         {
             isShooting = true;
-            var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
-            listProjectiles.Add(newProjectile);
-            newProjectile.GetComponent<Projectile>().scriptShip = this;
-            newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-            newProjectile.transform.parent = instances.transform;
-            audioSource.PlayOneShot(clipShoot, 0.1f);
+
+            if (shipName == "Fighter")
+            {
+                var newProjectile1 = Instantiate(projectileFighter, barrelLeftFighter.transform.position, barrelLeftFighter.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+
+                var newProjectile2 = Instantiate(projectileFighter, barrelRightFighter.transform.position, barrelRightFighter.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile2);
+                newProjectile2.GetComponent<Projectile>().scriptShip = this;
+                newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile2.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
         }
 
         yield return new WaitForSeconds(cooldown);
