@@ -287,7 +287,7 @@ public class Ship : MonoBehaviour
                     handlingHigh = 8.0f;
                     velocity = 100.0f;
                     cooldown = 0.25f;
-                    blasters = 8.0f;
+                    blasters = 10.0f;
                     break;
                 case "Vanguard":
                     shipModel[2].gameObject.SetActive(true);
@@ -299,7 +299,7 @@ public class Ship : MonoBehaviour
                     decceleration = 10.0f;
                     handlingHigh = 4.0f;
                     velocity = 300.0f;
-                    cooldown = 0.25f;
+                    cooldown = 0.30f;
                     blasters = 10.0f;
                     break;
                 case "Scout":
@@ -340,8 +340,8 @@ public class Ship : MonoBehaviour
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
                     velocity = 250.0f;
-                    cooldown = 0.15f;
-                    blasters = 2.0f;
+                    cooldown = 0.25f;
+                    blasters = 5.0f;
                     break;
                 default:
                     print("Not a ship");
