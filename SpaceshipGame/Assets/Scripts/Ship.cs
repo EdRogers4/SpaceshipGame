@@ -141,6 +141,65 @@ public class Ship : MonoBehaviour
                 newProjectile2.transform.parent = instances.transform;
                 audioSource.PlayOneShot(clipShoot, 0.1f);
             }
+            else if (shipName == "Bomber")
+            {
+                var newProjectile1 = Instantiate(projectileBomber, barrelBomber.transform.position, barrelBomber.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
+            else if (shipName == "Vanguard")
+            {
+                var newProjectile1 = Instantiate(projectileVanguard, barrelVanguard.transform.position, barrelVanguard.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
+            else if (shipName == "Scout")
+            {
+                var newProjectile1 = Instantiate(projectileScout, barrelLeftScout.transform.position, barrelLeftScout.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+
+                var newProjectile2 = Instantiate(projectileScout, barrelRightScout.transform.position, barrelRightScout.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile2);
+                newProjectile2.GetComponent<Projectile>().scriptShip = this;
+                newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile2.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
+            else if (shipName == "Breaker")
+            {
+                var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
+            else if (shipName == "Interceptor")
+            {
+                var newProjectile1 = Instantiate(projectileInterceptor, barrelLeftInterceptor.transform.position, barrelLeftInterceptor.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+
+                var newProjectile2 = Instantiate(projectileInterceptor, barrelRightInterceptor.transform.position, barrelRightInterceptor.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile2);
+                newProjectile2.GetComponent<Projectile>().scriptShip = this;
+                newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile2.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShoot, 0.1f);
+            }
         }
 
         yield return new WaitForSeconds(cooldown);
@@ -219,7 +278,7 @@ public class Ship : MonoBehaviour
                     acceleration = 2.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
-                    velocity = 50.0f;
+                    velocity = 100.0f;
                     cooldown = 0.25f;
                     blasters = 8.0f;
                     break;
@@ -233,7 +292,7 @@ public class Ship : MonoBehaviour
                     decceleration = 10.0f;
                     handlingHigh = 4.0f;
                     velocity = 200.0f;
-                    cooldown = 0.5f;
+                    cooldown = 0.35f;
                     blasters = 5.0f;
                     break;
                 case "Scout":
@@ -271,9 +330,9 @@ public class Ship : MonoBehaviour
                     acceleration = 10.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
-                    velocity = 125.0f;
-                    cooldown = 0.1f;
-                    blasters = 1.0f;
+                    velocity = 250.0f;
+                    cooldown = 0.15f;
+                    blasters = 2.0f;
                     break;
                 default:
                     print("Not a ship");

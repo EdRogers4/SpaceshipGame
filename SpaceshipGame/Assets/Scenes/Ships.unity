@@ -2168,11 +2168,11 @@ MonoBehaviour:
   barrelLeftInterceptor: {fileID: 1724359372}
   barrelRightInterceptor: {fileID: 143639003}
   projectileFighter: {fileID: 2516364455895546687, guid: 6788d6382beaaba4088cea5fa1b1be7b, type: 3}
-  projectileBomber: {fileID: 0}
-  projectileVanguard: {fileID: 0}
-  projectileScout: {fileID: 0}
-  projectileBreaker: {fileID: 0}
-  projectileInterceptor: {fileID: 0}
+  projectileBomber: {fileID: 6659623799246655083, guid: c83b563d2c79dd0459b9d89839aaf60c, type: 3}
+  projectileVanguard: {fileID: 3388317942940896201, guid: a3dae5cb82fa09e4da566c25ded60488, type: 3}
+  projectileScout: {fileID: 7306962092277881174, guid: 134e3e425405bb54085b2701d5e34160, type: 3}
+  projectileBreaker: {fileID: 7691094604182072164, guid: 549d2ec3a88dffd429ce054904ed6c0a, type: 3}
+  projectileInterceptor: {fileID: 8501778692580923770, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
   previousPosition: {x: 0, y: 0, z: 0}
   clipShoot: {fileID: 8300000, guid: 3e29b750121618644a0d24f567261fd4, type: 3}
   distanceEnemyShortest: 0
