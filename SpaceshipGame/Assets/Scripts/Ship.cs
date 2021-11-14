@@ -177,7 +177,17 @@ public class Ship : MonoBehaviour
         }
         else
         {
-            switch (shipName)
+            if (name != shipName)
+            {
+                for (int i = 0; i < listProjectiles.Count; i++)
+                {
+                    var thisProjectile = listProjectiles[i];
+                    listProjectiles.Remove(listProjectiles[i]);
+                    Destroy(thisProjectile);
+                }
+            }
+
+                switch (shipName)
             {
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(false);
@@ -206,7 +216,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 4.0f;
+                    handlingHigh = 8.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
                     blasters = 3.0f;
@@ -235,7 +245,7 @@ public class Ship : MonoBehaviour
                     handlingHigh = 3.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
-                    blasters = 3.0f;
+                    blasters = 1.0f;
                     targeting = 10.0f;
                     break;
                 default:

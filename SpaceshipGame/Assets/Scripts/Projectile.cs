@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     public Enemies scriptEnemies;
     public bool isExploding;
     public ParticleSystem particleExplode;
-    public GameObject prefabRocketExplosion;
     public GameObject prefabNukeExplosion;
 
     private float distanceEnemy;
@@ -24,7 +23,7 @@ public class Projectile : MonoBehaviour
         distanceEnemyShortest = 1000f;
         StartCoroutine(DelayDestroy());
 
-        if (scriptShip.shipName == "Bomber" || scriptShip.shipName == "Breaker" || scriptShip.shipName == "Interceptor")
+        if (scriptShip.shipName == "Breaker")
         {
             StartCoroutine(TargetProton());
             StartCoroutine(TargetEnemy());
@@ -33,11 +32,11 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Vanguard" || scriptShip.shipName == "Scout")
+        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor")
         {
             return;
         }
-        else if (targetEnemy != null && (scriptShip.shipName == "Bomber" || scriptShip.shipName == "Breaker" || scriptShip.shipName == "Interceptor"))
+        else if (targetEnemy != null && scriptShip.shipName == "Breaker")
         {
             Vector3 targetDirection = targetEnemy.transform.position - transform.position;
             float singleStep = scriptShip.targeting * Time.deltaTime;
@@ -104,15 +103,7 @@ public class Projectile : MonoBehaviour
                 newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
             }
 
-            if (scriptShip.shipName == "Bomber" && !isExploding)
-            {
-                newPrefabExplosive = Instantiate(prefabRocketExplosion, collision.contacts[0].point, transform.rotation);
-                newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;
-                newPrefabExplosive.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-                newPrefabExplosive.GetComponent<Projectile>().isExploding = true;
-                newPrefabExplosive.transform.parent = scriptShip.instances.transform;
-            }
-            else if (scriptShip.shipName == "Breaker" && !isExploding)
+            if (scriptShip.shipName == "Breaker" && !isExploding)
             {
                 newPrefabExplosive = Instantiate(prefabNukeExplosion, collision.contacts[0].point, transform.rotation);
                 newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;
@@ -121,10 +112,7 @@ public class Projectile : MonoBehaviour
                 newPrefabExplosive.transform.parent = scriptShip.instances.transform;
             }
 
-            if (scriptShip.shipName != "Vanguard" && !isExploding)
-            {
-                DestroyProjectile();
-            }
+            DestroyProjectile();
         }
         else if (collision.transform.tag == "Proton")
         {
