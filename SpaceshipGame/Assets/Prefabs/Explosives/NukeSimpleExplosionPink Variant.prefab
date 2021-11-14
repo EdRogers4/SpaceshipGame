@@ -137,11 +137,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  scriptAsteroid: {fileID: 0}
   isExploding: 0
   particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
-  prefabRocketExplosion: {fileID: 0}
   prefabNukeExplosion: {fileID: 0}
---- !u!114 &-4136649088163058433
+--- !u!114 &628190408006286951
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,6 +150,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5510602369627012544}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9bd8375861f8440bb607bcb7e86538, type: 3}
+  m_Script: {fileID: 11500000, guid: e1ca23ef512c3e741b6fefe9af1c5b1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Delay: 2
+  m_OnDestroy:
+    m_PersistentCalls:
+      m_Calls: []

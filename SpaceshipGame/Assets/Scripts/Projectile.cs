@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviour
 {
     public Ship scriptShip;
     public Enemies scriptEnemies;
+    public Asteroid scriptAsteroid;
     public bool isExploding;
     public ParticleSystem particleExplode;
     public GameObject prefabNukeExplosion;
@@ -16,6 +17,8 @@ public class Projectile : MonoBehaviour
     private GameObject targetEnemy;
 
     private ParticleSystem newParticleExplode;
+    private ParticleSystem newParticleRockSlide;
+    private ParticleSystem newParticleFallingRocks;
     private GameObject newPrefabExplosive;
 
     void Start()
@@ -117,6 +120,35 @@ public class Projectile : MonoBehaviour
         else if (collision.transform.tag == "Proton")
         {
             scriptEnemies.ProtonDestroyed(collision.gameObject);
+        }
+        else if (collision.transform.tag == "Asteroid")
+        {
+            foreach (ContactPoint contact in collision.contacts)
+            {
+                newParticleExplode = Instantiate(particleExplode, collision.contacts[0].point, transform.rotation);
+                newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
+            }
+
+            if (scriptShip.shipName == "Breaker" && !isExploding)
+            {
+                newPrefabExplosive = Instantiate(prefabNukeExplosion, collision.contacts[0].point, transform.rotation);
+                newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;
+                newPrefabExplosive.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newPrefabExplosive.GetComponent<Projectile>().isExploding = true;
+                newPrefabExplosive.transform.parent = scriptShip.instances.transform;
+            }
+
+            scriptAsteroid = collision.gameObject.GetComponent<Asteroid>();
+            newParticleFallingRocks = Instantiate(scriptAsteroid.particleFallingRocks, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            newParticleRockSlide = Instantiate(scriptAsteroid.particleRockSlide, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
+            newParticleFallingRocks.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+            newParticleRockSlide.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+            newParticleFallingRocks.Play();
+            newParticleRockSlide.Play();
+
+            scriptEnemies.listAsteroid.Remove(collision.gameObject);
+            Destroy(collision.gameObject);
+            DestroyProjectile();
         }
     }
 

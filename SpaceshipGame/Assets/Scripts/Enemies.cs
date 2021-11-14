@@ -7,9 +7,12 @@ public class Enemies : MonoBehaviour
     [Header("Spawn")]
     public List<GameObject> listEnemy;
     public List<GameObject> listProton;
+    public List<GameObject> listAsteroid;
     public List<Transform> listSpawnpoint;
+    public List<Transform> listAsteroidSpawn;
     public GameObject prefabFrigate;
     public GameObject prefabProton;
+    public GameObject prefabAsteroid;
 
     [Header("Scripts")]
     public Ship scriptShip;
@@ -20,9 +23,15 @@ public class Enemies : MonoBehaviour
     public GameObject enemyDestroyed;
     public Camera cameraMain;
 
-    //Private Spawn Variables
+    [Header("Spawn")]
+    public float timeMinimumSpawnAsteroid;
+    public float timeMaximumSpawnAsteroid;
+    public float speedAsteroidMinimum;
+    public float speedAsteroidMaximum;
+    private int countSpawnAsteroid;
     private GameObject spawnedEnemy;
     private GameObject spawnedEnemyProjectile;
+    private GameObject spawnedAsteroid;
     private ParticleSystem spawnedParticle;
 
     [Header("Stats")]
@@ -47,6 +56,26 @@ public class Enemies : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(SpawnEnemy());
+        StartCoroutine(SpawnAsteroid());
+        countSpawnAsteroid = Random.Range(0, listAsteroidSpawn.Count);
+    }
+
+    public IEnumerator SpawnAsteroid()
+    {
+        yield return new WaitForSeconds(Random.Range(timeMinimumSpawnAsteroid, timeMaximumSpawnAsteroid));
+        spawnedAsteroid = Instantiate(prefabAsteroid, listAsteroidSpawn[countSpawnAsteroid].transform.position, listAsteroidSpawn[countSpawnAsteroid].transform.rotation);
+        spawnedAsteroid.transform.GetChild(0).GetComponent<LookAtCamera>().cameraMain = cameraMain;
+        listAsteroid.Add(spawnedAsteroid);
+        countSpawnAsteroid += 1;
+
+        if (countSpawnAsteroid >= listAsteroidSpawn.Count)
+        {
+            countSpawnAsteroid = 0;
+        }
+
+        spawnedAsteroid.GetComponent<Asteroid>().destination = listAsteroidSpawn[countSpawnAsteroid];
+        spawnedAsteroid.GetComponent<Asteroid>().speed = Random.Range(speedAsteroidMinimum, speedAsteroidMaximum);
+        StartCoroutine(SpawnAsteroid());
     }
 
     public IEnumerator SpawnEnemy()
@@ -86,6 +115,15 @@ public class Enemies : MonoBehaviour
 
     void FixedUpdate()
     {
+        for (int i = 0; i < listAsteroid.Count; i++)
+        {
+            if (listAsteroid[i] != null)
+            {
+                float step = 10f * Time.deltaTime;//spawnedAsteroid.GetComponent<Asteroid>().speed * Time.deltaTime;
+                listAsteroid[i].transform.position = Vector3.MoveTowards(listAsteroid[i].transform.position, listAsteroid[i].GetComponent<Asteroid>().destination.position, step);
+            }
+        }
+
         if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor)
             || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
         {
