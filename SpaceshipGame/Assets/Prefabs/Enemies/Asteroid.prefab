@@ -288,7 +288,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.55
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &3135525913807490771
 MonoBehaviour:
@@ -302,8 +302,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08da57111b528c54fb8ca60e76cefba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scriptEnemies: {fileID: 0}
+  destination: {fileID: 0}
+  startShield: 20
+  shield: 20
+  speed: 0
   particleRockSlide: {fileID: 6859890218189777216, guid: 05c6fd36f10bcdc43946faf1cc315c02, type: 3}
   particleFallingRocks: {fileID: 3258574053789585924, guid: fb668153fbc097f41b48019168e23e51, type: 3}
+  distanceDestination: 0
+  shieldBar: {fileID: 3135525914531296262}
 --- !u!54 &3135525913807490768
 Rigidbody:
   m_ObjectHideFlags: 0

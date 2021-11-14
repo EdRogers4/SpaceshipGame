@@ -73,6 +73,7 @@ public class Enemies : MonoBehaviour
             countSpawnAsteroid = 0;
         }
 
+        spawnedAsteroid.GetComponent<Asteroid>().scriptEnemies = this;
         spawnedAsteroid.GetComponent<Asteroid>().destination = listAsteroidSpawn[countSpawnAsteroid];
         spawnedAsteroid.GetComponent<Asteroid>().speed = Random.Range(speedAsteroidMinimum, speedAsteroidMaximum);
         StartCoroutine(SpawnAsteroid());

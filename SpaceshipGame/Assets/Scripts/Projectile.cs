@@ -17,8 +17,6 @@ public class Projectile : MonoBehaviour
     private GameObject targetEnemy;
 
     private ParticleSystem newParticleExplode;
-    private ParticleSystem newParticleRockSlide;
-    private ParticleSystem newParticleFallingRocks;
     private GameObject newPrefabExplosive;
 
     void Start()
@@ -139,15 +137,7 @@ public class Projectile : MonoBehaviour
             }
 
             scriptAsteroid = collision.gameObject.GetComponent<Asteroid>();
-            newParticleFallingRocks = Instantiate(scriptAsteroid.particleFallingRocks, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
-            newParticleRockSlide = Instantiate(scriptAsteroid.particleRockSlide, collision.gameObject.transform.position, collision.gameObject.transform.rotation);
-            newParticleFallingRocks.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
-            newParticleRockSlide.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
-            newParticleFallingRocks.Play();
-            newParticleRockSlide.Play();
-
-            scriptEnemies.listAsteroid.Remove(collision.gameObject);
-            Destroy(collision.gameObject);
+            scriptAsteroid.TakeDamage(scriptShip.blasters);
             DestroyProjectile();
         }
     }
