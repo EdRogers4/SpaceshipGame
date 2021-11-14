@@ -86,9 +86,8 @@ public class Enemies : MonoBehaviour
 
     void FixedUpdate()
     {
-        if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Bomber" && !scriptShip.isDeadBomber)
-            || (scriptShip.shipName == "Vanguard" && !scriptShip.isDeadVanguard) || (scriptShip.shipName == "Scout" && !scriptShip.isDeadScout)
-            || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker) || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor))
+        if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor)
+            || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
         {
             for (int i = 0; i < listEnemy.Count; i++)
             {
