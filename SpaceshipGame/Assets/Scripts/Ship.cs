@@ -215,12 +215,12 @@ public class Ship : MonoBehaviour
                 case "Breaker":
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                    thrustHigh = 30.0f;
+                    thrustHigh = 50.0f;
                     scriptPlayerMovement.moveSpeed = 30.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 4.0f;
-                    velocity = 50.0f;
+                    velocity = 40.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
                     targeting = 20.0f;
@@ -228,7 +228,7 @@ public class Ship : MonoBehaviour
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
-                    thrustHigh = 60.0f;
+                    thrustHigh = 80.0f;
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
