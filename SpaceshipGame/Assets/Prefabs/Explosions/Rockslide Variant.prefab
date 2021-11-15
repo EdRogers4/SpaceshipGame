@@ -15,6 +15,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5774920581595605413, guid: 41b3507608b545449b54c2999411fe46, type: 3}
+      propertyPath: simulationSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5972709326939734787, guid: 41b3507608b545449b54c2999411fe46, type: 3}
       propertyPath: m_Name
       value: Rockslide Variant

@@ -10,6 +10,7 @@ public class Enemies : MonoBehaviour
     public List<GameObject> listAsteroid;
     public List<Transform> listSpawnpoint;
     public List<Transform> listAsteroidSpawn;
+    public List<float> listAsteroidSpeed;
     public GameObject prefabFrigate;
     public GameObject prefabProton;
     public GameObject prefabAsteroid;
@@ -57,15 +58,15 @@ public class Enemies : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(SpawnEnemy());
         StartCoroutine(SpawnAsteroid());
-        countSpawnAsteroid = Random.Range(0, listAsteroidSpawn.Count);
     }
 
     public IEnumerator SpawnAsteroid()
     {
+        countSpawnAsteroid = Random.Range(0, listAsteroidSpawn.Count);
         yield return new WaitForSeconds(Random.Range(timeMinimumSpawnAsteroid, timeMaximumSpawnAsteroid));
         spawnedAsteroid = Instantiate(prefabAsteroid, listAsteroidSpawn[countSpawnAsteroid].transform.position, listAsteroidSpawn[countSpawnAsteroid].transform.rotation);
-        spawnedAsteroid.transform.GetChild(0).GetComponent<LookAtCamera>().cameraMain = cameraMain;
         listAsteroid.Add(spawnedAsteroid);
+        listAsteroidSpeed.Add(Random.Range(speedAsteroidMinimum, speedAsteroidMaximum));
         countSpawnAsteroid += 1;
 
         if (countSpawnAsteroid >= listAsteroidSpawn.Count)
@@ -75,7 +76,6 @@ public class Enemies : MonoBehaviour
 
         spawnedAsteroid.GetComponent<Asteroid>().scriptEnemies = this;
         spawnedAsteroid.GetComponent<Asteroid>().destination = listAsteroidSpawn[countSpawnAsteroid];
-        spawnedAsteroid.GetComponent<Asteroid>().speed = Random.Range(speedAsteroidMinimum, speedAsteroidMaximum);
         StartCoroutine(SpawnAsteroid());
     }
 
@@ -120,7 +120,7 @@ public class Enemies : MonoBehaviour
         {
             if (listAsteroid[i] != null)
             {
-                float step = 10f * Time.deltaTime;//spawnedAsteroid.GetComponent<Asteroid>().speed * Time.deltaTime;
+                float step = listAsteroidSpeed[i] * Time.deltaTime;
                 listAsteroid[i].transform.position = Vector3.MoveTowards(listAsteroid[i].transform.position, listAsteroid[i].GetComponent<Asteroid>().destination.position, step);
             }
         }

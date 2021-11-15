@@ -226,10 +226,10 @@ public class Ship : MonoBehaviour
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
                     thrustHigh = 50.0f;
-                    scriptPlayerMovement.moveSpeed = 30.0f;
+                    scriptPlayerMovement.moveSpeed = 50.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 4.0f;
+                    handlingHigh = 8.0f;
                     velocity = 40.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
@@ -239,10 +239,10 @@ public class Ship : MonoBehaviour
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
                     thrustHigh = 80.0f;
-                    scriptPlayerMovement.moveSpeed = 60.0f;
+                    scriptPlayerMovement.moveSpeed = 80.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 3.0f;
+                    handlingHigh = 8.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 1.0f;

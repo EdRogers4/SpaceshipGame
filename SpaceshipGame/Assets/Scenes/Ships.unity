@@ -9482,7 +9482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4042599763637292095, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_Materials.Array.size
@@ -15742,7 +15742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_RootOrder
@@ -17006,6 +17006,7 @@ MonoBehaviour:
   - {fileID: 1423374041}
   - {fileID: 831430472}
   - {fileID: 1579023014}
+  listAsteroidSpeed: []
   prefabFrigate: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
   prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
   prefabAsteroid: {fileID: 3135525913807490773, guid: 15dbf82e5607c3a498dd340d1acd6b22, type: 3}
@@ -17016,8 +17017,8 @@ MonoBehaviour:
   cameraMain: {fileID: 1749457245}
   timeMinimumSpawnAsteroid: 5
   timeMaximumSpawnAsteroid: 10
-  speedAsteroidMinimum: 10
-  speedAsteroidMaximum: 20
+  speedAsteroidMinimum: 5
+  speedAsteroidMaximum: 30
   thrustFrigate: 5
   handlingFrigate: 2
   velocityProton: 15

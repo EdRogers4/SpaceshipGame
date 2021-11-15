@@ -12,9 +12,7 @@ public class Asteroid : MonoBehaviour
     public Transform destination;
 
     [Header("Stats")]
-    public float startShield;
     public float shield;
-    public float speed;
 
     [Header("Particles")]
     public ParticleSystem particleRockSlide;
@@ -24,9 +22,6 @@ public class Asteroid : MonoBehaviour
 
     [Header("Distance")]
     public float distanceDestination;
-
-    [Header("UI")]
-    public Image shieldBar;
 
     private void Start()
     {
@@ -50,7 +45,6 @@ public class Asteroid : MonoBehaviour
     public void TakeDamage(float amount)
     {
         shield -= amount;
-        shieldBar.fillAmount = shield / startShield;
 
         if (shield <= 0f)
         {
