@@ -49,10 +49,11 @@ public class Enemy : MonoBehaviour
             particleDestroyed.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
             particleDestroyed.Play();
             scriptEnemies.DestroyParticle(particleDestroyed.gameObject);
-            scriptEnemies.listEnemy.Remove(this.gameObject);
-            scriptEnemies.enemyDestroyed = this.gameObject;
-            scriptEnemies.EnemyDestroyed();
+            scriptEnemies.listEnemy.Remove(gameObject);
+            scriptEnemies.enemyDestroyed = gameObject;
             scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
+            scriptEnemies.scriptGameSettings.UpdateScore();
+            scriptEnemies.EnemyDestroyed();
         }
     }
 

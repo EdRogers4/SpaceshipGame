@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
+    public static int scoreValue = 0;
+    public Text scoreText;
+    private string scoreString;
+
     static float volume;
 
     public bool isPause;
@@ -17,6 +22,27 @@ public class GameSettings : MonoBehaviour
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        scoreString = scoreValue.ToString("0");
+        scoreText.text = scoreString + "00";
+    }
+
+    public void UpdateScore()
+    {
+        scoreValue += 1;
+        scoreString = scoreValue.ToString("0");
+
+        if (scoreValue < 10)
+        {
+            scoreText.text = "00" + scoreString;
+        }
+        else if (scoreValue < 100)
+        {
+            scoreText.text = "0" + scoreString;
+        }
+        else
+        {
+            scoreText.text = scoreString;
+        }
     }
 
     public void SetGameDifficulty(int level)

@@ -117,6 +117,7 @@ public class Projectile : MonoBehaviour
         }
         else if (collision.transform.tag == "Proton")
         {
+            scriptEnemies.scriptGameSettings.UpdateScore();
             scriptEnemies.ProtonDestroyed(collision.gameObject);
         }
         else if (collision.transform.tag == "Asteroid")

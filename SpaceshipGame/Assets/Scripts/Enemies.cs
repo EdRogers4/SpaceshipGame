@@ -17,6 +17,7 @@ public class Enemies : MonoBehaviour
 
     [Header("Scripts")]
     public Ship scriptShip;
+    public GameSettings scriptGameSettings;
 
     [Header("World")]
     public GameObject particlesObject;

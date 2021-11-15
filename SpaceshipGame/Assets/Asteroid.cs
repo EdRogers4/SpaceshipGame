@@ -55,6 +55,7 @@ public class Asteroid : MonoBehaviour
             newParticleFallingRocks.Play();
             newParticleRockSlide.Play();
             scriptEnemies.listAsteroid.Remove(gameObject);
+            scriptEnemies.scriptGameSettings.UpdateScore();
             Destroy(gameObject);
         }
     }
