@@ -12,17 +12,20 @@ public class Ship : MonoBehaviour
     public bool isShooting;
     public bool isDead;
     public bool isDeadFighter;
-    public bool isDeadBreaker;
+    public bool isDeadBomber;
     public bool isDeadInterceptor;
+    public bool isDeadBreaker;
 
     [Header("Stats")]
     public string shipName;
     public float shieldFighter;
-    public float shieldBreaker;
+    public float shieldBomber;
     public float shieldInterceptor;
+    public float shieldBreaker;
     private float startShieldFighter;
-    private float startShieldBreaker;
+    private float startShieldBomber;
     private float startShieldInterceptor;
+    private float startShieldBreaker;
 
     public float thrust;
     public float thrustHigh;
@@ -57,14 +60,16 @@ public class Ship : MonoBehaviour
     [Header("Barrels")]
     public GameObject barrelLeftFighter;
     public GameObject barrelRightFighter;
-    public GameObject barrelBreaker;
+    public GameObject barrelBomber;
     public GameObject barrelLeftInterceptor;
     public GameObject barrelRightInterceptor;
+    public GameObject barrelBreaker;
 
     [Header("Projectiles")]
     public GameObject projectileFighter;
-    public GameObject projectileBreaker;
+    public GameObject projectileBomber;
     public GameObject projectileInterceptor;
+    public GameObject projectileBreaker;
 
     //Input
     public Vector3 previousPosition;
@@ -72,8 +77,9 @@ public class Ship : MonoBehaviour
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] clipShootFighter;
-    public AudioClip[] clipShootBreaker;
+    public AudioClip[] clipShootBomber;
     public AudioClip[] clipShootInterceptor;
+    public AudioClip[] clipShootBreaker;
 
     [Header("Distance")]
     private float distanceEnemy;
@@ -97,9 +103,10 @@ public class Ship : MonoBehaviour
         previousPosition = targetMove.transform.position;
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = 200f;
-        startShieldFighter = 60.0f;
-        startShieldBreaker = 120.0f;
+        startShieldFighter = 70.0f;
+        startShieldBomber = 120.0f;
         startShieldInterceptor = 50.0f;
+        startShieldBreaker = 90.0f;
         acceleration = 10.0f;
 
         StartCoroutine(TargetEnemy());
@@ -128,14 +135,14 @@ public class Ship : MonoBehaviour
                 newProjectile2.transform.parent = instances.transform;
                 audioSource.PlayOneShot(clipShootFighter[0], 0.2f);
             }
-            else if (shipName == "Breaker")
+            else if (shipName == "Bomber")
             {
-                var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
+                var newProjectile1 = Instantiate(projectileBomber, barrelBomber.transform.position, barrelBomber.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile1);
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.6f);
+                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.6f);
             }
             else if (shipName == "Interceptor")
             {
@@ -152,6 +159,15 @@ public class Ship : MonoBehaviour
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
                 audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.5f);
+            }
+            else if (shipName == "Breaker")
+            {
+                var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
+                listProjectiles.Add(newProjectile1);
+                newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                newProjectile1.transform.parent = instances.transform;
+                audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.6f);
             }
         }
 
@@ -171,7 +187,7 @@ public class Ship : MonoBehaviour
 
     public void SwitchShip(string name)
     {
-        if ((name == "Fighter" && shieldFighter <= 0f || (name == "Breaker" && shieldBreaker <= 0f) || name == "Interceptor" && shieldInterceptor <= 0f))
+        if ((name == "Fighter" && shieldFighter <= 0f || (name == "Bomber" && shieldBomber <= 0f) || name == "Interceptor" && shieldInterceptor <= 0f) || (name == "Breaker" && shieldBreaker <= 0f))
         {
             return;
         }
@@ -192,11 +208,14 @@ public class Ship : MonoBehaviour
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(false);
                     break;
-                case "Breaker":
+                case "Bomber":
                     shipModel[1].gameObject.SetActive(false);
                     break;
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(false);
+                    break;
+                case "Breaker":
+                    shipModel[3].gameObject.SetActive(false);
                     break;
                 default:
                     print("Not a ship 1");
@@ -222,15 +241,15 @@ public class Ship : MonoBehaviour
                     blasters = 3.0f;
                     targeting = 0.0f;
                     break;
-                case "Breaker":
+                case "Bomber":
                     shipModel[1].gameObject.SetActive(true);
-                    shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                    thrustHigh = 50.0f;
+                    shieldBar.fillAmount = shieldBomber / startShieldBomber;
+                    thrustHigh = 40.0f;
                     scriptPlayerMovement.moveSpeed = 50.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
-                    velocity = 40.0f;
+                    velocity = 80.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
                     targeting = 20.0f;
@@ -238,7 +257,7 @@ public class Ship : MonoBehaviour
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
-                    thrustHigh = 80.0f;
+                    thrustHigh = 70.0f;
                     scriptPlayerMovement.moveSpeed = 80.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
@@ -247,6 +266,19 @@ public class Ship : MonoBehaviour
                     cooldown = 0.25f;
                     blasters = 1.0f;
                     targeting = 10.0f;
+                    break;
+                case "Breaker":
+                    shipModel[3].gameObject.SetActive(true);
+                    shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+                    thrustHigh = 50.0f;
+                    scriptPlayerMovement.moveSpeed = 50.0f;
+                    acceleration = 1.0f;
+                    decceleration = 10.0f;
+                    handlingHigh = 8.0f;
+                    velocity = 200.0f;
+                    cooldown = 0.5f;
+                    blasters = 2.0f;
+                    targeting = 0.0f;
                     break;
                 default:
                     print("Not a ship 2");
@@ -260,7 +292,7 @@ public class Ship : MonoBehaviour
 
     public void ShootProjectileOn()
     {
-        if ((shipName == "Fighter" && isDeadFighter) || (shipName == "Breaker" && isDeadBreaker) || (shipName == "Interceptor" && isDeadInterceptor))
+        if ((shipName == "Fighter" && isDeadFighter) || (shipName == "Bomber" && isDeadBomber) || (shipName == "Interceptor" && isDeadInterceptor) || (shipName == "Breaker" && isDeadBreaker))
         {
             return;
         }
@@ -294,26 +326,30 @@ public class Ship : MonoBehaviour
                 shieldFighter -= amount;
                 shieldBar.fillAmount = shieldFighter / startShieldFighter;
                 break;
-            case "Breaker":
-                shieldBreaker -= amount;
-                shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+            case "Bomber":
+                shieldBomber -= amount;
+                shieldBar.fillAmount = shieldBomber / startShieldBomber;
                 break;
             case "Interceptor":
                 shieldInterceptor -= amount;
                 shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+                break;
+            case "Breaker":
+                shieldBreaker -= amount;
+                shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
                 break;
             default:
                 print("Not a ship 3");
                 break;
         }
 
-        if (shieldFighter <= 0f && shieldInterceptor <= 0f && shieldBreaker <= 0f)
+        if (shieldFighter <= 0f && shieldBomber <= 0f && shieldInterceptor <= 0f && shieldBreaker <= 0f)
         {
             isDead = true;
             screenGameOver.SetActive(true);
         }
 
-        if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f))
+        if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f))
         {
             particleDestroyed.gameObject.transform.parent = instances.transform;
             particleDestroyed.Play();
@@ -326,15 +362,20 @@ public class Ship : MonoBehaviour
                     isDeadFighter = true;
                     imageDead[0].enabled = true;
                     break;
-                case "Breaker":
+                case "Bomber":
                     shipModel[1].gameObject.SetActive(false);
-                    isDeadBreaker = true;
+                    isDeadBomber = true;
                     imageDead[1].enabled = true;
                     break;
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(false);
                     isDeadInterceptor = true;
                     imageDead[2].enabled = true;
+                    break;
+                case "Breaker":
+                    shipModel[1].gameObject.SetActive(false);
+                    isDeadBreaker = true;
+                    imageDead[1].enabled = true;
                     break;
                 default:
                     print("Not a ship 4");

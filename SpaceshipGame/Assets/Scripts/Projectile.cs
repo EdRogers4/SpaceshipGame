@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         distanceEnemyShortest = 1000f;
         StartCoroutine(DelayDestroy());
 
-        if (scriptShip.shipName == "Breaker")
+        if (scriptShip.shipName == "Bomber")
         {
             StartCoroutine(TargetProton());
             StartCoroutine(TargetEnemy());
@@ -33,11 +33,11 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor")
+        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor" || scriptShip.shipName == "Breaker")
         {
             return;
         }
-        else if (targetEnemy != null && scriptShip.shipName == "Breaker")
+        else if (targetEnemy != null && scriptShip.shipName == "Bomber")
         {
             Vector3 targetDirection = targetEnemy.transform.position - transform.position;
             float singleStep = scriptShip.targeting * Time.deltaTime;
@@ -104,7 +104,7 @@ public class Projectile : MonoBehaviour
                 newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
             }
 
-            if (scriptShip.shipName == "Breaker" && !isExploding)
+            if (scriptShip.shipName == "Bomber" && !isExploding)
             {
                 newPrefabExplosive = Instantiate(prefabNukeExplosion, collision.contacts[0].point, transform.rotation);
                 newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;
@@ -128,7 +128,7 @@ public class Projectile : MonoBehaviour
                 newParticleExplode.transform.parent = scriptEnemies.particlesObject.transform;
             }
 
-            if (scriptShip.shipName == "Breaker" && !isExploding)
+            if (scriptShip.shipName == "Bomber" && !isExploding)
             {
                 newPrefabExplosive = Instantiate(prefabNukeExplosion, collision.contacts[0].point, transform.rotation);
                 newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;

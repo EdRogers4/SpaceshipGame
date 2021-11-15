@@ -126,8 +126,8 @@ public class Enemies : MonoBehaviour
             }
         }
 
-        if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor)
-            || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
+        if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Bomber" && !scriptShip.isDeadBomber) 
+            || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor) || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
         {
             for (int i = 0; i < listEnemy.Count; i++)
             {
