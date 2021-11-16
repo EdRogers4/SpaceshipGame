@@ -94,12 +94,6 @@ public class Enemies : MonoBehaviour
         StartCoroutine(SpawnEnemy());
     }
 
-    public IEnumerator DestroyParticle(GameObject particle)
-    {
-        yield return new WaitForSeconds(5.0f);
-        Destroy(particle);
-    }
-
     public void EnemyDestroyed()
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
@@ -112,7 +106,6 @@ public class Enemies : MonoBehaviour
         spawnedParticle.gameObject.transform.parent = particlesObject.transform;
         listProton.Remove(destroyed);
         Destroy(destroyed);
-        DestroyParticle(spawnedParticle.gameObject);
     }
 
     void FixedUpdate()
