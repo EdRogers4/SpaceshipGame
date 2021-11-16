@@ -75,9 +75,7 @@ public class Ship : MonoBehaviour
     public int numberOfProjectiles;
     public float spreadAngle;
     List<Quaternion> pellets;
-
-    private Vector3 startPoint;
-    private const float radius = 1f;
+    private float spreadAmount;
 
     //Input
     public Vector3 previousPosition;
@@ -112,9 +110,9 @@ public class Ship : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = 200f;
         startShieldFighter = 70.0f;
-        startShieldBomber = 120.0f;
+        startShieldBomber = 90.0f;
         startShieldInterceptor = 50.0f;
-        startShieldBreaker = 90.0f;
+        startShieldBreaker = 120.0f;
         acceleration = 10.0f;
 
         StartCoroutine(TargetEnemy());
@@ -179,9 +177,12 @@ public class Ship : MonoBehaviour
             }
             else if (shipName == "Breaker")
             {
+                spreadAmount = -0.5f;
+
                 for(int i = 0; i < numberOfProjectiles; i++)
                 {
-                    pellets[i] = new Quaternion(0f, Random.rotation.y, 0f, Random.rotation.w);
+                    pellets[i] = new Quaternion(0f, Random.rotationUniform.y, 0f, Random.rotationUniform.w);
+                    spreadAmount += 0.1f;
                     var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
                     listProjectiles.Add(newProjectile1);
                     newProjectile1.GetComponent<Projectile>().scriptShip = this;
@@ -260,7 +261,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 8.0f;
+                    handlingHigh = 10.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
                     blasters = 3.0f;
@@ -273,7 +274,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 40.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 8.0f;
+                    handlingHigh = 10.0f;
                     velocity = 80.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
@@ -286,7 +287,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 8.0f;
+                    handlingHigh = 10.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 1.0f;
@@ -299,11 +300,11 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 8.0f;
+                    handlingHigh = 10.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
                     blasters = 5.0f;
-                    targeting = 0.0f;
+                    targeting = 0.5f;
                     break;
                 default:
                     print("Not a ship 2");
@@ -398,9 +399,9 @@ public class Ship : MonoBehaviour
                     imageDead[2].enabled = true;
                     break;
                 case "Breaker":
-                    shipModel[1].gameObject.SetActive(false);
+                    shipModel[3].gameObject.SetActive(false);
                     isDeadBreaker = true;
-                    imageDead[1].enabled = true;
+                    imageDead[3].enabled = true;
                     break;
                 default:
                     print("Not a ship 4");
@@ -462,7 +463,7 @@ public class Ship : MonoBehaviour
             }
         }
 
-        if (shipName == "Interceptor")
+        if (shipName == "Interceptor" || shipName == "Breaker")
         {
             if (targetEnemy != null)
             {

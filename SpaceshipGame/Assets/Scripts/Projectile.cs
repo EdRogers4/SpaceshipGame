@@ -24,7 +24,7 @@ public class Projectile : MonoBehaviour
         distanceEnemyShortest = 1000f;
         StartCoroutine(DelayDestroy());
 
-        if (scriptShip.shipName == "Bomber")
+        if (scriptShip.shipName == "Bomber"/* || scriptShip.shipName == "Breaker"*/)
         {
             StartCoroutine(TargetProton());
             StartCoroutine(TargetEnemy());
@@ -33,22 +33,25 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor" || scriptShip.shipName == "Breaker")
+        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor")
         {
             return;
         }
-        else if (targetEnemy != null && scriptShip.shipName == "Bomber")
+        else if (targetEnemy != null && scriptShip.shipName == "Bomber"/* || scriptShip.shipName == "Breaker"*/)
         {
-            Vector3 targetDirection = targetEnemy.transform.position - transform.position;
-            float singleStep = scriptShip.targeting * Time.deltaTime;
-            Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-            transform.rotation = Quaternion.LookRotation(newDirection);
+            if (targetEnemy != null)
+            {
+                Vector3 targetDirection = targetEnemy.transform.position - transform.position;
+                float singleStep = scriptShip.targeting * Time.deltaTime;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+            }
         }
     }
 
     public IEnumerator DelayDestroy()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         DestroyProjectile();
     }
 

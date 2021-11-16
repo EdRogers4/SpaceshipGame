@@ -1409,7 +1409,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_Name
-      value: Ship Breaker
+      value: Ship Bomber
       objectReference: {fileID: 0}
     - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_IsActive
@@ -1417,7 +1417,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1433,7 +1433,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0000001296
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2243,9 +2243,9 @@ Transform:
   m_LocalScale: {x: 12, y: 12, z: 12}
   m_Children:
   - {fileID: 1237712430}
-  - {fileID: 1349321667}
-  - {fileID: 196748852}
   - {fileID: 165572390}
+  - {fileID: 196748852}
+  - {fileID: 1349321667}
   - {fileID: 1423157793}
   - {fileID: 527178336}
   - {fileID: 1011152724}
@@ -2274,16 +2274,16 @@ MonoBehaviour:
   isDeadBreaker: 0
   shipName: Fighter
   shieldFighter: 70
-  shieldBomber: 120
+  shieldBomber: 90
   shieldInterceptor: 50
-  shieldBreaker: 90
+  shieldBreaker: 120
   thrust: 0
   thrustHigh: 60
   thrustLow: 0
   acceleration: 1
   decceleration: 10
   handling: 0
-  handlingHigh: 8
+  handlingHigh: 10
   handlingLow: 0
   velocity: 200
   cooldown: 0.1
@@ -2296,9 +2296,9 @@ MonoBehaviour:
   ship: {fileID: 264208658}
   shipModel:
   - {fileID: 1237712429}
-  - {fileID: 1349321666}
-  - {fileID: 196748851}
   - {fileID: 165572391}
+  - {fileID: 196748851}
+  - {fileID: 1349321666}
   targetMove: {fileID: 792672278}
   targetEnemy: {fileID: 0}
   pointShoot:
@@ -2327,7 +2327,7 @@ MonoBehaviour:
   projectileBomber: {fileID: 7691094604182072164, guid: 549d2ec3a88dffd429ce054904ed6c0a, type: 3}
   projectileInterceptor: {fileID: 7306962092277881174, guid: 134e3e425405bb54085b2701d5e34160, type: 3}
   projectileBreaker: {fileID: 8501778692580923770, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
-  numberOfProjectiles: 20
+  numberOfProjectiles: 10
   spreadAngle: 10
   previousPosition: {x: 0, y: 0, z: 0}
   clipShootFighter:
@@ -4882,7 +4882,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 7af7bb4c8fa97a64fa3c2766c7d0bef5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf6d71a5d9bb94e4888bfdac982f7d3b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16100,7 +16100,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1838645756749026, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_Name
-      value: Ship Bomber
+      value: Ship Breaker
       objectReference: {fileID: 0}
     - target: {fileID: 1838645756749026, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_IsActive
@@ -16108,7 +16108,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalScale.x
@@ -16124,7 +16124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.00000011147
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -16165,7 +16165,7 @@ PrefabInstance:
     - target: {fileID: 23516112274768136, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8a62031e44650e6429efe67151c2d6ff, type: 2}
+      objectReference: {fileID: 2100000, guid: 852e08e8e7224cb4b8935e20924d01d4, type: 2}
     - target: {fileID: 64539208077064218, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -20667,7 +20667,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cf6d71a5d9bb94e4888bfdac982f7d3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7af7bb4c8fa97a64fa3c2766c7d0bef5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
