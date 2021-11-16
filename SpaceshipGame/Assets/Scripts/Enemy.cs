@@ -20,11 +20,16 @@ public class Enemy : MonoBehaviour
     public float reloadMinimum;
     public float reloadMaximum;
 
+    [Header("Stats")]
+    private AudioSource audioSource;
+    public AudioClip[] clipShootProton;
+
     [Header("UI")]
     public Image shieldBar;
 
     private void Start()
     {
+        audioSource = gameObject.GetComponent<AudioSource>();
         shield = startShield;
         reloadTime = Random.Range(reloadMinimum, reloadMaximum);
         StartCoroutine(Shoot());
@@ -37,6 +42,7 @@ public class Enemy : MonoBehaviour
         scriptEnemies.listProton.Add(spawnedProjectile);
         spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
         spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
+        audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
     }
 
     public void TakeDamage(float amount)

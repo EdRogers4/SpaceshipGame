@@ -17470,6 +17470,10 @@ MonoBehaviour:
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
+  clipProtonDestroyed:
+  - {fileID: 8300000, guid: 4e5c49f9d5ded3f4eb44a0948b2dce28, type: 3}
+  - {fileID: 8300000, guid: c41dc3e3218da1249a3a392b75ee24a5, type: 3}
+  - {fileID: 8300000, guid: 09337238e99078d4baf8778e3896d361, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   distanceTargetMove: 0
 --- !u!4 &1730435884

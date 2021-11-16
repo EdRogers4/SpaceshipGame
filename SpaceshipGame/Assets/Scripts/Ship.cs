@@ -148,7 +148,7 @@ public class Ship : MonoBehaviour
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootFighter[0], 0.2f);
+                audioSource.PlayOneShot(clipShootFighter[1], 0.2f);
             }
             else if (shipName == "Bomber")
             {
