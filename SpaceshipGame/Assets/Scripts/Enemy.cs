@@ -46,9 +46,9 @@ public class Enemy : MonoBehaviour
 
         if (shield <= 0f)
         {
-            particleDestroyed.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
-            particleDestroyed.Play();
-            scriptEnemies.DestroyParticle(particleDestroyed.gameObject);
+            var newParticle = Instantiate(particleDestroyed, transform.position, transform.rotation);
+            newParticle.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+            newParticle.Play();
             scriptEnemies.listEnemy.Remove(gameObject);
             scriptEnemies.enemyDestroyed = gameObject;
             scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
