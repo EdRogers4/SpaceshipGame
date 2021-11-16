@@ -181,7 +181,7 @@ public class Ship : MonoBehaviour
 
                 for(int i = 0; i < numberOfProjectiles; i++)
                 {
-                    pellets[i] = new Quaternion(0f, Random.rotationUniform.y, 0f, Random.rotationUniform.w);
+                    pellets[i] = new Quaternion(0f, Random.rotation.y, 0f, Random.rotationUniform.w);
                     spreadAmount += 0.1f;
                     var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
                     listProjectiles.Add(newProjectile1);
@@ -303,7 +303,7 @@ public class Ship : MonoBehaviour
                     handlingHigh = 12.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
-                    blasters = 5.0f;
+                    blasters = 2.0f;
                     targeting = 0.5f;
                     break;
                 default:
@@ -463,7 +463,7 @@ public class Ship : MonoBehaviour
             }
         }
 
-        if (shipName == "Interceptor" || shipName == "Breaker")
+        if (shipName == "Interceptor")
         {
             if (targetEnemy != null)
             {

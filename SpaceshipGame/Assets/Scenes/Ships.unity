@@ -2326,13 +2326,13 @@ MonoBehaviour:
   projectileFighter: {fileID: 2516364455895546687, guid: 6788d6382beaaba4088cea5fa1b1be7b, type: 3}
   projectileBomber: {fileID: 7691094604182072164, guid: 549d2ec3a88dffd429ce054904ed6c0a, type: 3}
   projectileInterceptor: {fileID: 7306962092277881174, guid: 134e3e425405bb54085b2701d5e34160, type: 3}
-  projectileBreaker: {fileID: 8501778692580923770, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
-  numberOfProjectiles: 10
+  projectileBreaker: {fileID: 2516364455895546687, guid: 6788d6382beaaba4088cea5fa1b1be7b, type: 3}
+  numberOfProjectiles: 20
   spreadAngle: 10
   previousPosition: {x: 0, y: 0, z: 0}
   clipShootFighter:
-  - {fileID: 8300000, guid: 7eb4501b0119a0c4790af497e7d41ed9, type: 3}
   - {fileID: 8300000, guid: 3e29b750121618644a0d24f567261fd4, type: 3}
+  - {fileID: 8300000, guid: 7eb4501b0119a0c4790af497e7d41ed9, type: 3}
   clipShootBomber:
   - {fileID: 8300000, guid: f7d37d8e1dade2647804cb7b960fa775, type: 3}
   - {fileID: 8300000, guid: b9f6887437419f24ca43306654951c1a, type: 3}
