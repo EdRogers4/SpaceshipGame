@@ -2249,6 +2249,8 @@ Transform:
   - {fileID: 1423157793}
   - {fileID: 527178336}
   - {fileID: 1011152724}
+  - {fileID: 590013304}
+  - {fileID: 757965680}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
@@ -7814,9 +7816,7 @@ Transform:
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 150}
   m_LocalScale: {x: 1.5, y: 1.5000006, z: 1.5000006}
-  m_Children:
-  - {fileID: 590013304}
-  - {fileID: 757965680}
+  m_Children: []
   m_Father: {fileID: 1134598985}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
@@ -9831,7 +9831,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 792672282}
+    m_TransformParent: {fileID: 264208662}
     m_Modifications:
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_Name
@@ -9839,7 +9839,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4042599763637292095, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_Materials.Array.size
@@ -9863,19 +9863,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalScale.x
-      value: 5
+      value: 0.6249999
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5
+      value: 0.6250003
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalScale.z
-      value: 5
+      value: 0.6250003
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9891,19 +9891,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -16177,7 +16177,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 792672282}
+    m_TransformParent: {fileID: 264208662}
     m_Modifications:
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_Name
@@ -16189,19 +16189,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalScale.x
-      value: 35
+      value: 4.374999
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalScale.y
-      value: 35
+      value: 4.375002
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalScale.z
-      value: 35
+      value: 4.375002
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16217,19 +16217,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -17947,7 +17947,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0f9c183473b3dcd4c9e6b88f0eb7e79e, type: 3}
+  m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.25
   m_Pitch: 1

@@ -303,7 +303,7 @@ public class Ship : MonoBehaviour
                     handlingHigh = 12.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
-                    blasters = 2.0f;
+                    blasters = 3.0f;
                     targeting = 0.5f;
                     break;
                 default:
