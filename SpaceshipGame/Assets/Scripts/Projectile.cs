@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     private float distanceProton;
     private float distanceEnemyShortest;
     private GameObject targetEnemy;
+    private float targetingBomber;
 
     private ParticleSystem newParticleExplode;
     private GameObject newPrefabExplosive;
@@ -23,8 +24,9 @@ public class Projectile : MonoBehaviour
     {
         distanceEnemyShortest = 1000f;
         StartCoroutine(DelayDestroy());
+        targetingBomber = scriptShip.targeting;
 
-        if (scriptShip.shipName == "Bomber"/* || scriptShip.shipName == "Breaker"*/)
+        if (scriptShip.shipName == "Bomber")
         {
             StartCoroutine(TargetProton());
             StartCoroutine(TargetEnemy());
@@ -33,16 +35,16 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor")
+        if (isExploding || scriptShip.shipName == "Fighter" || scriptShip.shipName == "Interceptor" || scriptShip.shipName == "Breaker")
         {
             return;
         }
-        else if (targetEnemy != null && scriptShip.shipName == "Bomber"/* || scriptShip.shipName == "Breaker"*/)
+        else if (targetEnemy != null && scriptShip.shipName == "Bomber")
         {
             if (targetEnemy != null)
             {
                 Vector3 targetDirection = targetEnemy.transform.position - transform.position;
-                float singleStep = scriptShip.targeting * Time.deltaTime;
+                float singleStep = targetingBomber * Time.deltaTime;
                 Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
                 transform.rotation = Quaternion.LookRotation(newDirection);
             }
@@ -53,6 +55,13 @@ public class Projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         DestroyProjectile();
+    }
+
+    public IEnumerator IncreaseTargeting()
+    {
+        yield return new WaitForSeconds(0.25f);
+        targetingBomber += 1.0f;
+        StartCoroutine(IncreaseTargeting());
     }
 
     public IEnumerator TargetProton()
@@ -71,7 +80,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(TargetProton());
     }
 
@@ -91,7 +100,7 @@ public class Projectile : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.1f);
         StartCoroutine(TargetEnemy());
     }
 

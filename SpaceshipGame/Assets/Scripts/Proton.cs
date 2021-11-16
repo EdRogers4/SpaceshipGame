@@ -12,13 +12,18 @@ public class Proton : MonoBehaviour
     {
         if (collision.transform.tag == "Player")
         {
-            scriptEnemies.ProtonDestroyed(this.gameObject);
             scriptEnemies.scriptShip.TakeDamage(blasters);
+            scriptEnemies.ProtonDestroyed(this.gameObject);
         }
         else if (collision.transform.tag == "Enemy")
         {
-            scriptEnemies.ProtonDestroyed(this.gameObject);
             collision.gameObject.GetComponent<Enemy>().TakeDamage(blasters);
+            scriptEnemies.ProtonDestroyed(this.gameObject);
+        }
+        else if (collision.transform.tag == "Asteroid")
+        {
+            collision.gameObject.GetComponent<Asteroid>().TakeDamage(blasters);
+            scriptEnemies.ProtonDestroyed(this.gameObject);
         }
     }
 }
