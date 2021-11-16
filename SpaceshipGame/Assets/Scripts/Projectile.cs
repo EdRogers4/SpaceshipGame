@@ -125,7 +125,10 @@ public class Projectile : MonoBehaviour
                 newPrefabExplosive.transform.parent = scriptShip.instances.transform;
             }
 
-            DestroyProjectile();
+            if (scriptShip.shipName != "Breaker")
+            {
+                DestroyProjectile();
+            }
         }
         else if (collision.transform.tag == "Proton")
         {
@@ -151,7 +154,11 @@ public class Projectile : MonoBehaviour
 
             scriptAsteroid = collision.gameObject.GetComponent<Asteroid>();
             scriptAsteroid.TakeDamage(scriptShip.blasters);
-            DestroyProjectile();
+
+            if (scriptShip.shipName != "Breaker")
+            {
+                DestroyProjectile();
+            }
         }
     }
 

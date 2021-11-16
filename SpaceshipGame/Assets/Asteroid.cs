@@ -13,6 +13,9 @@ public class Asteroid : MonoBehaviour
 
     [Header("Stats")]
     public float shield;
+    public float size;
+    public float sizeMinimum;
+    public float sizeMaximum;
 
     [Header("Particles")]
     public ParticleSystem particleRockSlide;
@@ -26,6 +29,9 @@ public class Asteroid : MonoBehaviour
     private void Start()
     {
         StartCoroutine(MeasureDistanceToDestination());
+        size = Random.Range(sizeMinimum, sizeMaximum);
+        transform.localScale = new Vector3(size, size, size);
+        shield = size;
     }
 
     public IEnumerator MeasureDistanceToDestination()

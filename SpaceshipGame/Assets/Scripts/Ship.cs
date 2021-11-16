@@ -261,7 +261,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 10.0f;
+                    handlingHigh = 12.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
                     blasters = 3.0f;
@@ -274,7 +274,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 40.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 10.0f;
+                    handlingHigh = 12.0f;
                     velocity = 80.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
@@ -287,7 +287,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 10.0f;
+                    handlingHigh = 12.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 1.0f;
@@ -300,7 +300,7 @@ public class Ship : MonoBehaviour
                     scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 10.0f;
+                    handlingHigh = 12.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
                     blasters = 5.0f;
