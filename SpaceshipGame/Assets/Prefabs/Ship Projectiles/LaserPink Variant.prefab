@@ -11,6 +11,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserPink Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1116459431216068, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1155525031641484, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1694723494320518, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1983440060296580, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4276975626380340, guid: 4ce602e5440307043b6bbe7e98914c88, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -134,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  scriptAsteroid: {fileID: 0}
   isExploding: 0
   particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
   prefabNukeExplosion: {fileID: 5510602369627012544, guid: af223db0e68b25846b31a4c49f46a8fa, type: 3}

@@ -11,6 +11,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: NukeMissilePink Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1226873327191596, guid: 273fc170e362768478e417cf30ff1edc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1697678349841242, guid: 273fc170e362768478e417cf30ff1edc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1748844840840428, guid: 273fc170e362768478e417cf30ff1edc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834759747442654, guid: 273fc170e362768478e417cf30ff1edc, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 4831804338739974, guid: 273fc170e362768478e417cf30ff1edc, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -138,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  scriptAsteroid: {fileID: 0}
   isExploding: 0
   particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
-  prefabRocketExplosion: {fileID: 896994425384639302, guid: 3fa67fb015e60544a9a679d68d1fe716, type: 3}
   prefabNukeExplosion: {fileID: 5510602369627012544, guid: af223db0e68b25846b31a4c49f46a8fa, type: 3}

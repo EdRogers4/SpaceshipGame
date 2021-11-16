@@ -7,9 +7,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1455083714389664, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649462404328336, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1966656062635078, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_Name
       value: SpikeMissilePink Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966656062635078, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4089076492349880, guid: 4bf12fa10c79e69419fab3f3621e1f06, type: 3}
       propertyPath: m_RootOrder
@@ -130,7 +142,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptShip: {fileID: 0}
   scriptEnemies: {fileID: 0}
+  scriptAsteroid: {fileID: 0}
   isExploding: 0
   particleExplode: {fileID: 4775454021269749014, guid: 0146659dd0d7d5e408ac904ebb36cc5e, type: 3}
-  prefabRocketExplosion: {fileID: 0}
   prefabNukeExplosion: {fileID: 0}

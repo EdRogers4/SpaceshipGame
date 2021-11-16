@@ -71,6 +71,14 @@ public class Ship : MonoBehaviour
     public GameObject projectileInterceptor;
     public GameObject projectileBreaker;
 
+    [Header("Flak Cannon")]
+    public int numberOfProjectiles;
+    public float spreadAngle;
+    List<Quaternion> pellets;
+
+    private Vector3 startPoint;
+    private const float radius = 1f;
+
     //Input
     public Vector3 previousPosition;
 
@@ -111,6 +119,15 @@ public class Ship : MonoBehaviour
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
+    }
+
+    private void Awake()
+    {
+        pellets = new List<Quaternion>(numberOfProjectiles);
+        for (int i = 0; i < numberOfProjectiles; i++)
+        {
+            pellets.Add(Quaternion.Euler(Vector3.zero));
+        }
     }
 
     public IEnumerator ShootProjectile()
@@ -162,11 +179,19 @@ public class Ship : MonoBehaviour
             }
             else if (shipName == "Breaker")
             {
-                var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
-                listProjectiles.Add(newProjectile1);
-                newProjectile1.GetComponent<Projectile>().scriptShip = this;
-                newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-                newProjectile1.transform.parent = instances.transform;
+                for(int i = 0; i < numberOfProjectiles; i++)
+                {
+                    pellets[i] = new Quaternion(0f, Random.rotation.y, 0f, Random.rotation.w);
+                    var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
+                    listProjectiles.Add(newProjectile1);
+                    newProjectile1.GetComponent<Projectile>().scriptShip = this;
+                    newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
+                    newProjectile1.transform.parent = instances.transform;
+                    newProjectile1.transform.rotation = Quaternion.RotateTowards(newProjectile1.transform.rotation, pellets[i], spreadAngle);
+                    newProjectile1.GetComponent<Rigidbody>().AddForce(newProjectile1.transform.right * velocity);
+                    i++;
+                }
+                
                 audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.6f);
             }
         }
@@ -245,20 +270,20 @@ public class Ship : MonoBehaviour
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBomber / startShieldBomber;
                     thrustHigh = 40.0f;
-                    scriptPlayerMovement.moveSpeed = 50.0f;
+                    scriptPlayerMovement.moveSpeed = 40.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
                     velocity = 80.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
-                    targeting = 20.0f;
+                    targeting = 4.0f;
                     break;
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
                     thrustHigh = 70.0f;
-                    scriptPlayerMovement.moveSpeed = 80.0f;
+                    scriptPlayerMovement.moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
@@ -270,14 +295,14 @@ public class Ship : MonoBehaviour
                 case "Breaker":
                     shipModel[3].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                    thrustHigh = 50.0f;
-                    scriptPlayerMovement.moveSpeed = 50.0f;
+                    thrustHigh = 60.0f;
+                    scriptPlayerMovement.moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 8.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
-                    blasters = 2.0f;
+                    blasters = 5.0f;
                     targeting = 0.0f;
                     break;
                 default:

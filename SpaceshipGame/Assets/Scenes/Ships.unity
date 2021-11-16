@@ -2327,6 +2327,8 @@ MonoBehaviour:
   projectileBomber: {fileID: 7691094604182072164, guid: 549d2ec3a88dffd429ce054904ed6c0a, type: 3}
   projectileInterceptor: {fileID: 7306962092277881174, guid: 134e3e425405bb54085b2701d5e34160, type: 3}
   projectileBreaker: {fileID: 8501778692580923770, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
+  numberOfProjectiles: 20
+  spreadAngle: 10
   previousPosition: {x: 0, y: 0, z: 0}
   clipShootFighter:
   - {fileID: 8300000, guid: 7eb4501b0119a0c4790af497e7d41ed9, type: 3}
@@ -2340,8 +2342,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bd835df9e0f04294eb0dabe5c4db3d2b, type: 3}
   - {fileID: 8300000, guid: b4a68c3bd47483b4aa2b834799f5726d, type: 3}
   clipShootBreaker:
-  - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
-  - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
   - {fileID: 8300000, guid: ae0c1ccce714a444d915b363d828684c, type: 3}
   distanceEnemyShortest: 0
   shieldBar: {fileID: 1249278928}
@@ -17470,7 +17470,6 @@ MonoBehaviour:
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
-  - {fileID: 8300000, guid: ae0c1ccce714a444d915b363d828684c, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   distanceTargetMove: 0
 --- !u!4 &1730435884
