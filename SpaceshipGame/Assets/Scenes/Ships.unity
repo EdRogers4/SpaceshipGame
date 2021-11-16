@@ -2345,6 +2345,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b4a68c3bd47483b4aa2b834799f5726d, type: 3}
   clipShootBreaker:
   - {fileID: 8300000, guid: ae0c1ccce714a444d915b363d828684c, type: 3}
+  clipShipDestroyed:
+  - {fileID: 8300000, guid: 1afe386ec92b0f84b921a74469048aea, type: 3}
+  - {fileID: 8300000, guid: 002e22e927ab628439b735e09393f6e4, type: 3}
+  - {fileID: 8300000, guid: 69ecaab0a1af4054baa330069270b2df, type: 3}
   distanceEnemyShortest: 0
   shieldBar: {fileID: 1249278928}
   screenGameOver: {fileID: 116786427}
@@ -17474,6 +17478,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e5c49f9d5ded3f4eb44a0948b2dce28, type: 3}
   - {fileID: 8300000, guid: c41dc3e3218da1249a3a392b75ee24a5, type: 3}
   - {fileID: 8300000, guid: 09337238e99078d4baf8778e3896d361, type: 3}
+  clipAsteroidDestroyed:
+  - {fileID: 8300000, guid: aff5187e5f0d9da47a2a36723e53e4fb, type: 3}
+  - {fileID: 8300000, guid: 3236eda03684b3447b45dcaa602dd757, type: 3}
+  - {fileID: 8300000, guid: 228a976daf120cf4799c09a164da4589, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   distanceTargetMove: 0
 --- !u!4 &1730435884

@@ -86,6 +86,7 @@ public class Ship : MonoBehaviour
     public AudioClip[] clipShootBomber;
     public AudioClip[] clipShootInterceptor;
     public AudioClip[] clipShootBreaker;
+    public AudioClip[] clipShipDestroyed;
 
     [Header("Distance")]
     private float distanceEnemy;
@@ -379,6 +380,7 @@ public class Ship : MonoBehaviour
         {
             particleDestroyed.gameObject.transform.parent = instances.transform;
             particleDestroyed.Play();
+            audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.8f);
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
 
             switch (shipName)

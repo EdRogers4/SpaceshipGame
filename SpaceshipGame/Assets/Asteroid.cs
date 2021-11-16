@@ -54,6 +54,7 @@ public class Asteroid : MonoBehaviour
 
         if (shield <= 0f)
         {
+            scriptEnemies.AsteroidDestroyed();
             newParticleFallingRocks = Instantiate(particleFallingRocks, gameObject.transform.position, gameObject.transform.rotation);
             newParticleRockSlide = Instantiate(particleRockSlide, gameObject.transform.position, gameObject.transform.rotation);
             newParticleFallingRocks.transform.localScale = new Vector3(size * 1.4f, size * 1.4f, size * 1.4f);

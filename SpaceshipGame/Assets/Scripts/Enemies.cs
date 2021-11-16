@@ -46,6 +46,7 @@ public class Enemies : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip[] clipDestroyed;
     public AudioClip[] clipProtonDestroyed;
+    public AudioClip[] clipAsteroidDestroyed;
 
     [Header("Particles")]
     private ParticleSystem particleDestroyed;
@@ -99,6 +100,11 @@ public class Enemies : MonoBehaviour
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
         Destroy(enemyDestroyed);
+    }
+
+    public void AsteroidDestroyed()
+    {
+        audioSource.PlayOneShot(clipAsteroidDestroyed[Random.Range(0, clipAsteroidDestroyed.Length)], 0.35f);
     }
 
     public void ProtonDestroyed(GameObject destroyed)
