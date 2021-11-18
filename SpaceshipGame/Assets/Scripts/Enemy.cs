@@ -51,11 +51,16 @@ public class Enemy : MonoBehaviour
         }
         else if (enemyName == "Wing")
         {
-            spawnedProjectile = Instantiate(scriptEnemies.prefabPlasma, barrel[0].transform.position, barrel[0].transform.rotation);
-            scriptEnemies.listPlasma.Add(spawnedProjectile);
-            spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-            spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
-            audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.55f);
+            for (int i = 0; i < barrel.Length; i++)
+            {
+                spawnedProjectile = Instantiate(scriptEnemies.prefabPlasma, barrel[i].transform.position, barrel[i].transform.rotation);
+                scriptEnemies.listPlasma.Add(spawnedProjectile);
+                spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+                spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
+                audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.55f);
+            }
+
+            StartCoroutine(Shoot());
         }
     }
 

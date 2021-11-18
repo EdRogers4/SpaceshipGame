@@ -11,6 +11,10 @@ public class Enemies : MonoBehaviour
     public List<GameObject> listPlasma;
     public List<Transform> listSpawnpoint;
     public List<Transform> listAsteroidSpawn;
+    public List<Transform> listWingSpawnGroup0;
+    public List<Transform> listWingSpawnGroup1;
+    public List<Transform> listWingSpawnGroup2;
+    public List<Transform> listWingSpawnGroup3;
     public List<float> listAsteroidSpeed;
 
     [Header("Spawn")]
@@ -72,8 +76,7 @@ public class Enemies : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        //StartCoroutine(SpawnFrigate());
-        StartCoroutine(SpawnWing());
+        StartCoroutine(SpawnFrigate());
         StartCoroutine(SpawnAsteroid());
     }
 
@@ -110,23 +113,51 @@ public class Enemies : MonoBehaviour
         StartCoroutine(SpawnFrigate());
     }
 
-    public IEnumerator SpawnWing()
+    public void SpawnWingGroup0()
     {
-        yield return new WaitForSeconds(10.0f);
-
-        for (int i = 0; i < listSpawnpoint.Count; i++)
+        for (int i = 0; i < listWingSpawnGroup0.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabWing, listSpawnpoint[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup0[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
         }
-
-        yield return new WaitForSeconds(20.0f);
-        StartCoroutine(SpawnWing());
     }
 
-        public void EnemyDestroyed()
+    public void SpawnWingGroup1()
+    {
+        for (int i = 0; i < listWingSpawnGroup1.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup1[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public void SpawnWingGroup2()
+    {
+        for (int i = 0; i < listWingSpawnGroup2.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup2[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public void SpawnWingGroup3()
+    {
+        for (int i = 0; i < listWingSpawnGroup3.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup3[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public void EnemyDestroyed()
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
         Destroy(enemyDestroyed);
@@ -166,6 +197,11 @@ public class Enemies : MonoBehaviour
             }
         }
 
+        for (int i = 0; i < listPlasma.Count; i++)
+        {
+            listPlasma[i].transform.position += listPlasma[i].transform.forward * Time.deltaTime * velocityPlasma;
+        }
+
         if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Bomber" && !scriptShip.isDeadBomber) 
             || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor) || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
         {
@@ -190,11 +226,12 @@ public class Enemies : MonoBehaviour
                     if (distanceTargetMove > minimumDistanceWing)
                     {
                         listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustWing;
-                        Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
-                        float singleStep = handlingWing * Time.deltaTime;
-                        Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
-                        listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
                     }
+
+                    Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                    float singleStep = handlingWing * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
                 }
             }
 
@@ -210,11 +247,6 @@ public class Enemies : MonoBehaviour
                     Vector3 newDirection = Vector3.RotateTowards(listProton[i].transform.forward, targetDirection, singleStep, 0.0f);
                     listProton[i].transform.rotation = Quaternion.LookRotation(newDirection);
                 }
-            }
-
-            for (int i = 0; i < listPlasma.Count; i++)
-            {
-                listPlasma[i].transform.position += listPlasma[i].transform.forward * Time.deltaTime * velocityPlasma;
             }
         }
     }

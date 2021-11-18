@@ -25,15 +25,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4811069380144154, guid: ada9d5c31c0e29b41bc5056c16b70b62, type: 3}
       propertyPath: m_LocalScale.x
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4811069380144154, guid: ada9d5c31c0e29b41bc5056c16b70b62, type: 3}
       propertyPath: m_LocalScale.y
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4811069380144154, guid: ada9d5c31c0e29b41bc5056c16b70b62, type: 3}
       propertyPath: m_LocalScale.z
-      value: 12
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4811069380144154, guid: ada9d5c31c0e29b41bc5056c16b70b62, type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,7 +112,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!135 &10125781532872072
 SphereCollider:
