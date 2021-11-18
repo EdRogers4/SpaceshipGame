@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
+    public Image dimmer;
     public static int scoreValue = 0;
     public Text scoreText;
     private string scoreString;
@@ -19,11 +20,28 @@ public class GameSettings : MonoBehaviour
 
     private AudioSource audioSource;
 
+    private void Awake()
+    {
+        dimmer.gameObject.SetActive(true);
+    }
+
     void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         scoreString = scoreValue.ToString("0");
         scoreText.text = scoreString + "00";
+        StartCoroutine(FadeTo(0f, 3.0f));
+    }
+
+    IEnumerator FadeTo(float aValue, float aTime)
+    {
+        float alpha = dimmer.color.a;
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / aTime)
+        {
+            Color newColor = new Color(0, 0, 0, Mathf.Lerp(alpha, aValue, t));
+            dimmer.color = newColor;
+            yield return null;
+        }
     }
 
     public void UpdateScore()
