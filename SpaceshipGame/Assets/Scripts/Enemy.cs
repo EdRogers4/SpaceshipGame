@@ -8,12 +8,13 @@ public class Enemy : MonoBehaviour
     [Header("World")]
     public ParticleSystem particleDestroyed;
     private GameObject spawnedProjectile;
-    public GameObject gun;
+    public GameObject[] barrel;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
 
     [Header("Stats")]
+    public string enemyName;
     public float shield;
     public float startShield;
     public float reloadTime;
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     [Header("Stats")]
     private AudioSource audioSource;
     public AudioClip[] clipShootProton;
+    public AudioClip[] clipShootPlasma;
 
     [Header("UI")]
     public Image shieldBar;
@@ -38,11 +40,23 @@ public class Enemy : MonoBehaviour
     public IEnumerator Shoot()
     {
         yield return new WaitForSeconds(reloadTime);
-        spawnedProjectile = Instantiate(scriptEnemies.prefabProton, gun.transform.position, gun.transform.rotation);
-        scriptEnemies.listProton.Add(spawnedProjectile);
-        spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-        spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
-        audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
+
+        if (enemyName == "Frigate")
+        {
+            spawnedProjectile = Instantiate(scriptEnemies.prefabProton, barrel[0].transform.position, barrel[0].transform.rotation);
+            scriptEnemies.listProton.Add(spawnedProjectile);
+            spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+            spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
+            audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
+        }
+        else if (enemyName == "Wing")
+        {
+            spawnedProjectile = Instantiate(scriptEnemies.prefabPlasma, barrel[0].transform.position, barrel[0].transform.rotation);
+            scriptEnemies.listPlasma.Add(spawnedProjectile);
+            spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+            spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
+            audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.55f);
+        }
     }
 
     public void TakeDamage(float amount)

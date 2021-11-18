@@ -106,6 +106,8 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        Debug.Log(collision.transform.name);
+
         if (collision.transform.tag == "Enemy")
         {
             collision.gameObject.GetComponent<Enemy>().TakeDamage(scriptShip.blasters);

@@ -128,7 +128,7 @@ GameObject:
   - component: {fileID: 4043103485693742895}
   - component: {fileID: 6975831733655007144}
   m_Layer: 0
-  m_Name: Gun
+  m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -415,9 +415,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleDestroyed: {fileID: 948169020612052600, guid: c4b18a005b843d443852a5d67864d5c0, type: 3}
-  gun: {fileID: 409505519960680168}
+  barrel:
+  - {fileID: 409505519960680168}
   scriptEnemies: {fileID: 0}
-  shield: 10
+  enemyName: Frigate
+  shield: 20
   startShield: 10
   reloadTime: 10
   reloadMinimum: 5

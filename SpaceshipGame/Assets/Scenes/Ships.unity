@@ -17422,6 +17422,7 @@ MonoBehaviour:
   listEnemy: []
   listProton: []
   listAsteroid: []
+  listPlasma: []
   listSpawnpoint:
   - {fileID: 2023016534}
   - {fileID: 1451800527}
@@ -17457,6 +17458,8 @@ MonoBehaviour:
   - {fileID: 1579023014}
   listAsteroidSpeed: []
   prefabFrigate: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
+  prefabWing: {fileID: 4405650498097998219, guid: 38d15eb9651ad724faa26ec959329bd9, type: 3}
+  prefabPlasma: {fileID: 515269606916414791, guid: 46fb1a436c649374f9f10bd36853027a, type: 3}
   prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
   prefabAsteroid: {fileID: 3135525913807490773, guid: 15dbf82e5607c3a498dd340d1acd6b22, type: 3}
   scriptShip: {fileID: 264208663}
@@ -17473,6 +17476,9 @@ MonoBehaviour:
   handlingFrigate: 2
   velocityProton: 15
   targetingProton: 2
+  thrustWing: 10
+  handlingWing: 1
+  velocityPlasma: 30
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
@@ -17480,11 +17486,16 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4e5c49f9d5ded3f4eb44a0948b2dce28, type: 3}
   - {fileID: 8300000, guid: c41dc3e3218da1249a3a392b75ee24a5, type: 3}
   - {fileID: 8300000, guid: 09337238e99078d4baf8778e3896d361, type: 3}
+  clipPlasmaDestroyed:
+  - {fileID: 8300000, guid: 009bd61d22767c64f95c5195e9edb87e, type: 3}
+  - {fileID: 8300000, guid: 39bbfeb7b8f3fc44281af4b520c4a46a, type: 3}
+  - {fileID: 8300000, guid: c347445e6f337a54dbf51f093b673fee, type: 3}
   clipAsteroidDestroyed:
   - {fileID: 8300000, guid: aff5187e5f0d9da47a2a36723e53e4fb, type: 3}
   - {fileID: 8300000, guid: 3236eda03684b3447b45dcaa602dd757, type: 3}
   - {fileID: 8300000, guid: 228a976daf120cf4799c09a164da4589, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
+  particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}
   distanceTargetMove: 0
 --- !u!4 &1730435884
 Transform:

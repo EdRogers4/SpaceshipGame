@@ -232,7 +232,7 @@ public class Ship : MonoBehaviour
                 }
             }
 
-                switch (shipName)
+            switch (shipName)
             {
                 case "Fighter":
                     shipModel[0].gameObject.SetActive(false);
