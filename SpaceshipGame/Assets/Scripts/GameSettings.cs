@@ -30,7 +30,7 @@ public class GameSettings : MonoBehaviour
         audioSource = gameObject.GetComponent<AudioSource>();
         scoreString = scoreValue.ToString("0");
         scoreText.text = scoreString + "00";
-        StartCoroutine(FadeTo(0f, 3.0f));
+        StartCoroutine(FadeTo(0f, 2.0f));
     }
 
     IEnumerator FadeTo(float aValue, float aTime)
@@ -42,6 +42,7 @@ public class GameSettings : MonoBehaviour
             dimmer.color = newColor;
             yield return null;
         }
+        dimmer.gameObject.SetActive(false);
     }
 
     public void UpdateScore()
