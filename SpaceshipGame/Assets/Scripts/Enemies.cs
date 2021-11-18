@@ -9,12 +9,15 @@ public class Enemies : MonoBehaviour
     public List<GameObject> listProton;
     public List<GameObject> listAsteroid;
     public List<GameObject> listPlasma;
-    public List<Transform> listSpawnpoint;
-    public List<Transform> listAsteroidSpawn;
-    public List<Transform> listWingSpawnGroup0;
-    public List<Transform> listWingSpawnGroup1;
-    public List<Transform> listWingSpawnGroup2;
-    public List<Transform> listWingSpawnGroup3;
+    public List<Transform> listSpawnFrigate0;
+    public List<Transform> listSpawnFrigate1;
+    public List<Transform> listSpawnFrigate2;
+    public List<Transform> listSpawnFrigate3;
+    public List<Transform> listSpawnAsteroid;
+    public List<Transform> listSpawnWing0;
+    public List<Transform> listSpawnWing1;
+    public List<Transform> listSpawnWing2;
+    public List<Transform> listSpawnWing3;
     public List<float> listAsteroidSpeed;
 
     [Header("Spawn")]
@@ -40,6 +43,7 @@ public class Enemies : MonoBehaviour
     public float speedAsteroidMinimum;
     public float speedAsteroidMaximum;
     private int countSpawnAsteroid;
+    private bool isSpawnFirstAsteroid;
     private GameObject spawnedEnemy;
     private GameObject spawnedEnemyProjectile;
     private GameObject spawnedAsteroid;
@@ -76,48 +80,86 @@ public class Enemies : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        StartCoroutine(SpawnFrigate());
         StartCoroutine(SpawnAsteroid());
     }
 
     public IEnumerator SpawnAsteroid()
     {
-        countSpawnAsteroid = Random.Range(0, listAsteroidSpawn.Count);
-        yield return new WaitForSeconds(Random.Range(timeMinimumSpawnAsteroid, timeMaximumSpawnAsteroid));
-        spawnedAsteroid = Instantiate(prefabAsteroid, listAsteroidSpawn[countSpawnAsteroid].transform.position, listAsteroidSpawn[countSpawnAsteroid].transform.rotation);
+        if (isSpawnFirstAsteroid)
+        {
+
+            yield return new WaitForSeconds(Random.Range(timeMinimumSpawnAsteroid, timeMaximumSpawnAsteroid));
+        }
+        else
+        {
+            isSpawnFirstAsteroid = true;
+        }
+
+        countSpawnAsteroid = Random.Range(0, listSpawnAsteroid.Count);
+        spawnedAsteroid = Instantiate(prefabAsteroid, listSpawnAsteroid[countSpawnAsteroid].transform.position, listSpawnAsteroid[countSpawnAsteroid].transform.rotation);
         listAsteroid.Add(spawnedAsteroid);
         listAsteroidSpeed.Add(Random.Range(speedAsteroidMinimum, speedAsteroidMaximum));
         countSpawnAsteroid += 1;
 
-        if (countSpawnAsteroid >= listAsteroidSpawn.Count)
+        if (countSpawnAsteroid >= listSpawnAsteroid.Count)
         {
             countSpawnAsteroid = 0;
         }
 
         spawnedAsteroid.GetComponent<Asteroid>().scriptEnemies = this;
-        spawnedAsteroid.GetComponent<Asteroid>().destination = listAsteroidSpawn[countSpawnAsteroid];
+        spawnedAsteroid.GetComponent<Asteroid>().destination = listSpawnAsteroid[countSpawnAsteroid];
         StartCoroutine(SpawnAsteroid());
     }
 
-    public IEnumerator SpawnFrigate()
+    public void SpawnFrigateGroup0()
     {
-        for (int i = 0; i < listSpawnpoint.Count; i++)
+        for (int i = 0; i < listSpawnFrigate0.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabFrigate, listSpawnpoint[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
         }
+    }
 
-        yield return new WaitForSeconds(30.0f);
-        StartCoroutine(SpawnFrigate());
+    public void SpawnFrigateGroup1()
+    {
+        for (int i = 0; i < listSpawnFrigate1.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public void SpawnFrigateGroup2()
+    {
+        for (int i = 0; i < listSpawnFrigate2.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public void SpawnFrigateGroup3()
+    {
+        for (int i = 0; i < listSpawnFrigate3.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
     }
 
     public void SpawnWingGroup0()
     {
-        for (int i = 0; i < listWingSpawnGroup0.Count; i++)
+        for (int i = 0; i < listSpawnWing0.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup0[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabWing, listSpawnWing0[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
@@ -126,9 +168,9 @@ public class Enemies : MonoBehaviour
 
     public void SpawnWingGroup1()
     {
-        for (int i = 0; i < listWingSpawnGroup1.Count; i++)
+        for (int i = 0; i < listSpawnWing1.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup1[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabWing, listSpawnWing1[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
@@ -137,9 +179,9 @@ public class Enemies : MonoBehaviour
 
     public void SpawnWingGroup2()
     {
-        for (int i = 0; i < listWingSpawnGroup2.Count; i++)
+        for (int i = 0; i < listSpawnWing2.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup2[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabWing, listSpawnWing2[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
@@ -148,9 +190,9 @@ public class Enemies : MonoBehaviour
 
     public void SpawnWingGroup3()
     {
-        for (int i = 0; i < listWingSpawnGroup3.Count; i++)
+        for (int i = 0; i < listSpawnWing3.Count; i++)
         {
-            spawnedEnemy = Instantiate(prefabWing, listWingSpawnGroup3[i].position, Quaternion.identity);
+            spawnedEnemy = Instantiate(prefabWing, listSpawnWing3[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
