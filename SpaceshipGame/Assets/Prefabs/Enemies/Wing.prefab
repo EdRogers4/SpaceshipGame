@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4429191404315490832}
   - component: {fileID: 4450358424247000448}
   m_Layer: 0
-  m_Name: SM_Veh_Drone_Attack_01
+  m_Name: Guns
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4427385126736380281}
   - component: {fileID: 4449703812459932595}
   m_Layer: 0
-  m_Name: SM_Ship_Stealth_05
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
