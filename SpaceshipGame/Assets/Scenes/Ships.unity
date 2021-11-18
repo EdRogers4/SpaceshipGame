@@ -2319,6 +2319,8 @@ MonoBehaviour:
   - {fileID: 402257584}
   targetMovePosition: {x: 0, y: 0, z: 0}
   instances: {fileID: 2076841868}
+  playerIndicator: {fileID: 1821316007}
+  playerSpawnIndicator: {fileID: 1914052149}
   barrelLeftFighter: {fileID: 913196375}
   barrelRightFighter: {fileID: 1496942265}
   barrelBomber: {fileID: 1624701927}
@@ -5132,7 +5134,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -9839,7 +9841,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_Name
-      value: SpawnSimpleGreen
+      value: Player Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_IsActive
@@ -16185,7 +16187,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_Name
-      value: LootRingGreen
+      value: Player Spawn Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_IsActive
@@ -17961,7 +17963,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
   m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -18310,6 +18312,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eac7894746a985341a280e45d7abac75, type: 3}
+--- !u!1 &1821316007 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
+  m_PrefabInstance: {fileID: 1032348618}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1829616759
 GameObject:
   m_ObjectHideFlags: 0
@@ -18923,6 +18930,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1914052149 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
+  m_PrefabInstance: {fileID: 1663358227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1922403237
 GameObject:
   m_ObjectHideFlags: 0

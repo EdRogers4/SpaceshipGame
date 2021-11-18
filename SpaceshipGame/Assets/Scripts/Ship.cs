@@ -56,6 +56,8 @@ public class Ship : MonoBehaviour
     public Transform[] pointShoot;
     public Vector3 targetMovePosition;
     public GameObject instances;
+    public GameObject playerIndicator;
+    public GameObject playerSpawnIndicator;
 
     [Header("Barrels")]
     public GameObject barrelLeftFighter;
@@ -252,6 +254,8 @@ public class Ship : MonoBehaviour
             shipName = name;
             particleDestroyed.gameObject.transform.parent = transform;
             particleDestroyed.gameObject.transform.position = transform.position;
+            playerIndicator.SetActive(true);
+            playerSpawnIndicator.SetActive(false);
 
             switch (shipName)
             {
@@ -382,6 +386,8 @@ public class Ship : MonoBehaviour
             particleDestroyed.Play();
             audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.8f);
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            playerIndicator.SetActive(false);
+            playerSpawnIndicator.SetActive(true);
 
             switch (shipName)
             {
