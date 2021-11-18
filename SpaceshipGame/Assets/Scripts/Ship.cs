@@ -58,6 +58,7 @@ public class Ship : MonoBehaviour
     public GameObject instances;
     public GameObject playerIndicator;
     public GameObject playerSpawnIndicator;
+    public Animator animatorLevel1;
 
     [Header("Barrels")]
     public GameObject barrelLeftFighter;
@@ -256,6 +257,7 @@ public class Ship : MonoBehaviour
             particleDestroyed.gameObject.transform.position = transform.position;
             playerIndicator.SetActive(true);
             playerSpawnIndicator.SetActive(false);
+            animatorLevel1.speed = 1.0f;
 
             switch (shipName)
             {
@@ -388,6 +390,7 @@ public class Ship : MonoBehaviour
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);
+            animatorLevel1.speed = 0.0f;
 
             switch (shipName)
             {
