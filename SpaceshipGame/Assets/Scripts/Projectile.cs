@@ -108,7 +108,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.transform.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(scriptShip.blasters);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(scriptShip.blasters, "Projectile");
 
             foreach (ContactPoint contact in collision.contacts)
             {
@@ -153,7 +153,7 @@ public class Projectile : MonoBehaviour
             }
 
             scriptAsteroid = collision.gameObject.GetComponent<Asteroid>();
-            scriptAsteroid.TakeDamage(scriptShip.blasters);
+            scriptAsteroid.TakeDamage(scriptShip.blasters, "Projectile");
 
             if (scriptShip.shipName != "Breaker")
             {

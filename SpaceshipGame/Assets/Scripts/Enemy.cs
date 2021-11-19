@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Stats")]
     public string enemyName;
+    public bool isDead;
     public float shield;
     public float startShield;
     public float reloadTime;
@@ -64,7 +65,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, string projectile)
     {
         shield -= amount;
         shieldBar.fillAmount = shield / startShield;
@@ -77,7 +78,13 @@ public class Enemy : MonoBehaviour
             scriptEnemies.listEnemy.Remove(gameObject);
             scriptEnemies.enemyDestroyed = gameObject;
             scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
-            scriptEnemies.scriptGameSettings.UpdateScore();
+
+            if (projectile == "Projectile" && !isDead)
+            {
+                isDead = true;
+                scriptEnemies.scriptGameSettings.UpdateScore();
+            }
+
             scriptEnemies.EnemyDestroyed();
         }
     }

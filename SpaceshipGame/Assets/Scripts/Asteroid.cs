@@ -12,6 +12,7 @@ public class Asteroid : MonoBehaviour
     public Transform destination;
 
     [Header("Stats")]
+    public bool isDead;
     public float shield;
     public float size;
     public float sizeMinimum;
@@ -48,7 +49,7 @@ public class Asteroid : MonoBehaviour
         StartCoroutine(MeasureDistanceToDestination());
     }
 
-    public void TakeDamage(float amount)
+    public void TakeDamage(float amount, string projectile)
     {
         shield -= amount;
 
@@ -64,7 +65,13 @@ public class Asteroid : MonoBehaviour
             newParticleFallingRocks.Play();
             newParticleRockSlide.Play();
             scriptEnemies.listAsteroid.Remove(gameObject);
-            scriptEnemies.scriptGameSettings.UpdateScore();
+
+            if (projectile == "Projectile" && !isDead)
+            {
+                isDead = true;
+                scriptEnemies.scriptGameSettings.UpdateScore();
+            }
+
             Destroy(gameObject);
         }
     }

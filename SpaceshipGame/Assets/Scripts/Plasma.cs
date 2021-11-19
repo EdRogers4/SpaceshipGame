@@ -17,12 +17,12 @@ public class Plasma : MonoBehaviour
         }
         else if (collision.transform.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<Enemy>().TakeDamage(blasters);
+            collision.gameObject.GetComponent<Enemy>().TakeDamage(blasters, "Plasma");
             scriptEnemies.PlasmaDestroyed(this.gameObject);
         }
         else if (collision.transform.tag == "Asteroid")
         {
-            collision.gameObject.GetComponent<Asteroid>().TakeDamage(blasters);
+            collision.gameObject.GetComponent<Asteroid>().TakeDamage(blasters, "Plasma");
             scriptEnemies.PlasmaDestroyed(this.gameObject);
         }
     }
