@@ -211,7 +211,7 @@ public class Enemies : MonoBehaviour
 
     public void AsteroidDestroyed()
     {
-        audioSource.PlayOneShot(clipAsteroidDestroyed[Random.Range(0, clipAsteroidDestroyed.Length)], 0.35f);
+        audioSource.PlayOneShot(clipAsteroidDestroyed[Random.Range(0, clipAsteroidDestroyed.Length)], 0.15f);
     }
 
     public void ProtonDestroyed(GameObject destroyed)

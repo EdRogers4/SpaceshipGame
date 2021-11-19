@@ -84,6 +84,7 @@ public class Ship : MonoBehaviour
     public AudioClip[] clipShootInterceptor;
     public AudioClip[] clipShootBreaker;
     public AudioClip[] clipShipDestroyed;
+    public bool[] isPlayLowHealth;
 
     [Header("Distance")]
     private float distanceEnemy;
@@ -338,18 +339,46 @@ public class Ship : MonoBehaviour
             case "Fighter":
                 shieldFighter -= amount;
                 shieldBar.fillAmount = shieldFighter / startShieldFighter;
+
+                if (shieldFighter <= 30f && !isPlayLowHealth[0])
+                {
+                    isPlayLowHealth[0] = true;
+                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                }
+
                 break;
             case "Bomber":
                 shieldBomber -= amount;
                 shieldBar.fillAmount = shieldBomber / startShieldBomber;
+
+                if (shieldBomber <= 30f && !isPlayLowHealth[1])
+                {
+                    isPlayLowHealth[1] = true;
+                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                }
+
                 break;
             case "Interceptor":
                 shieldInterceptor -= amount;
                 shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+
+                if (shieldInterceptor <= 30f && !isPlayLowHealth[2])
+                {
+                    isPlayLowHealth[2] = true;
+                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                }
+
                 break;
             case "Breaker":
                 shieldBreaker -= amount;
                 shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+
+                if (shieldBreaker <= 30f && !isPlayLowHealth[3])
+                {
+                    isPlayLowHealth[3] = true;
+                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                }
+
                 break;
             default:
                 print("Not a ship 3");
@@ -360,6 +389,7 @@ public class Ship : MonoBehaviour
         {
             isDead = true;
             screenGameOver.SetActive(true);
+            StartCoroutine(scriptGameSettings.AudioClipPlayGameOver());
         }
 
         if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f))
@@ -371,6 +401,7 @@ public class Ship : MonoBehaviour
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);
             animatorLevel1.speed = 0.0f;
+            StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
 
             switch (shipName)
             {

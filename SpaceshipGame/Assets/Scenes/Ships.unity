@@ -3169,6 +3169,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1afe386ec92b0f84b921a74469048aea, type: 3}
   - {fileID: 8300000, guid: 002e22e927ab628439b735e09393f6e4, type: 3}
   - {fileID: 8300000, guid: 69ecaab0a1af4054baa330069270b2df, type: 3}
+  isPlayLowHealth: 00000000
   distanceEnemyShortest: 0
   shieldBar: {fileID: 1249278928}
   screenGameOver: {fileID: 116786427}
@@ -23581,7 +23582,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
   m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.7
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23678,11 +23679,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dimmer: {fileID: 219788667}
+  scoreValue: 0
+  enemyKOValue: 0
+  countAnnouncer: 0
+  countBullseye: 0
+  countCombo: 0
+  isTimerCombo: 0
+  timerComboAmount: 1
+  timerComboMax: 1
   scoreText: {fileID: 96293994}
   isPause: 0
   isSettings: 0
   isMenu: 0
   difficulty: 0
+  clipBullseye:
+  - {fileID: 8300000, guid: 33c31484115fbb541bf7505b46b66c87, type: 3}
+  - {fileID: 8300000, guid: 0e5a7c338afd44c4bb3223d427283c50, type: 3}
+  - {fileID: 8300000, guid: 2c4e89b0ac262704da08a8ef05b12c9f, type: 3}
+  - {fileID: 8300000, guid: 4524a73ddb6015a44a1b67baa9c7a626, type: 3}
+  - {fileID: 8300000, guid: 4b05d5b07953bc14894b9bd7b48ad851, type: 3}
+  - {fileID: 8300000, guid: 97326fbf6561c7a42bd0922fb98e9a30, type: 3}
+  - {fileID: 8300000, guid: f21ecb75beba0f043a22e001efdba046, type: 3}
+  clipCombo:
+  - {fileID: 8300000, guid: 0d68f6f4a592032448f0ad2da47d6187, type: 3}
+  - {fileID: 8300000, guid: 6c69413eb1b340540a3286a71a63924b, type: 3}
+  - {fileID: 8300000, guid: a8d66673cce466d44bd15c4826fdce1b, type: 3}
+  clipGameOver:
+  - {fileID: 8300000, guid: 95ac8d6bc8aadaa4bbcfb1376318d1f4, type: 3}
+  - {fileID: 8300000, guid: 5129c68bc6eafe14b92df4282c76ac38, type: 3}
+  clipGamePaused:
+  - {fileID: 8300000, guid: 8b700ce45bfb2b34aaf1a547198aa0f1, type: 3}
+  - {fileID: 8300000, guid: d689516316f92534e93457dcb01b280f, type: 3}
+  clipHealthLow:
+  - {fileID: 8300000, guid: 03835578f5da4b3428ae6fa1c792c323, type: 3}
+  - {fileID: 8300000, guid: 083247f1a4db7a54b94d8230e8f35558, type: 3}
+  clipGetReady: {fileID: 8300000, guid: b4205cf2055389d43b17c2824baa32b7, type: 3}
+  clipMissionComplete: {fileID: 8300000, guid: 59d7f804faeefb94789ccd04afb541b3, type: 3}
+  clipUntouchable: {fileID: 8300000, guid: d750fa6b5343e9944ad4c533c709f149, type: 3}
 --- !u!1 &1780100137
 GameObject:
   m_ObjectHideFlags: 0

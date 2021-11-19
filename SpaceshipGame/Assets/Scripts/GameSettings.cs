@@ -7,7 +7,14 @@ using UnityEngine.UI;
 public class GameSettings : MonoBehaviour
 {
     public Image dimmer;
-    public static int scoreValue = 0;
+    public int scoreValue = 0;
+    public int enemyKOValue = 0;
+    public int countAnnouncer = 0;
+    public int countBullseye = 0;
+    public int countCombo;
+    public bool isTimerCombo;
+    public float timerComboAmount;
+    public float timerComboMax;
     public Text scoreText;
     private string scoreString;
 
@@ -19,6 +26,15 @@ public class GameSettings : MonoBehaviour
     public int difficulty; //0 = normal. 1 = easy, 2 = hard
 
     private AudioSource audioSource;
+
+    public AudioClip[] clipBullseye;
+    public AudioClip[] clipCombo;
+    public AudioClip[] clipGameOver;
+    public AudioClip[] clipGamePaused;
+    public AudioClip[] clipHealthLow;
+    public AudioClip clipGetReady;
+    public AudioClip clipMissionComplete;
+    public AudioClip clipUntouchable;
 
     private void Awake()
     {
@@ -43,6 +59,125 @@ public class GameSettings : MonoBehaviour
             yield return null;
         }
         dimmer.gameObject.SetActive(false);
+        audioSource.PlayOneShot(clipGetReady, 1.0f);
+    }
+
+    public IEnumerator AudioClipPlayBullseye(int number)
+    {
+        yield return new WaitForSeconds(1.0f);
+        audioSource.PlayOneShot(clipBullseye[number], 1.0f);
+    }
+
+    public IEnumerator AudioClipPlayCombo()
+    {
+        yield return new WaitForSeconds(1.0f);
+        if (countCombo == 2)
+        {
+            //audioSource.PlayOneShot(clipCombo[0], 1.0f);
+        }
+        else if (countCombo == 3)
+        {
+            audioSource.PlayOneShot(clipCombo[1], 1.0f);
+        }
+        else if (countCombo == 4)
+        {
+            audioSource.PlayOneShot(clipCombo[2], 1.0f);
+        }
+        else if (countCombo >= 5)
+        {
+            StartCoroutine(AudioClipPlayBullseye(6));
+        }
+
+        countCombo = 0;
+    }
+
+    public IEnumerator AudioClipPlayGameOver()
+    {
+        yield return new WaitForSeconds(2.0f);
+        audioSource.PlayOneShot(clipGameOver[0], 1.0f);
+        yield return new WaitForSeconds(2.0f);
+        audioSource.PlayOneShot(clipGameOver[1], 1.0f);
+    }
+
+    public void AudioClipPlayGamePaused(int number)
+    {
+        if (clipGamePaused[number] != null)
+        {
+            //audioSource.PlayOneShot(clipGamePaused[number], 1.0f);
+        }
+    }
+
+    public IEnumerator AudioClipPlayHealthLow(int number)
+    {
+        yield return new WaitForSeconds(1.5f);
+        audioSource.PlayOneShot(clipHealthLow[number], 1.0f);
+    }
+
+    public void AudioClipPlayGetReady()
+    {
+        audioSource.PlayOneShot(clipGetReady, 1.0f);
+    }
+
+    public IEnumerator AudioClipPlayMissionComplete()
+    {
+        yield return new WaitForSeconds(2.0f);
+        audioSource.PlayOneShot(clipMissionComplete, 1.0f);
+    }
+
+    public void AudioClipPlayUntouchable()
+    {
+        audioSource.PlayOneShot(clipUntouchable, 1.0f);
+    }
+
+    public void UpdateEnemyKOValue()
+    {
+        enemyKOValue += 1;
+        countAnnouncer += 1;
+        countCombo += 1;
+
+        if (countCombo >= 2)
+        {
+            StartCoroutine(AudioClipPlayCombo());
+        }
+        else
+        {
+            if (enemyKOValue == 1)
+            {
+                StartCoroutine(AudioClipPlayBullseye(0));
+            }
+
+            if (countAnnouncer >= 10)
+            {
+                countAnnouncer = 0;
+                countBullseye += 1;
+
+                if (countBullseye <= 6)
+                {
+                    StartCoroutine(AudioClipPlayBullseye(countBullseye));
+                }
+                else
+                {
+                    StartCoroutine(AudioClipPlayBullseye(Random.Range(0, 6)));
+                }
+            }
+        }
+
+        isTimerCombo = true;
+    }
+
+    private void Update()
+    {
+        if (isTimerCombo)
+        {
+            timerComboAmount -= 0.01f;
+
+            if (timerComboAmount <= 0f)
+            {
+                timerComboAmount = timerComboMax;
+                countCombo = 0;
+                isTimerCombo = false;
+            }
+        }
     }
 
     public void UpdateScore()
@@ -76,12 +211,14 @@ public class GameSettings : MonoBehaviour
         if (isPause && isSettings)
         {
             Time.timeScale = 1.0f;
+            AudioClipPlayGamePaused(1);
             isSettings = false;
             isPause = false;
         }
         else
         {
             Time.timeScale = 0.0f;
+            AudioClipPlayGamePaused(0);
             isSettings = true;
             isPause = true;
         }
@@ -94,12 +231,14 @@ public class GameSettings : MonoBehaviour
         if (isPause && isMenu)
         {
             Time.timeScale = 1.0f;
+            AudioClipPlayGamePaused(1);
             isMenu = false;
             isPause = false;
         }
         else
         {
             Time.timeScale = 0.0f;
+            AudioClipPlayGamePaused(0);
             isMenu = true;
             isPause = true;
         }
@@ -110,11 +249,13 @@ public class GameSettings : MonoBehaviour
         if (pause)
         {
             Time.timeScale = 0f;
+            AudioClipPlayGamePaused(0);
             isPause = true;
         }
         else
         {
             Time.timeScale = 1.0f;
+            AudioClipPlayGamePaused(1);
             isPause = false;
         }
     }

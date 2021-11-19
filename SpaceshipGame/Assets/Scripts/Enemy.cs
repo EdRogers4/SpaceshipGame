@@ -83,6 +83,7 @@ public class Enemy : MonoBehaviour
             {
                 isDead = true;
                 scriptEnemies.scriptGameSettings.UpdateScore();
+                scriptEnemies.scriptGameSettings.UpdateEnemyKOValue();
             }
 
             scriptEnemies.EnemyDestroyed();
