@@ -18,6 +18,10 @@ public class Enemies : MonoBehaviour
     public List<Transform> listSpawnWing1;
     public List<Transform> listSpawnWing2;
     public List<Transform> listSpawnWing3;
+    public Transform spawnDrone0;
+    public Transform spawnDrone1;
+    public List<Transform> listFlyPointDrone0;
+    public List<Transform> listFlyPointDrone1;
     public List<float> listAsteroidSpeed;
 
     [Header("Spawn")]
