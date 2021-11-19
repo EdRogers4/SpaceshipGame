@@ -74,12 +74,6 @@ public class Ship : MonoBehaviour
     public GameObject projectileInterceptor;
     public GameObject projectileBreaker;
 
-    [Header("Flak Cannon")]
-    public int numberOfProjectiles;
-    public float spreadAngle;
-    List<Quaternion> pellets;
-    private float spreadAmount;
-
     //Input
     public Vector3 previousPosition;
 
@@ -121,15 +115,6 @@ public class Ship : MonoBehaviour
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
-    }
-
-    private void Awake()
-    {
-        pellets = new List<Quaternion>(numberOfProjectiles);
-        for (int i = 0; i < numberOfProjectiles; i++)
-        {
-            pellets.Add(Quaternion.Euler(Vector3.zero));
-        }
     }
 
     public IEnumerator ShootProjectile()
@@ -181,18 +166,13 @@ public class Ship : MonoBehaviour
             }
             else if (shipName == "Breaker")
             {
-                spreadAmount = -0.5f;
-
-                for(int i = 0; i < numberOfProjectiles; i++)
+                for (int i = 0; i <= pointShoot.Length; i++)
                 {
-                    pellets[i] = new Quaternion(0f, Random.rotation.y, 0f, Random.rotationUniform.w);
-                    spreadAmount += 0.1f;
-                    var newProjectile1 = Instantiate(projectileBreaker, barrelBreaker.transform.position, barrelBreaker.transform.rotation) as GameObject;
+                    var newProjectile1 = Instantiate(projectileBreaker, pointShoot[i].position, pointShoot[i].rotation) as GameObject;
                     listProjectiles.Add(newProjectile1);
                     newProjectile1.GetComponent<Projectile>().scriptShip = this;
                     newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                     newProjectile1.transform.parent = instances.transform;
-                    newProjectile1.transform.rotation = Quaternion.RotateTowards(newProjectile1.transform.rotation, pellets[i], spreadAngle);
                     newProjectile1.GetComponent<Rigidbody>().AddForce(newProjectile1.transform.right * velocity);
                     i++;
                 }
