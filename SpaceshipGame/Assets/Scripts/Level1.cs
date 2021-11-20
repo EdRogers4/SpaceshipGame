@@ -14,22 +14,22 @@ public class Level1 : MonoBehaviour
 
     public void SpawnFrigateGroup0()
     {
-        scriptEnemies.SpawnFrigateGroup0();
+        StartCoroutine(scriptEnemies.SpawnFrigateGroup0());
     }
 
     public void SpawnFrigateGroup1()
     {
-        scriptEnemies.SpawnFrigateGroup1();
+        StartCoroutine(scriptEnemies.SpawnFrigateGroup1());
     }
 
     public void SpawnFrigateGroup2()
     {
-        scriptEnemies.SpawnFrigateGroup2();
+        StartCoroutine(scriptEnemies.SpawnFrigateGroup2());
     }
 
     public void SpawnFrigateGroup3()
     {
-        scriptEnemies.SpawnFrigateGroup3();
+        StartCoroutine(scriptEnemies.SpawnFrigateGroup3());
     }
 
     public void SpawnWingGroup0()

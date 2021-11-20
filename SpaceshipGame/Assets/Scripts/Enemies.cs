@@ -52,6 +52,7 @@ public class Enemies : MonoBehaviour
     private GameObject spawnedEnemyProjectile;
     private GameObject spawnedAsteroid;
     private ParticleSystem spawnedParticle;
+    public ParticleSystem particleSpawnFrigate;
 
     [Header("Stats")]
     public float thrustFrigate;
@@ -115,10 +116,13 @@ public class Enemies : MonoBehaviour
         StartCoroutine(SpawnAsteroid());
     }
 
-    public void SpawnFrigateGroup0()
+    public IEnumerator SpawnFrigateGroup0()
     {
         for (int i = 0; i < listSpawnFrigate0.Count; i++)
         {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
@@ -126,10 +130,13 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    public void SpawnFrigateGroup1()
+    public IEnumerator SpawnFrigateGroup1()
     {
         for (int i = 0; i < listSpawnFrigate1.Count; i++)
         {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
@@ -137,10 +144,13 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    public void SpawnFrigateGroup2()
+    public IEnumerator SpawnFrigateGroup2()
     {
         for (int i = 0; i < listSpawnFrigate2.Count; i++)
         {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
@@ -148,10 +158,13 @@ public class Enemies : MonoBehaviour
         }
     }
 
-    public void SpawnFrigateGroup3()
+    public IEnumerator SpawnFrigateGroup3()
     {
         for (int i = 0; i < listSpawnFrigate3.Count; i++)
         {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;

@@ -710,6 +710,7 @@ MonoBehaviour:
   - {fileID: 3311415223663778252}
   scriptEnemies: {fileID: 0}
   enemyName: Wing
+  isDead: 0
   shield: 10
   startShield: 10
   reloadTime: 0
@@ -730,7 +731,7 @@ AudioSource:
   m_GameObject: {fileID: 4405650498097998219}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1

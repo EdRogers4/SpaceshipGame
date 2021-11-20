@@ -22981,6 +22981,7 @@ MonoBehaviour:
   timeMaximumSpawnAsteroid: 10
   speedAsteroidMinimum: 5
   speedAsteroidMaximum: 30
+  particleSpawnFrigate: {fileID: 8744936065936199303, guid: d57783876ee54e14faa98174eeadc9d4, type: 3}
   thrustFrigate: 5
   handlingFrigate: 2
   velocityProton: 15
