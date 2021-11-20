@@ -61,4 +61,14 @@ public class Level1 : MonoBehaviour
     {
         StopCoroutine(scriptEnemies.SpawnAsteroid());
     }
+
+    public void SpawnDroneGroup0()
+    {
+        StartCoroutine(scriptEnemies.SpawnDroneGroup0());
+    }
+
+    public void SpawnDroneGroup1()
+    {
+        StartCoroutine(scriptEnemies.SpawnDroneGroup1());
+    }
 }

@@ -9,6 +9,7 @@ public class Enemies : MonoBehaviour
     public List<GameObject> listProton;
     public List<GameObject> listAsteroid;
     public List<GameObject> listPlasma;
+    public List<GameObject> listRocket;
     public List<Transform> listSpawnFrigate0;
     public List<Transform> listSpawnFrigate1;
     public List<Transform> listSpawnFrigate2;
@@ -30,6 +31,8 @@ public class Enemies : MonoBehaviour
     public GameObject prefabPlasma;
     public GameObject prefabProton;
     public GameObject prefabAsteroid;
+    public GameObject prefabDrone;
+    public GameObject prefabRocket;
 
     [Header("Scripts")]
     public Ship scriptShip;
@@ -62,21 +65,31 @@ public class Enemies : MonoBehaviour
     public float thrustWing;
     public float handlingWing;
     public float velocityPlasma;
+    public float thrustDrone;
+    public float handlingDrone;
+    public float velocityRocket;
+    public float targetingRocket;
 
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] clipDestroyed;
     public AudioClip[] clipProtonDestroyed;
     public AudioClip[] clipPlasmaDestroyed;
+    public AudioClip[] clipRocketDestroyed;
     public AudioClip[] clipAsteroidDestroyed;
 
     [Header("Particles")]
     private ParticleSystem particleDestroyed;
     public ParticleSystem particleProtonDestroyed;
     public ParticleSystem particlePlasmaDestroyed;
+    public ParticleSystem particleRocketDestroyed;
+
+    [Header("Drone")]
+    private Transform thisFlyPoint;
 
     [Header("Distance")]
     public float distanceTargetMove;
+    public float distanceToFlyPoint;
     private float minimumDistanceFrigate = 4.0f;
     private float minimumDistanceWing = 100.0f;
     private float minimumDistanceProton = 0.1f;
@@ -114,6 +127,34 @@ public class Enemies : MonoBehaviour
         spawnedAsteroid.GetComponent<Asteroid>().scriptEnemies = this;
         spawnedAsteroid.GetComponent<Asteroid>().destination = listSpawnAsteroid[countSpawnAsteroid];
         StartCoroutine(SpawnAsteroid());
+    }
+
+    public IEnumerator SpawnDroneGroup0()
+    {
+        for (int i = 0; i < listFlyPointDrone0.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabDrone, spawnDrone0.position, spawnDrone0.rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 0;
+            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    public IEnumerator SpawnDroneGroup1()
+    {
+        for (int i = 0; i < listFlyPointDrone1.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabDrone, spawnDrone1.position, spawnDrone0.rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 1;
+            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
+            yield return new WaitForSeconds(1.0f);
+        }
     }
 
     public IEnumerator SpawnFrigateGroup0()
@@ -245,6 +286,15 @@ public class Enemies : MonoBehaviour
         Destroy(destroyed);
     }
 
+    public void RocketDestroyed(GameObject destroyed)
+    {
+        audioSource.PlayOneShot(clipRocketDestroyed[Random.Range(0, clipRocketDestroyed.Length)], 0.6f);
+        spawnedParticle = Instantiate(particleRocketDestroyed, destroyed.transform.position, destroyed.transform.rotation);
+        spawnedParticle.gameObject.transform.parent = particlesObject.transform;
+        listRocket.Remove(destroyed);
+        Destroy(destroyed);
+    }
+
     void FixedUpdate()
     {
         for (int i = 0; i < listAsteroid.Count; i++)
@@ -292,6 +342,55 @@ public class Enemies : MonoBehaviour
                     Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
                     listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
                 }
+                else if (listEnemy[i].GetComponent<Enemy>().enemyName == "Drone")
+                {
+                    if (listEnemy[i].GetComponent<Enemy>().flyGroupNumber == 0)
+                    {
+                        thisFlyPoint = listFlyPointDrone0[listEnemy[i].GetComponent<Enemy>().flyPositionNumber];
+                        float step = thrustDrone * Time.deltaTime;
+                        listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+
+                        if (!listEnemy[i].GetComponent<Enemy>().isInFlyPosition)
+                        {
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().isInFlyPosition = true;
+                            }
+                        }
+                        else
+                        {
+                            Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                            float singleStep = handlingDrone * Time.deltaTime;
+                            Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                            listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                        }
+                    }
+                    else if (listEnemy[i].GetComponent<Enemy>().flyGroupNumber == 1)
+                    {
+                        thisFlyPoint = listFlyPointDrone1[listEnemy[i].GetComponent<Enemy>().flyPositionNumber];
+                        float step = thrustDrone * Time.deltaTime;
+                        listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+
+                        if (!listEnemy[i].GetComponent<Enemy>().isInFlyPosition)
+                        {
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().isInFlyPosition = true;
+                            }
+                        }
+                        else
+                        {
+                            Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                            float singleStep = handlingDrone * Time.deltaTime;
+                            Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                            listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                        }
+                    }
+                }
             }
 
             for (int i = 0; i < listProton.Count; i++)
@@ -305,6 +404,20 @@ public class Enemies : MonoBehaviour
                     float singleStep = targetingProton * Time.deltaTime;
                     Vector3 newDirection = Vector3.RotateTowards(listProton[i].transform.forward, targetDirection, singleStep, 0.0f);
                     listProton[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                }
+            }
+
+            for (int i = 0; i < listRocket.Count; i++)
+            {
+                distanceTargetMove = Vector3.Distance(listRocket[i].transform.position, ship.transform.position);
+
+                if (distanceTargetMove > minimumDistanceProton)
+                {
+                    listRocket[i].transform.position += listRocket[i].transform.forward * Time.deltaTime * velocityRocket;
+                    Vector3 targetDirection = ship.transform.position - listRocket[i].transform.position;
+                    float singleStep = targetingRocket * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listRocket[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listRocket[i].transform.rotation = Quaternion.LookRotation(newDirection);
                 }
             }
         }

@@ -9,7 +9,7 @@ public class LookAtCamera : MonoBehaviour
 
     private void Start()
     {
-        if (cameraMain == null)
+        if (cameraMain == null && scriptEnemy.scriptEnemies.cameraMain != null)
         {
             cameraMain = scriptEnemy.scriptEnemies.cameraMain;
         }
@@ -17,6 +17,9 @@ public class LookAtCamera : MonoBehaviour
 
     void Update()
     {
-        transform.rotation = cameraMain.transform.rotation;
+        if (cameraMain != null)
+        {
+            transform.rotation = cameraMain.transform.rotation;
+        }
     }
 }

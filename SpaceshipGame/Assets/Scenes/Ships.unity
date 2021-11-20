@@ -9142,13 +9142,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 746398944}
-  m_LocalRotation: {x: -0, y: -0.12522322, z: -0, w: 0.9921287}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 285, y: 0, z: 198.3}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 1422624519}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -14.387, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!136 &746398946
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -16752,13 +16752,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1327906523}
-  m_LocalRotation: {x: -0, y: -0.12522322, z: -0, w: 0.9921287}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 285, y: 0, z: 85.8}
   m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children: []
   m_Father: {fileID: 1422624519}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: -14.387, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!136 &1327906525
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22891,6 +22891,7 @@ MonoBehaviour:
   listProton: []
   listAsteroid: []
   listPlasma: []
+  listRocket: []
   listSpawnFrigate0:
   - {fileID: 1816605564}
   - {fileID: 2023016534}
@@ -22971,6 +22972,8 @@ MonoBehaviour:
   prefabPlasma: {fileID: 515269606916414791, guid: 46fb1a436c649374f9f10bd36853027a, type: 3}
   prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
   prefabAsteroid: {fileID: 3135525913807490773, guid: 15dbf82e5607c3a498dd340d1acd6b22, type: 3}
+  prefabDrone: {fileID: 855914950336925979, guid: cb38b8488321f2b44ad69095216abe05, type: 3}
+  prefabRocket: {fileID: 1587984612075022151, guid: 13a7ad9d6f8fdbf498566c97384365df, type: 3}
   scriptShip: {fileID: 264208663}
   scriptGameSettings: {fileID: 1749457248}
   particlesObject: {fileID: 1447112349}
@@ -22989,6 +22992,9 @@ MonoBehaviour:
   thrustWing: 10
   handlingWing: 1
   velocityPlasma: 30
+  thrustDrone: 50
+  handlingDrone: 5
+  velocityRocket: 30
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
@@ -23000,13 +23006,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 009bd61d22767c64f95c5195e9edb87e, type: 3}
   - {fileID: 8300000, guid: 39bbfeb7b8f3fc44281af4b520c4a46a, type: 3}
   - {fileID: 8300000, guid: c347445e6f337a54dbf51f093b673fee, type: 3}
+  clipRocketDestroyed:
+  - {fileID: 8300000, guid: 4e5c49f9d5ded3f4eb44a0948b2dce28, type: 3}
+  - {fileID: 8300000, guid: c41dc3e3218da1249a3a392b75ee24a5, type: 3}
+  - {fileID: 8300000, guid: 09337238e99078d4baf8778e3896d361, type: 3}
   clipAsteroidDestroyed:
   - {fileID: 8300000, guid: aff5187e5f0d9da47a2a36723e53e4fb, type: 3}
   - {fileID: 8300000, guid: 3236eda03684b3447b45dcaa602dd757, type: 3}
   - {fileID: 8300000, guid: 228a976daf120cf4799c09a164da4589, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}
+  particleRocketDestroyed: {fileID: 8399564169445851218, guid: 7a4b1b7308ac8504ca549537c8384f3d, type: 3}
   distanceTargetMove: 0
+  distanceToFlyPoint: 0
 --- !u!4 &1730435884
 Transform:
   m_ObjectHideFlags: 0
@@ -23583,7 +23595,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
   m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 1
   Mute: 0

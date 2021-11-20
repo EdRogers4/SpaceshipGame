@@ -3007,6 +3007,20 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
+  - time: 0.9
+    functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.9166666
+    functionName: SpawnDroneGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 8
     functionName: SpawnFrigateGroup0
     data: 
@@ -3093,6 +3107,20 @@ AnimationClip:
     messageOptions: 0
   - time: 130.05
     functionName: SpawnFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 155.08333
+    functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 169.01666
+    functionName: SpawnDroneGroup1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

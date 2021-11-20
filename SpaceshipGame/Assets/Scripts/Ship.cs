@@ -131,14 +131,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootFighter[0], 0.2f);
+                audioSource.PlayOneShot(clipShootFighter[0], 0.1f);
 
                 var newProjectile2 = Instantiate(projectileFighter, barrelRightFighter.transform.position, barrelRightFighter.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootFighter[1], 0.2f);
+                audioSource.PlayOneShot(clipShootFighter[1], 0.1f);
             }
             else if (shipName == "Bomber")
             {
@@ -147,7 +147,7 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.6f);
+                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.3f);
             }
             else if (shipName == "Interceptor")
             {
@@ -156,14 +156,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.5f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 2.5f);
 
                 var newProjectile2 = Instantiate(projectileInterceptor, barrelRightInterceptor.transform.position, barrelRightInterceptor.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.5f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 2.5f);
             }
             else if (shipName == "Breaker")
             {
@@ -178,7 +178,7 @@ public class Ship : MonoBehaviour
                     i++;
                 }
                 
-                audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.6f);
+                audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.3f);
             }
         }
 
