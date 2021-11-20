@@ -85,7 +85,7 @@ public class GameSettings : MonoBehaviour
         }
         else if (countCombo >= 5)
         {
-            StartCoroutine(AudioClipPlayBullseye(6));
+            audioSource.PlayOneShot(clipCombo[3], 1.0f);
         }
 
         countCombo = 0;
@@ -139,7 +139,7 @@ public class GameSettings : MonoBehaviour
         {
             StartCoroutine(AudioClipPlayCombo());
         }
-        else
+        else if (!isTimerCombo)
         {
             if (enemyKOValue == 1)
             {
@@ -162,7 +162,10 @@ public class GameSettings : MonoBehaviour
             }
         }
 
-        isTimerCombo = true;
+        if (countCombo >= 2)
+        {
+            isTimerCombo = true;
+        }
     }
 
     private void Update()

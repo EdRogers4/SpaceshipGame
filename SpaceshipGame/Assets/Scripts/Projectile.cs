@@ -135,6 +135,11 @@ public class Projectile : MonoBehaviour
             scriptEnemies.scriptGameSettings.UpdateScore();
             scriptEnemies.ProtonDestroyed(collision.gameObject);
         }
+        else if (collision.transform.tag == "Rocket")
+        {
+            scriptEnemies.scriptGameSettings.UpdateScore();
+            scriptEnemies.RocketDestroyed(collision.gameObject);
+        }
         else if (collision.transform.tag == "Asteroid")
         {
             foreach (ContactPoint contact in collision.contacts)

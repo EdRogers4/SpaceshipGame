@@ -22995,6 +22995,7 @@ MonoBehaviour:
   thrustDrone: 50
   handlingDrone: 5
   velocityRocket: 30
+  targetingRocket: 0
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
@@ -23714,9 +23715,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 97326fbf6561c7a42bd0922fb98e9a30, type: 3}
   - {fileID: 8300000, guid: f21ecb75beba0f043a22e001efdba046, type: 3}
   clipCombo:
-  - {fileID: 8300000, guid: 0d68f6f4a592032448f0ad2da47d6187, type: 3}
   - {fileID: 8300000, guid: 6c69413eb1b340540a3286a71a63924b, type: 3}
   - {fileID: 8300000, guid: a8d66673cce466d44bd15c4826fdce1b, type: 3}
+  - {fileID: 8300000, guid: f21ecb75beba0f043a22e001efdba046, type: 3}
+  - {fileID: 8300000, guid: 1a2fa6dedcb35dd499490da0cd6a805a, type: 3}
   clipGameOver:
   - {fileID: 8300000, guid: 95ac8d6bc8aadaa4bbcfb1376318d1f4, type: 3}
   - {fileID: 8300000, guid: 5129c68bc6eafe14b92df4282c76ac38, type: 3}

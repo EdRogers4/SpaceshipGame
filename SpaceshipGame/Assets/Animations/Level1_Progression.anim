@@ -3112,7 +3112,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 155.08333
+  - time: 159.96666
     functionName: SpawnDroneGroup0
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -3120,6 +3120,41 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 169.01666
+    functionName: SpawnDroneGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 184.96666
+    functionName: SpawnFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 200
+    functionName: SpawnFrigateGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 201
+    functionName: SpawnFrigateGroup3
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 211.75
+    functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 214.86667
     functionName: SpawnDroneGroup1
     data: 
     objectReferenceParameter: {fileID: 0}
