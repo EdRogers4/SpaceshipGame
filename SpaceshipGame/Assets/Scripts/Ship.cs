@@ -147,7 +147,7 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.3f);
+                audioSource.PlayOneShot(clipShootBomber[Random.Range(0, clipShootBomber.Length)], 0.5f);
             }
             else if (shipName == "Interceptor")
             {
@@ -156,14 +156,14 @@ public class Ship : MonoBehaviour
                 newProjectile1.GetComponent<Projectile>().scriptShip = this;
                 newProjectile1.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile1.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 2.5f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.25f);
 
                 var newProjectile2 = Instantiate(projectileInterceptor, barrelRightInterceptor.transform.position, barrelRightInterceptor.transform.rotation) as GameObject;
                 listProjectiles.Add(newProjectile2);
                 newProjectile2.GetComponent<Projectile>().scriptShip = this;
                 newProjectile2.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newProjectile2.transform.parent = instances.transform;
-                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 2.5f);
+                audioSource.PlayOneShot(clipShootInterceptor[Random.Range(0, clipShootInterceptor.Length)], 0.25f);
             }
             else if (shipName == "Breaker")
             {
@@ -396,7 +396,7 @@ public class Ship : MonoBehaviour
         {
             particleDestroyed.gameObject.transform.parent = instances.transform;
             particleDestroyed.Play();
-            audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.8f);
+            audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.4f);
             gameObject.GetComponent<CapsuleCollider>().enabled = false;
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);

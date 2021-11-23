@@ -21,8 +21,10 @@ public class Enemies : MonoBehaviour
     public List<Transform> listSpawnWing3;
     public Transform spawnDrone0;
     public Transform spawnDrone1;
+    public Transform spawnPunisher;
     public List<Transform> listFlyPointDrone0;
     public List<Transform> listFlyPointDrone1;
+    public List<Transform> listFlyPointPunisher;
     public List<float> listAsteroidSpeed;
 
     [Header("Spawn")]
@@ -33,6 +35,7 @@ public class Enemies : MonoBehaviour
     public GameObject prefabAsteroid;
     public GameObject prefabDrone;
     public GameObject prefabRocket;
+    public GameObject prefabPunisher;
 
     [Header("Scripts")]
     public Ship scriptShip;
@@ -40,6 +43,7 @@ public class Enemies : MonoBehaviour
 
     [Header("World")]
     public GameObject particlesObject;
+    public GameObject instancesObject;
     public GameObject ship;
     public GameObject enemyDestroyed;
     public Camera cameraMain;
@@ -69,6 +73,8 @@ public class Enemies : MonoBehaviour
     public float handlingDrone;
     public float velocityRocket;
     public float targetingRocket;
+    public float thrustPunisher;
+    public float handlingPunisher;
 
     [Header("Audio")]
     private AudioSource audioSource;
@@ -115,6 +121,7 @@ public class Enemies : MonoBehaviour
 
         countSpawnAsteroid = Random.Range(0, listSpawnAsteroid.Count);
         spawnedAsteroid = Instantiate(prefabAsteroid, listSpawnAsteroid[countSpawnAsteroid].transform.position, listSpawnAsteroid[countSpawnAsteroid].transform.rotation);
+        spawnedAsteroid.transform.parent = instancesObject.transform;
         listAsteroid.Add(spawnedAsteroid);
         listAsteroidSpeed.Add(Random.Range(speedAsteroidMinimum, speedAsteroidMaximum));
         countSpawnAsteroid += 1;
@@ -127,34 +134,6 @@ public class Enemies : MonoBehaviour
         spawnedAsteroid.GetComponent<Asteroid>().scriptEnemies = this;
         spawnedAsteroid.GetComponent<Asteroid>().destination = listSpawnAsteroid[countSpawnAsteroid];
         StartCoroutine(SpawnAsteroid());
-    }
-
-    public IEnumerator SpawnDroneGroup0()
-    {
-        for (int i = 0; i < listFlyPointDrone0.Count; i++)
-        {
-            spawnedEnemy = Instantiate(prefabDrone, spawnDrone0.position, spawnDrone0.rotation);
-            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
-            spawnedEnemy.transform.parent = this.gameObject.transform;
-            listEnemy.Add(spawnedEnemy);
-            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 0;
-            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
-            yield return new WaitForSeconds(1.0f);
-        }
-    }
-
-    public IEnumerator SpawnDroneGroup1()
-    {
-        for (int i = 0; i < listFlyPointDrone1.Count; i++)
-        {
-            spawnedEnemy = Instantiate(prefabDrone, spawnDrone1.position, spawnDrone0.rotation);
-            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
-            spawnedEnemy.transform.parent = this.gameObject.transform;
-            listEnemy.Add(spawnedEnemy);
-            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 1;
-            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
-            yield return new WaitForSeconds(1.0f);
-        }
     }
 
     public IEnumerator SpawnFrigateGroup0()
@@ -257,9 +236,46 @@ public class Enemies : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnDroneGroup0()
+    {
+        for (int i = 0; i < listFlyPointDrone0.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabDrone, spawnDrone0.position, spawnDrone0.rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 0;
+            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    public IEnumerator SpawnDroneGroup1()
+    {
+        for (int i = 0; i < listFlyPointDrone1.Count; i++)
+        {
+            spawnedEnemy = Instantiate(prefabDrone, spawnDrone1.position, spawnDrone0.rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            spawnedEnemy.GetComponent<Enemy>().flyGroupNumber = 1;
+            spawnedEnemy.GetComponent<Enemy>().flyPositionNumber = i;
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    public IEnumerator SpawnPunisher()
+    {
+        yield return new WaitForSeconds(1.0f);
+        spawnedEnemy = Instantiate(prefabPunisher, spawnPunisher.position, spawnPunisher.rotation);
+        spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+        spawnedEnemy.transform.parent = this.gameObject.transform;
+        listEnemy.Add(spawnedEnemy);
+    }
+
     public void EnemyDestroyed()
     {
-        audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.25f);
+        audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.15f);
         Destroy(enemyDestroyed);
     }
 
@@ -270,7 +286,7 @@ public class Enemies : MonoBehaviour
 
     public void ProtonDestroyed(GameObject destroyed)
     {
-        audioSource.PlayOneShot(clipProtonDestroyed[Random.Range(0, clipProtonDestroyed.Length)], 0.6f);
+        audioSource.PlayOneShot(clipProtonDestroyed[Random.Range(0, clipProtonDestroyed.Length)], 0.3f);
         spawnedParticle = Instantiate(particleProtonDestroyed, destroyed.transform.position, destroyed.transform.rotation);
         spawnedParticle.gameObject.transform.parent = particlesObject.transform;
         listProton.Remove(destroyed);
@@ -279,7 +295,7 @@ public class Enemies : MonoBehaviour
 
     public void PlasmaDestroyed(GameObject destroyed)
     {
-        audioSource.PlayOneShot(clipPlasmaDestroyed[Random.Range(0, clipPlasmaDestroyed.Length)], 0.6f);
+        audioSource.PlayOneShot(clipPlasmaDestroyed[Random.Range(0, clipPlasmaDestroyed.Length)], 0.3f);
         spawnedParticle = Instantiate(particlePlasmaDestroyed, destroyed.transform.position, destroyed.transform.rotation);
         spawnedParticle.gameObject.transform.parent = particlesObject.transform;
         listPlasma.Remove(destroyed);

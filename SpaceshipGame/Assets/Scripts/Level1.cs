@@ -71,4 +71,9 @@ public class Level1 : MonoBehaviour
     {
         StartCoroutine(scriptEnemies.SpawnDroneGroup1());
     }
+
+    public void SpawnPunisher()
+    {
+        StartCoroutine(scriptEnemies.SpawnPunisher());
+    }
 }
