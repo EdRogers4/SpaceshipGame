@@ -24,7 +24,9 @@ public class Enemies : MonoBehaviour
     public Transform spawnPunisher;
     public List<Transform> listFlyPointDrone0;
     public List<Transform> listFlyPointDrone1;
-    public List<Transform> listFlyPointPunisher;
+    public List<Transform> listFlyPointPunisher0;
+    public List<Transform> listFlyPointPunisher1;
+    public Transform flyPointPunisherEntrance;
     public List<float> listAsteroidSpeed;
 
     [Header("Spawn")]
@@ -47,6 +49,7 @@ public class Enemies : MonoBehaviour
     public GameObject ship;
     public GameObject enemyDestroyed;
     public Camera cameraMain;
+    private Vector3 newTargetPosition;
 
     [Header("Spawn")]
     public float timeMinimumSpawnAsteroid;
@@ -90,7 +93,7 @@ public class Enemies : MonoBehaviour
     public ParticleSystem particlePlasmaDestroyed;
     public ParticleSystem particleRocketDestroyed;
 
-    [Header("Drone")]
+    [Header("Fly Points")]
     private Transform thisFlyPoint;
 
     [Header("Distance")]
@@ -404,6 +407,62 @@ public class Enemies : MonoBehaviour
                             float singleStep = handlingDrone * Time.deltaTime;
                             Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
                             listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                        }
+                    }
+                }
+                else if (listEnemy[i].GetComponent<Enemy>().enemyName == "Punisher")
+                {
+                    newTargetPosition = new Vector3(ship.transform.position.x, listEnemy[i].transform.position.y, ship.transform.position.z);
+                    Vector3 targetDirection = newTargetPosition - listEnemy[i].transform.position;
+                    float singleStep = handlingPunisher * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+
+                    if (!listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance)
+                    {
+                        if (!listEnemy[i].GetComponent<Enemy>().animatorPunisher.GetBool("Charge"))
+                        {
+                            listEnemy[i].GetComponent<Enemy>().animatorPunisher.SetBool("Charge", true);
+                            thrustPunisher = 100.0f;
+                        }
+
+                        thisFlyPoint = flyPointPunisherEntrance;
+                        float step = thrustPunisher * Time.deltaTime;
+                        listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                        distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                        if (distanceToFlyPoint <= 0.1f)
+                        {
+                            listEnemy[i].GetComponent<Enemy>().animatorPunisher.SetBool("Charge", false);
+                            listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance = true;
+                            thrustPunisher = 15.0f;
+                        }
+                    }
+                    else if (listEnemy[i].GetComponent<Enemy>().flyGroupNumber == 0)
+                    {
+                        if (listEnemy[i].GetComponent<Enemy>().flyPositionNumber == 0)
+                        {
+                            thisFlyPoint = listFlyPointPunisher0[listEnemy[i].GetComponent<Enemy>().flyPositionNumber];
+                            float step = thrustPunisher * Time.deltaTime;
+                            listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().flyPositionNumber = 1;
+                            }
+                        }
+                        else if (listEnemy[i].GetComponent<Enemy>().flyPositionNumber == 1)
+                        {
+                            thisFlyPoint = listFlyPointPunisher0[listEnemy[i].GetComponent<Enemy>().flyPositionNumber];
+                            float step = thrustPunisher * Time.deltaTime;
+                            listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().flyPositionNumber = 0;
+                            }
                         }
                     }
                 }

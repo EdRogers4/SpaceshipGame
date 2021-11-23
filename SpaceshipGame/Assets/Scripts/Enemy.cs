@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem particleDestroyed;
     private GameObject spawnedProjectile;
     public GameObject[] barrel;
+    private int countBarrel;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
@@ -25,15 +26,18 @@ public class Enemy : MonoBehaviour
     [Header("Drone")]
     public bool isStartShoot;
     public bool isInFlyPosition;
+    public bool isFlyPointEntrance;
     public int flyGroupNumber;
     public int flyPositionNumber;
 
-
-    [Header("Stats")]
+    [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] clipShootProton;
     public AudioClip[] clipShootPlasma;
     public AudioClip[] clipShootRocket;
+
+    [Header("Animation")]
+    public Animator animatorPunisher;
 
     [Header("UI")]
     public Image shieldBar;
@@ -48,7 +52,7 @@ public class Enemy : MonoBehaviour
         { 
             StartCoroutine(Shoot());
         }
-        else if (enemyName == "Wing" || enemyName == "Drone")
+        else if (enemyName == "Wing" || enemyName == "Drone" || enemyName == "Punisher")
         {
             StartCoroutine(DelayShoot());
         }
@@ -97,6 +101,29 @@ public class Enemy : MonoBehaviour
                 yield return new WaitForSeconds(1.5f);
             }
 
+            StartCoroutine(Shoot());
+        }
+        else if (enemyName == "Punisher")
+        {
+            animatorPunisher.SetBool("Fire Attack Front", true);
+
+            for (int i = 0; i < 48; i++)
+            {
+                spawnedProjectile = Instantiate(scriptEnemies.prefabRocket, barrel[countBarrel].transform.position, barrel[countBarrel].transform.rotation);
+                scriptEnemies.listRocket.Add(spawnedProjectile);
+                spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+                spawnedProjectile.GetComponent<Rocket>().scriptEnemies = scriptEnemies;
+                audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
+                countBarrel += 1;
+                yield return new WaitForSeconds(0.1f);
+
+                if (countBarrel >= barrel.Length)
+                {
+                    countBarrel = 0;
+                }
+            }
+
+            animatorPunisher.SetBool("Fire Attack Front", false);
             StartCoroutine(Shoot());
         }
     }
