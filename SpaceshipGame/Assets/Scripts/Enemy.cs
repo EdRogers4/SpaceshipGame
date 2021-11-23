@@ -149,6 +149,11 @@ public class Enemy : MonoBehaviour
                 scriptEnemies.scriptGameSettings.UpdateEnemyKOValue();
             }
 
+            if (enemyName == "Punisher")
+            {
+                scriptEnemies.scriptGameSettings.AudioClipPlayMissionComplete();
+            }
+
             scriptEnemies.EnemyDestroyed();
         }
     }

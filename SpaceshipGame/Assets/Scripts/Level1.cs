@@ -6,10 +6,13 @@ public class Level1 : MonoBehaviour
 {
     public Animator animator;
     public Enemies scriptEnemies;
+    private AudioSource audioSource;
+    public AudioClip clipWarning;
 
     void Start()
     {
         animator.SetBool("isStart", true);
+        audioSource = gameObject.GetComponent<AudioSource>();
     }
 
     public void SpawnFrigateGroup0()
@@ -75,5 +78,10 @@ public class Level1 : MonoBehaviour
     public void SpawnPunisher()
     {
         StartCoroutine(scriptEnemies.SpawnPunisher());
+    }
+
+    public void AudioClipPlayWarning()
+    {
+        audioSource.PlayOneShot(clipWarning, 0.5f);
     }
 }
