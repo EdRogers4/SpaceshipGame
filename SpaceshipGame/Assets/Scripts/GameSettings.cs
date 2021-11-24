@@ -296,6 +296,7 @@ public class GameSettings : MonoBehaviour
     public void Restart()
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        Time.timeScale = 1.0f;
     }
 
     public void Quit()
