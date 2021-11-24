@@ -423,7 +423,7 @@ public class Enemies : MonoBehaviour
                         if (!listEnemy[i].GetComponent<Enemy>().animatorPunisher.GetBool("Charge"))
                         {
                             listEnemy[i].GetComponent<Enemy>().animatorPunisher.SetBool("Charge", true);
-                            thrustPunisher = 100.0f;
+                            thrustPunisher = 150.0f;
                         }
 
                         thisFlyPoint = flyPointPunisherEntrance;
@@ -436,6 +436,7 @@ public class Enemies : MonoBehaviour
                             listEnemy[i].GetComponent<Enemy>().animatorPunisher.SetBool("Charge", false);
                             listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance = true;
                             thrustPunisher = 15.0f;
+                            listEnemy[i].GetComponent<Enemy>().reloadTime = 5.0f;
                         }
                     }
                     else if (listEnemy[i].GetComponent<Enemy>().flyGroupNumber == 0)

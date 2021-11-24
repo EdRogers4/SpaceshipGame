@@ -48,11 +48,11 @@ public class Enemy : MonoBehaviour
         shield = startShield;
         reloadTime = Random.Range(reloadMinimum, reloadMaximum);
 
-        if (enemyName == "Frigate")
+        if (enemyName == "Frigate" || enemyName == "Punisher")
         { 
             StartCoroutine(Shoot());
         }
-        else if (enemyName == "Wing" || enemyName == "Drone" || enemyName == "Punisher")
+        else if (enemyName == "Wing" || enemyName == "Drone")
         {
             StartCoroutine(DelayShoot());
         }
