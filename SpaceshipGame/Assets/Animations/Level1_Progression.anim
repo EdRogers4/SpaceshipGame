@@ -4764,8 +4764,36 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 140
+    functionName: PlayColossalShipFlyIn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 148
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 155.5
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 159.96666
     functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 163
+    functionName: PlayColossalShipFly
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4778,6 +4806,20 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 170.5
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 178
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 184.96666
     functionName: SpawnFrigateGroup0
     data: 
@@ -4785,8 +4827,29 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 185.48334
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 193
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 200
     functionName: SpawnFrigateGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 200.5
+    functionName: PlayColossalShipFly
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4801,6 +4864,41 @@ AnimationClip:
     messageOptions: 0
   - time: 204.85
     functionName: SpawnFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 208
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 215.5
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 223.01666
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 230.5
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 237.98334
+    functionName: PlayColossalShipFly
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4834,6 +4932,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 245.5
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 246
     functionName: AudioClipPlayWarning
     data: 
@@ -4841,8 +4946,78 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 251
+    functionName: PlayPunisherEnter
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 252.48334
+    functionName: PlayPunisherSearching
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 252.98334
+    functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 254
+    functionName: PlayPunisherNoTarget
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 254.98334
+    functionName: PlayPunisherHuh
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 256.03333
+    functionName: PlayPunisherWhatIsThat
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 256.51666
+    functionName: PlayPunisherTargetAcquired
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 257
+    functionName: PlayPunisherLockedOn
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 260.5
+    functionName: PlayColossalShipFlyOut
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 262
     functionName: SpawnPunisher
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 262.5
+    functionName: PlayPunisherAffirmative
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

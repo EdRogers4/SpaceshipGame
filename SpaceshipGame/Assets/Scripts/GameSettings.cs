@@ -32,6 +32,7 @@ public class GameSettings : MonoBehaviour
 
     [Header("Audio")]
     static float volume;
+    private bool isVoiceMute;
     public AudioSource audioSourceMusic;
     private AudioSource audioSource;
     public AudioClip[] clipBullseye;
@@ -51,6 +52,7 @@ public class GameSettings : MonoBehaviour
     public AudioClip clipMenuOpen;
     public AudioClip clipMenuSwitchOn;
     public AudioClip clipMenuSwitchOff;
+    public AudioClip clipMenuSelect;
 
     private void Awake()
     {
@@ -75,33 +77,43 @@ public class GameSettings : MonoBehaviour
             yield return null;
         }
         dimmer.gameObject.SetActive(false);
-        audioSource.PlayOneShot(clipGetReady, 1.0f);
+
+        if (!isVoiceMute)
+        {
+            audioSource.PlayOneShot(clipGetReady, 1.0f);
+        }
     }
 
     public IEnumerator AudioClipPlayBullseye(int number)
     {
-        yield return new WaitForSeconds(1.0f);
-        audioSource.PlayOneShot(clipBullseye[number], 1.0f);
+        if (!isVoiceMute)
+        {
+            yield return new WaitForSeconds(1.0f);
+            audioSource.PlayOneShot(clipBullseye[number], 1.0f);
+        }
     }
 
     public IEnumerator AudioClipPlayCombo()
     {
-        yield return new WaitForSeconds(1.0f);
-        if (countCombo == 2)
+        if (!isVoiceMute)
         {
-            //audioSource.PlayOneShot(clipCombo[0], 1.0f);
-        }
-        else if (countCombo == 3)
-        {
-            audioSource.PlayOneShot(clipCombo[1], 1.0f);
-        }
-        else if (countCombo == 4)
-        {
-            audioSource.PlayOneShot(clipCombo[2], 1.0f);
-        }
-        else if (countCombo >= 5)
-        {
-            audioSource.PlayOneShot(clipCombo[3], 1.0f);
+            yield return new WaitForSeconds(1.0f);
+            if (countCombo == 2)
+            {
+                //audioSource.PlayOneShot(clipCombo[0], 1.0f);
+            }
+            else if (countCombo == 3)
+            {
+                audioSource.PlayOneShot(clipCombo[1], 1.0f);
+            }
+            else if (countCombo == 4)
+            {
+                audioSource.PlayOneShot(clipCombo[2], 1.0f);
+            }
+            else if (countCombo >= 5)
+            {
+                audioSource.PlayOneShot(clipCombo[3], 1.0f);
+            }
         }
 
         countCombo = 0;
@@ -109,15 +121,18 @@ public class GameSettings : MonoBehaviour
 
     public IEnumerator AudioClipPlayGameOver()
     {
-        yield return new WaitForSeconds(2.0f);
-        audioSource.PlayOneShot(clipGameOver[0], 1.0f);
-        yield return new WaitForSeconds(2.0f);
-        audioSource.PlayOneShot(clipGameOver[1], 1.0f);
+        if (!isVoiceMute)
+        {
+            yield return new WaitForSeconds(2.0f);
+            audioSource.PlayOneShot(clipGameOver[0], 1.0f);
+            yield return new WaitForSeconds(2.0f);
+            audioSource.PlayOneShot(clipGameOver[1], 1.0f);
+        }
     }
 
     public void AudioClipPlayGamePaused(int number)
     {
-        if (clipGamePaused[number] != null)
+        if (!isVoiceMute)
         {
             //audioSource.PlayOneShot(clipGamePaused[number], 1.0f);
         }
@@ -125,18 +140,27 @@ public class GameSettings : MonoBehaviour
 
     public IEnumerator AudioClipPlayHealthLow(int number)
     {
-        yield return new WaitForSeconds(1.5f);
-        audioSource.PlayOneShot(clipHealthLow[number], 1.0f);
+        if (!isVoiceMute)
+        {
+            yield return new WaitForSeconds(1.5f);
+            audioSource.PlayOneShot(clipHealthLow[number], 1.0f);
+        }
     }
 
     public void AudioClipPlayGetReady()
     {
-        audioSource.PlayOneShot(clipGetReady, 1.0f);
+        if (!isVoiceMute)
+        {
+            audioSource.PlayOneShot(clipGetReady, 1.0f);
+        }
     }
 
     public void PlayMissionComplete()
     {
-        StartCoroutine(AudioClipPlayMissionComplete());
+        if (!isVoiceMute)
+        {
+            StartCoroutine(AudioClipPlayMissionComplete());
+        }
     }
 
     public IEnumerator AudioClipPlayMissionComplete()
@@ -155,7 +179,10 @@ public class GameSettings : MonoBehaviour
 
     public void AudioClipPlayUntouchable()
     {
-        audioSource.PlayOneShot(clipUntouchable, 1.0f);
+        if (!isVoiceMute)
+        {
+            audioSource.PlayOneShot(clipUntouchable, 1.0f);
+        }
     }
 
     public void UpdateEnemyKOValue()
@@ -293,12 +320,6 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             AudioClipPlayGamePaused(1);
-
-            if (clipGameResumedSFX != null)
-            {
-                //audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
-            }
-
             isPause = false;
         }
     }
@@ -317,9 +338,28 @@ public class GameSettings : MonoBehaviour
         }
     }
 
+    public void ToggleVoice(bool mute)
+    {
+        if (mute)
+        {
+            isVoiceMute = true;
+            audioSource.PlayOneShot(clipMenuSwitchOn, 1.0f);
+        }
+        else
+        {
+            isVoiceMute = false;
+            audioSource.PlayOneShot(clipMenuSwitchOff, 1.0f);
+        }
+    }
+
     public void AudioClipPlayMenuOpen()
     {
         audioSource.PlayOneShot(clipMenuOpen, 1.0f);
+    }
+
+    public void AudioClipPlayMenuSelect()
+    {
+        audioSource.PlayOneShot(clipMenuSelect, 1.0f);
     }
 
     public void AudioClipPlayMenuClose()
