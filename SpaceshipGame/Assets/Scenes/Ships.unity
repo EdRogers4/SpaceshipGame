@@ -5730,6 +5730,7 @@ MonoBehaviour:
   animator: {fileID: 74816204}
   scriptEnemies: {fileID: 1730435883}
   clipWarning: {fileID: 8300000, guid: e0a5445fe9f1ba243a182ed3a8e2a24b, type: 3}
+  clipSiren: {fileID: 8300000, guid: 6bc0d565b56c16144b0c7b3f79778d63, type: 3}
 --- !u!95 &74816204
 Animator:
   serializedVersion: 3

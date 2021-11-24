@@ -8,6 +8,7 @@ public class Level1 : MonoBehaviour
     public Enemies scriptEnemies;
     private AudioSource audioSource;
     public AudioClip clipWarning;
+    public AudioClip clipSiren;
 
     void Start()
     {
@@ -83,5 +84,10 @@ public class Level1 : MonoBehaviour
     public void AudioClipPlayWarning()
     {
         audioSource.PlayOneShot(clipWarning, 0.5f);
+    }
+
+    public void AudioClipPlaySiren()
+    {
+        audioSource.PlayOneShot(clipSiren, 0.3f);
     }
 }

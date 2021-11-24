@@ -4040,28 +4040,35 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 240.16667
+  - time: 240
+    functionName: AudioClipPlaySiren
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 240.03334
     functionName: AudioClipPlayWarning
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 242.16667
+  - time: 242
     functionName: AudioClipPlayWarning
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 244.18333
+  - time: 244
     functionName: AudioClipPlayWarning
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 246.16667
+  - time: 246
     functionName: AudioClipPlayWarning
     data: 
     objectReferenceParameter: {fileID: 0}
