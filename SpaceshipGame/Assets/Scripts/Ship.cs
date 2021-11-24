@@ -84,6 +84,7 @@ public class Ship : MonoBehaviour
     public AudioClip[] clipShootInterceptor;
     public AudioClip[] clipShootBreaker;
     public AudioClip[] clipShipDestroyed;
+    public AudioClip clipSelectShip;
     public bool[] isPlayLowHealth;
 
     [Header("Distance")]
@@ -240,6 +241,7 @@ public class Ship : MonoBehaviour
             playerSpawnIndicator.SetActive(false);
             animatorLevel1.speed = 1.0f;
             scriptGameSettings.animatorMessage.SetBool("isSelectShip", false);
+            audioSource.PlayOneShot(clipSelectShip, 0.55f);
 
             switch (shipName)
             {

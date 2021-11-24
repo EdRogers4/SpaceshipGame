@@ -9,6 +9,17 @@ public class Level1 : MonoBehaviour
     private AudioSource audioSource;
     public AudioClip clipWarning;
     public AudioClip clipSiren;
+    public AudioClip clipColossalShipFlyIn;
+    public AudioClip clipColossalShipFlyOut;
+    public AudioClip clipColossalShipFly;
+    public AudioClip clipPunisherAffirmative;
+    public AudioClip clipPunisherEnter;
+    public AudioClip clipPunisherHuh;
+    public AudioClip clipPunisherLockedOn;
+    public AudioClip clipPunisherNoTarget;
+    public AudioClip clipPunisherSearching;
+    public AudioClip clipPunisherTargetAcquired;
+    public AudioClip clipPunisherWhatIsThat;
 
     void Start()
     {
@@ -89,5 +100,60 @@ public class Level1 : MonoBehaviour
     public void AudioClipPlaySiren()
     {
         audioSource.PlayOneShot(clipSiren, 0.3f);
+    }
+
+    public void PlayColossalShipFlyIn()
+    {
+        audioSource.PlayOneShot(clipColossalShipFlyIn, 0.1f);
+    }
+
+    public void PlayColossalShipFlyOut()
+    {
+        audioSource.PlayOneShot(clipColossalShipFlyOut, 0.1f);
+    }
+
+    public void PlayColossalShipFly()
+    {
+        audioSource.PlayOneShot(clipColossalShipFly, 0.1f);
+    }
+
+    public void PlayPunisherAffirmative()
+    {
+        audioSource.PlayOneShot(clipPunisherAffirmative, 1.0f);
+    }
+
+    public void PlayPunisherEnter()
+    {
+        audioSource.PlayOneShot(clipPunisherEnter, 1.0f);
+    }
+
+    public void PlayPunisherHuh()
+    {
+        audioSource.PlayOneShot(clipPunisherHuh, 1.0f);
+    }
+
+    public void PlayPunisherLockedOn()
+    {
+        audioSource.PlayOneShot(clipPunisherLockedOn, 1.0f);
+    }
+
+    public void PlayPunisherNoTarget()
+    {
+        audioSource.PlayOneShot(clipPunisherNoTarget, 1.0f);
+    }
+
+    public void PlayPunisherSearching()
+    {
+        audioSource.PlayOneShot(clipPunisherSearching, 1.0f);
+    }
+
+    public void PlayPunisherTargetAcquired()
+    {
+        audioSource.PlayOneShot(clipPunisherTargetAcquired, 1.0f);
+    }
+
+    public void PlayPunisherWhatIsThat()
+    {
+        audioSource.PlayOneShot(clipPunisherWhatIsThat, 1.0f);
     }
 }

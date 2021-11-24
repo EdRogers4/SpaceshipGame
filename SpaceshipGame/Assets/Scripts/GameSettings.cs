@@ -32,6 +32,7 @@ public class GameSettings : MonoBehaviour
 
     [Header("Audio")]
     static float volume;
+    public AudioSource audioSourceMusic;
     private AudioSource audioSource;
     public AudioClip[] clipBullseye;
     public AudioClip[] clipCombo;
@@ -41,6 +42,15 @@ public class GameSettings : MonoBehaviour
     public AudioClip clipGetReady;
     public AudioClip clipMissionComplete;
     public AudioClip clipUntouchable;
+    public AudioClip clipGameMissionCompleteSFX;
+    public AudioClip clipGameOverSFX;
+    public AudioClip clipGamePausedSFX;
+    public AudioClip clipGameRestartSFX;
+    public AudioClip clipGameResumedSFX;
+    public AudioClip clipMenuClose;
+    public AudioClip clipMenuOpen;
+    public AudioClip clipMenuSwitchOn;
+    public AudioClip clipMenuSwitchOff;
 
     private void Awake()
     {
@@ -133,6 +143,7 @@ public class GameSettings : MonoBehaviour
     {
         yield return new WaitForSeconds(2.0f);
         animatorMessage.SetBool("isMissionComplete", true);
+        audioSource.PlayOneShot(clipGameMissionCompleteSFX, 1.0f);
         yield return new WaitForSeconds(1.5f);
         audioSource.PlayOneShot(clipMissionComplete, 1.0f);
         animatorMessage.SetBool("isMissionComplete", false);
@@ -233,6 +244,7 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             AudioClipPlayGamePaused(1);
+            audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isSettings = false;
             isPause = false;
         }
@@ -240,6 +252,7 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             AudioClipPlayGamePaused(0);
+            audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isSettings = true;
             isPause = true;
         }
@@ -253,6 +266,7 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 1.0f;
             AudioClipPlayGamePaused(1);
+            audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isMenu = false;
             isPause = false;
         }
@@ -260,6 +274,7 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 0.0f;
             AudioClipPlayGamePaused(0);
+            audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isMenu = true;
             isPause = true;
         }
@@ -271,12 +286,19 @@ public class GameSettings : MonoBehaviour
         {
             Time.timeScale = 0f;
             AudioClipPlayGamePaused(0);
+            audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isPause = true;
         }
         else
         {
             Time.timeScale = 1.0f;
             AudioClipPlayGamePaused(1);
+
+            if (clipGameResumedSFX != null)
+            {
+                //audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
+            }
+
             isPause = false;
         }
     }
@@ -285,17 +307,31 @@ public class GameSettings : MonoBehaviour
     {
         if (music)
         {
-            audioSource.enabled = true;
+            audioSourceMusic.enabled = true;
+            audioSource.PlayOneShot(clipMenuSwitchOn, 1.0f);
         }
         else
         {
-            audioSource.enabled = false;
+            audioSourceMusic.enabled = false;
+            audioSource.PlayOneShot(clipMenuSwitchOff, 1.0f);
         }
+    }
+
+    public void AudioClipPlayMenuOpen()
+    {
+        audioSource.PlayOneShot(clipMenuOpen, 1.0f);
+    }
+
+    public void AudioClipPlayMenuClose()
+    {
+        audioSource.PlayOneShot(clipMenuClose, 1.0f);
+        audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(0, LoadSceneMode.Single);
+        audioSource.PlayOneShot(clipGameRestartSFX, 1.0f);
         Time.timeScale = 1.0f;
     }
 

@@ -5732,6 +5732,17 @@ MonoBehaviour:
   scriptEnemies: {fileID: 1730435883}
   clipWarning: {fileID: 8300000, guid: e0a5445fe9f1ba243a182ed3a8e2a24b, type: 3}
   clipSiren: {fileID: 8300000, guid: 6bc0d565b56c16144b0c7b3f79778d63, type: 3}
+  clipColossalShipFlyIn: {fileID: 8300000, guid: 9aec8972432b13b40921e1b8ecf0857e, type: 3}
+  clipColossalShipFlyOut: {fileID: 8300000, guid: 3771c5b6317e11749b87afe94fcbb8e1, type: 3}
+  clipColossalShipFly: {fileID: 8300000, guid: 5bdb3955ff0e77144ab5ff1a2596a8fb, type: 3}
+  clipPunisherAffirmative: {fileID: 8300000, guid: 7139d5e9d466fd7448cc3930d39cb898, type: 3}
+  clipPunisherEnter: {fileID: 8300000, guid: 23372ac4a19b1084eb547677b1a41f02, type: 3}
+  clipPunisherHuh: {fileID: 8300000, guid: 431bb836a82fe1e4badb156d0cfe6835, type: 3}
+  clipPunisherLockedOn: {fileID: 8300000, guid: 03e291425f86bb04da73399bb131b965, type: 3}
+  clipPunisherNoTarget: {fileID: 8300000, guid: 3b17eb2bf27c3e040b21fa93a8f2f00c, type: 3}
+  clipPunisherSearching: {fileID: 8300000, guid: 315e002d8bc455545814347277f43bf3, type: 3}
+  clipPunisherTargetAcquired: {fileID: 8300000, guid: 4801bcfd6db96034b85942c9f40ce85c, type: 3}
+  clipPunisherWhatIsThat: {fileID: 8300000, guid: 2af7c3a5fd9b08a4288737d0ff7d5782, type: 3}
 --- !u!95 &74816204
 Animator:
   serializedVersion: 3
@@ -7977,6 +7988,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1afe386ec92b0f84b921a74469048aea, type: 3}
   - {fileID: 8300000, guid: 002e22e927ab628439b735e09393f6e4, type: 3}
   - {fileID: 8300000, guid: 69ecaab0a1af4054baa330069270b2df, type: 3}
+  clipSelectShip: {fileID: 8300000, guid: 068abc60870a21342b3ad31ca3223684, type: 3}
   isPlayLowHealth: 00000000
   distanceEnemyShortest: 0
   shieldBar: {fileID: 1249278928}
@@ -9934,6 +9946,133 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 435738939}
   m_CullTransparentMesh: 0
+--- !u!1 &445531948
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445531950}
+  - component: {fileID: 445531949}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &445531949
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445531948}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
+  m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.35
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &445531950
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445531948}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1749457246}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &450663366
 GameObject:
   m_ObjectHideFlags: 0
@@ -17659,6 +17798,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &669070344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17901,6 +18052,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1749457248}
         m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
         m_MethodName: TogglePauseSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuOpen
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -18322,6 +18485,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1749457248}
         m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
         m_MethodName: Quit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuClose
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -25136,6 +25311,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuOpen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1154207343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25443,6 +25630,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
         m_MethodName: OnApplicationPause
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuClose
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -38645,6 +38844,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: aff5187e5f0d9da47a2a36723e53e4fb, type: 3}
   - {fileID: 8300000, guid: 3236eda03684b3447b45dcaa602dd757, type: 3}
   - {fileID: 8300000, guid: 228a976daf120cf4799c09a164da4589, type: 3}
+  clipTeleport:
+  - {fileID: 8300000, guid: 533413c453380e641b3ef35109bcd35e, type: 3}
+  - {fileID: 8300000, guid: 0818d0d55a6487f49a34fcc8754a0713, type: 3}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}
   particleRocketDestroyed: {fileID: 8399564169445851218, guid: 7a4b1b7308ac8504ca549537c8384f3d, type: 3}
@@ -39214,6 +39416,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 583800762}
+  - {fileID: 445531950}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 65, y: 180, z: 0}
@@ -39227,7 +39430,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: dc53b0f57c5c90440b55de911d06a7de, type: 2}
-  m_audioClip: {fileID: 8300000, guid: ceb00dc80828097449fc73b886fd0f4d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.35
   m_Pitch: 1
@@ -39342,6 +39545,7 @@ MonoBehaviour:
   isSettings: 0
   isMenu: 0
   difficulty: 0
+  audioSourceMusic: {fileID: 445531949}
   clipBullseye:
   - {fileID: 8300000, guid: 33c31484115fbb541bf7505b46b66c87, type: 3}
   - {fileID: 8300000, guid: 0e5a7c338afd44c4bb3223d427283c50, type: 3}
@@ -39367,6 +39571,15 @@ MonoBehaviour:
   clipGetReady: {fileID: 8300000, guid: b4205cf2055389d43b17c2824baa32b7, type: 3}
   clipMissionComplete: {fileID: 8300000, guid: 59d7f804faeefb94789ccd04afb541b3, type: 3}
   clipUntouchable: {fileID: 8300000, guid: d750fa6b5343e9944ad4c533c709f149, type: 3}
+  clipGameMissionCompleteSFX: {fileID: 8300000, guid: bb37962c7e16f004aa2039314664a8e7, type: 3}
+  clipGameOverSFX: {fileID: 8300000, guid: 0ad2f7c27fbae6a4ea46de79196c5e94, type: 3}
+  clipGamePausedSFX: {fileID: 8300000, guid: dccb00c44017e6642aeac269894f4494, type: 3}
+  clipGameRestartSFX: {fileID: 8300000, guid: 5d244861e559ab74e82c74ffc01a306f, type: 3}
+  clipGameResumedSFX: {fileID: 8300000, guid: 81aa6787174fe874b8706a60ccf94415, type: 3}
+  clipMenuClose: {fileID: 8300000, guid: 5d4ad6709007fa64492383e17b9f7034, type: 3}
+  clipMenuOpen: {fileID: 8300000, guid: 14bd5417c0fc0d74285195e2f444e1db, type: 3}
+  clipMenuSwitchOn: {fileID: 8300000, guid: 96944939feadbfe4ca2708b9d078a03e, type: 3}
+  clipMenuSwitchOff: {fileID: 8300000, guid: 86621c7987cfefa4fad3eecf63730002, type: 3}
 --- !u!1 &1780100137
 GameObject:
   m_ObjectHideFlags: 0
@@ -45667,6 +45880,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
         m_MethodName: OnApplicationPause
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1749457248}
+        m_TargetAssemblyTypeName: GameSettings, Assembly-CSharp
+        m_MethodName: AudioClipPlayMenuClose
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

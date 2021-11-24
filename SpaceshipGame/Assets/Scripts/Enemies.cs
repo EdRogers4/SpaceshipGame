@@ -86,6 +86,7 @@ public class Enemies : MonoBehaviour
     public AudioClip[] clipPlasmaDestroyed;
     public AudioClip[] clipRocketDestroyed;
     public AudioClip[] clipAsteroidDestroyed;
+    public AudioClip[] clipTeleport;
 
     [Header("Particles")]
     private ParticleSystem particleDestroyed;
@@ -145,6 +146,7 @@ public class Enemies : MonoBehaviour
         {
             spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
             spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
             yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
@@ -159,6 +161,7 @@ public class Enemies : MonoBehaviour
         {
             spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
             spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
             yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
@@ -173,6 +176,7 @@ public class Enemies : MonoBehaviour
         {
             spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
             spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
             yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
@@ -187,6 +191,7 @@ public class Enemies : MonoBehaviour
         {
             spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
             spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
             yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
