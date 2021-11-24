@@ -239,6 +239,7 @@ public class Ship : MonoBehaviour
             playerIndicator.SetActive(true);
             playerSpawnIndicator.SetActive(false);
             animatorLevel1.speed = 1.0f;
+            scriptGameSettings.animatorMessage.SetBool("isSelectShip", false);
 
             switch (shipName)
             {
@@ -402,6 +403,11 @@ public class Ship : MonoBehaviour
             playerSpawnIndicator.SetActive(true);
             animatorLevel1.speed = 0.0f;
             StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
+
+            if (!isDead)
+            {
+                scriptGameSettings.animatorMessage.SetBool("isSelectShip", true);
+            }
 
             switch (shipName)
             {
