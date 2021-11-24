@@ -435,7 +435,7 @@ public class Enemies : MonoBehaviour
                         {
                             listEnemy[i].GetComponent<Enemy>().animatorPunisher.SetBool("Charge", false);
                             listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance = true;
-                            thrustPunisher = 15.0f;
+                            thrustPunisher = 25.0f;
                             listEnemy[i].GetComponent<Enemy>().reloadTime = 5.0f;
                         }
                     }
