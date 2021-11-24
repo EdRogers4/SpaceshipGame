@@ -151,7 +151,7 @@ public class Enemy : MonoBehaviour
 
             if (enemyName == "Punisher")
             {
-                scriptEnemies.scriptGameSettings.AudioClipPlayMissionComplete();
+                scriptEnemies.scriptGameSettings.PlayMissionComplete();
             }
 
             scriptEnemies.EnemyDestroyed();

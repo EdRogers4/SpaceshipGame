@@ -6,7 +6,13 @@ using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
+    [Header("UI")]
     public Image dimmer;
+    public Animator animatorMessage;
+    public GameObject gameOver;
+    public Text textGameOver;
+
+    [Header("Score")]
     public int scoreValue = 0;
     public int enemyKOValue = 0;
     public int countAnnouncer = 0;
@@ -18,15 +24,15 @@ public class GameSettings : MonoBehaviour
     public Text scoreText;
     private string scoreString;
 
-    static float volume;
-
+    [Header("Menu")]
     public bool isPause;
     public bool isSettings;
     public bool isMenu;
     public int difficulty; //0 = normal. 1 = easy, 2 = hard
 
+    [Header("Audio")]
+    static float volume;
     private AudioSource audioSource;
-
     public AudioClip[] clipBullseye;
     public AudioClip[] clipCombo;
     public AudioClip[] clipGameOver;
@@ -118,10 +124,22 @@ public class GameSettings : MonoBehaviour
         audioSource.PlayOneShot(clipGetReady, 1.0f);
     }
 
+    public void PlayMissionComplete()
+    {
+        StartCoroutine(AudioClipPlayMissionComplete());
+    }
+
     public IEnumerator AudioClipPlayMissionComplete()
     {
         yield return new WaitForSeconds(2.0f);
+        animatorMessage.SetBool("isMissionComplete", true);
+        yield return new WaitForSeconds(1.5f);
         audioSource.PlayOneShot(clipMissionComplete, 1.0f);
+        animatorMessage.SetBool("isMissionComplete", false);
+        yield return new WaitForSeconds(5.5f);
+        gameOver.SetActive(true);
+        textGameOver.text = "Complete";
+        Time.timeScale = 0.0f;
     }
 
     public void AudioClipPlayUntouchable()
