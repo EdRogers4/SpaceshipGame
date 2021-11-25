@@ -243,6 +243,12 @@ public class Ship : MonoBehaviour
             scriptGameSettings.animatorMessage.SetBool("isSelectShip", false);
             audioSource.PlayOneShot(clipSelectShip, 0.55f);
 
+            if (scriptGameSettings.isMusicPaused)
+            {
+                scriptGameSettings.audioSourceMusic.Play();
+                scriptGameSettings.isMusicPaused = false;
+            }
+
             switch (shipName)
             {
                 case "Fighter":
@@ -404,6 +410,8 @@ public class Ship : MonoBehaviour
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);
             animatorLevel1.speed = 0.0f;
+            scriptGameSettings.audioSourceMusic.Pause();
+            scriptGameSettings.isMusicPaused = true;
             StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
 
             if (!isDead)

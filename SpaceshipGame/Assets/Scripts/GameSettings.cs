@@ -33,6 +33,7 @@ public class GameSettings : MonoBehaviour
     [Header("Audio")]
     static float volume;
     private bool isVoiceMute;
+    public bool isMusicPaused;
     public AudioSource audioSourceMusic;
     private AudioSource audioSource;
     public AudioClip[] clipBullseye;
@@ -270,6 +271,7 @@ public class GameSettings : MonoBehaviour
         if (isPause && isSettings)
         {
             Time.timeScale = 1.0f;
+            audioSourceMusic.Play();
             AudioClipPlayGamePaused(1);
             audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isSettings = false;
@@ -278,6 +280,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             Time.timeScale = 0.0f;
+            audioSourceMusic.Pause();
             AudioClipPlayGamePaused(0);
             audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isSettings = true;
@@ -292,6 +295,7 @@ public class GameSettings : MonoBehaviour
         if (isPause && isMenu)
         {
             Time.timeScale = 1.0f;
+            audioSourceMusic.Play();
             AudioClipPlayGamePaused(1);
             audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isMenu = false;
@@ -300,6 +304,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             Time.timeScale = 0.0f;
+            audioSourceMusic.Pause();
             AudioClipPlayGamePaused(0);
             audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isMenu = true;
@@ -312,6 +317,7 @@ public class GameSettings : MonoBehaviour
         if (pause)
         {
             Time.timeScale = 0f;
+            audioSourceMusic.Pause();
             AudioClipPlayGamePaused(0);
             audioSource.PlayOneShot(clipGamePausedSFX, 1.0f);
             isPause = true;
@@ -319,6 +325,7 @@ public class GameSettings : MonoBehaviour
         else
         {
             Time.timeScale = 1.0f;
+            audioSourceMusic.Play();
             AudioClipPlayGamePaused(1);
             isPause = false;
         }
