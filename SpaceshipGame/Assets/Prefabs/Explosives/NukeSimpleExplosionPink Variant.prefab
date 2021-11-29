@@ -11,6 +11,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 760167652041660339, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1329097711187204211, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1486119208418943312, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 2391664412153810502, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -79,9 +91,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6526752989172914096, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 7697621440542694196, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
       propertyPath: m_Name
       value: NukeSimpleExplosionPink Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7697621440542694196, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8841141033688419561, guid: e3b9fe0a07d6b3346bc406cb787b9930, type: 3}
       propertyPath: m_Materials.Array.size
