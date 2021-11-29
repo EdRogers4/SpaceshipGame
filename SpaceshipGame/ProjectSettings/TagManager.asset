@@ -9,6 +9,14 @@ TagManager:
   - Asteroid
   - Rocket
   - Boarder
+  - SpaceScene_PlanetRings
+  - SpaceScene_LocalStar
+  - SpaceScene_Nebula
+  - SpaceScene_Planet
+  - SpaceScene_Galaxy
+  - SpaceScene_Camera
+  - SpaceScene_Moon
+  - Thruster
   layers:
   - Default
   - TransparentFX
@@ -30,7 +38,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - DeepSpace
   - 
   - 
   - 
