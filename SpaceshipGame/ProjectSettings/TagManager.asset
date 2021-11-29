@@ -8,6 +8,7 @@ TagManager:
   - Proton
   - Asteroid
   - Rocket
+  - Boarder
   layers:
   - Default
   - TransparentFX

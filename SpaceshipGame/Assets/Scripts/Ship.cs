@@ -63,6 +63,8 @@ public class Ship : MonoBehaviour
     public GameObject instances;
     public GameObject playerIndicator;
     public GameObject playerSpawnIndicator;
+    public GameObject boarderCollisionEffect;
+    private Vector3 effectStartPosition;
     public Animator animatorLevel1;
 
     [Header("Barrels")]
@@ -115,6 +117,7 @@ public class Ship : MonoBehaviour
         startShieldBomber = 90.0f;
         startShieldInterceptor = 50.0f;
         startShieldBreaker = 120.0f;
+        effectStartPosition = boarderCollisionEffect.transform.position;
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
@@ -584,6 +587,22 @@ public class Ship : MonoBehaviour
             {
                 ShootProjectileOff();
             }
+        }
+    }
+
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.transform.tag == "Boarder")
+        {
+            boarderCollisionEffect.transform.position = collision.contacts[0].point;
+        }
+    }
+
+    void OnCollisionExit(Collision collision)
+    {
+        if (collision.transform.tag == "Boarder")
+        {
+            boarderCollisionEffect.transform.position = effectStartPosition;
         }
     }
 }
