@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 5de63e102847964469ac405410d914eb, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.052786306, g: 0.15031967, b: 0.1943556, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -133,6 +133,10 @@ PrefabInstance:
     - target: {fileID: 1418060561845804, guid: 70e488047782c844b80a81e50c016adf, type: 3}
       propertyPath: m_Name
       value: Punisher (Animation)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1418060561845804, guid: 70e488047782c844b80a81e50c016adf, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786810173441452, guid: 70e488047782c844b80a81e50c016adf, type: 3}
       propertyPath: m_RootOrder
@@ -392,7 +396,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &167720945
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -641,6 +645,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship 03K
       objectReference: {fileID: 0}
+    - target: {fileID: 1980574180845744, guid: ebf255bfb6198814e9865d95105fe13a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4976304564671242, guid: ebf255bfb6198814e9865d95105fe13a, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -704,7 +712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4302288027458532, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4302288027458532, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_LocalScale.x
@@ -720,7 +728,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4302288027458532, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: -9.1
       objectReference: {fileID: 0}
     - target: {fileID: 4302288027458532, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_LocalPosition.y
@@ -783,6 +791,10 @@ PrefabInstance:
     - target: {fileID: 1335597523914080, guid: b8462cc0fad2b284cb775e5fb7c2dd19, type: 3}
       propertyPath: m_Name
       value: Drone (Animation)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1335597523914080, guid: b8462cc0fad2b284cb775e5fb7c2dd19, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4869088832863470, guid: b8462cc0fad2b284cb775e5fb7c2dd19, type: 3}
       propertyPath: m_RootOrder
@@ -941,7 +953,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &472377196
 PrefabInstance:
@@ -1288,7 +1300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalScale.x
@@ -1304,7 +1316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 4265136789910862, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1881,9 +1893,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship Bomber
       objectReference: {fileID: 0}
+    - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalScale.x
@@ -1895,7 +1911,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4744682013777424, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1955,9 +1971,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ship Fighter
       objectReference: {fileID: 0}
+    - target: {fileID: 1721860369327728, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4243327588238360, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4243327588238360, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_LocalScale.z
@@ -1965,7 +1985,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4243327588238360, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -30
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4243327588238360, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2036,7 +2056,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1517580696
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -2367,13 +2387,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1872017675}
-  m_LocalRotation: {x: 0, y: 0.97778326, z: -0.2096186, w: 0}
-  m_LocalPosition: {x: 0, y: 4.9, z: 25}
+  m_LocalRotation: {x: 0, y: 0.8807668, z: -0.47355026, w: 0}
+  m_LocalPosition: {x: 0, y: 51.29, z: 14.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 24.2, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 56.53, y: 180, z: 0}
 --- !u!1001 &1928777068
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2470,6 +2490,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spaceship 05A
       objectReference: {fileID: 0}
+    - target: {fileID: 1444839028592038, guid: 234cfa1cb806fd644aac68314ff6f46b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4602544359510084, guid: 234cfa1cb806fd644aac68314ff6f46b, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -2526,6 +2550,10 @@ PrefabInstance:
     - target: {fileID: 1910942513890008, guid: 28afa4f8ca37a7540bcc6b01886c8f74, type: 3}
       propertyPath: m_Name
       value: SM_Ship_Colossal_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1910942513890008, guid: 28afa4f8ca37a7540bcc6b01886c8f74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4834026389170568, guid: 28afa4f8ca37a7540bcc6b01886c8f74, type: 3}
       propertyPath: m_RootOrder
@@ -2587,6 +2615,10 @@ PrefabInstance:
     - target: {fileID: 1693006639499344, guid: 9a852137bc290a64dbf94148a911d30e, type: 3}
       propertyPath: m_Name
       value: Spaceship 02K
+      objectReference: {fileID: 0}
+    - target: {fileID: 1693006639499344, guid: 9a852137bc290a64dbf94148a911d30e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4524853734056292, guid: 9a852137bc290a64dbf94148a911d30e, type: 3}
       propertyPath: m_RootOrder
@@ -2907,6 +2939,10 @@ PrefabInstance:
     - target: {fileID: 3472406725383098674, guid: 351d331f64b57624894ce1a3ff4dc25f, type: 3}
       propertyPath: m_Name
       value: Punisher
+      objectReference: {fileID: 0}
+    - target: {fileID: 3472406725383098674, guid: 351d331f64b57624894ce1a3ff4dc25f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3472406725383098676, guid: 351d331f64b57624894ce1a3ff4dc25f, type: 3}
       propertyPath: m_RootOrder
