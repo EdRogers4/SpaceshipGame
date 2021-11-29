@@ -16,6 +16,15 @@ public class Ship : MonoBehaviour
     public bool isDeadInterceptor;
     public bool isDeadBreaker;
 
+    [Header("Movement")]
+    public bool isKeyboard;
+    public float moveSpeed;
+    public Rigidbody rb;
+    public VariableJoystick variableJoystick;
+    private Vector3 moveDirection;
+    private float moveX;
+    private float moveZ;
+
     [Header("Stats")]
     public string shipName;
     public float shieldFighter;
@@ -42,7 +51,6 @@ public class Ship : MonoBehaviour
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
-    public PlayerMovement scriptPlayerMovement;
     public GameSettings scriptGameSettings;
 
     [Header("Lists")]
@@ -51,7 +59,6 @@ public class Ship : MonoBehaviour
     [Header("World")]
     public GameObject ship;
     public GameObject[] shipModel;
-    public GameObject targetMove;
     public GameObject targetEnemy;
     public Transform[] pointShoot;
     public Vector3 targetMovePosition;
@@ -91,7 +98,6 @@ public class Ship : MonoBehaviour
     private float distanceEnemy;
     public float distanceEnemyShortest;
     private float distanceProton;
-    private float distanceTargetMove;
     private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
     private RaycastHit hitAim;
@@ -106,7 +112,6 @@ public class Ship : MonoBehaviour
 
     private void Start()
     {
-        previousPosition = targetMove.transform.position;
         audioSource = gameObject.GetComponent<AudioSource>();
         distanceEnemyShortest = 200f;
         startShieldFighter = 70.0f;
@@ -255,7 +260,7 @@ public class Ship : MonoBehaviour
                     shipModel[0].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldFighter / startShieldFighter;
                     thrustHigh = 60.0f;
-                    scriptPlayerMovement.moveSpeed = 60.0f;
+                    moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 12.0f;
@@ -268,7 +273,7 @@ public class Ship : MonoBehaviour
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBomber / startShieldBomber;
                     thrustHigh = 40.0f;
-                    scriptPlayerMovement.moveSpeed = 40.0f;
+                    moveSpeed = 40.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 12.0f;
@@ -281,7 +286,7 @@ public class Ship : MonoBehaviour
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
                     thrustHigh = 70.0f;
-                    scriptPlayerMovement.moveSpeed = 70.0f;
+                    moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
                     handlingHigh = 12.0f;
@@ -294,7 +299,7 @@ public class Ship : MonoBehaviour
                     shipModel[3].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
                     thrustHigh = 60.0f;
-                    scriptPlayerMovement.moveSpeed = 60.0f;
+                    moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
                     handlingHigh = 12.0f;
@@ -490,6 +495,11 @@ public class Ship : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!isDead)
+        {
+            Move();
+        }
+
         if (listProjectiles.Count > 0)
         {
             for (int i = 0; i < listProjectiles.Count; i++)
@@ -518,8 +528,41 @@ public class Ship : MonoBehaviour
         }
     }
 
+    void ProcessInputs()
+    {
+        if (isKeyboard)
+        {
+            moveX = Input.GetAxisRaw("Horizontal");
+            moveZ = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            moveX = -variableJoystick.Horizontal;
+            moveZ = -variableJoystick.Vertical;
+        }
+
+        moveDirection = new Vector3(moveX, transform.position.y, moveZ).normalized;
+    }
+
+    void Move()
+    {
+        rb.velocity = new Vector3(moveDirection.x * moveSpeed, 0f, moveDirection.z * moveSpeed);
+
+        if (moveDirection != Vector3.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, handling * Time.deltaTime);
+        }
+    }
+
     void Update()
     {
+
+        if (!isDead)
+        {
+            ProcessInputs();
+        }
+
         if (!isDead)
         {
             if (Input.GetKeyDown("space"))
@@ -532,86 +575,6 @@ public class Ship : MonoBehaviour
             else if (Input.GetKeyUp("space"))
             {
                 ShootProjectileOff();
-            }
-
-            if (previousPosition != targetMove.transform.position)
-            {
-                isMoving = true;
-            }
-            else
-            {
-                //isMoving = false;
-            }
-
-            previousPosition = targetMove.transform.position;
-
-            if (isMoving)
-            {
-                targetMovePosition = new Vector3(targetMove.transform.position.x, targetMove.transform.position.y, targetMove.transform.position.z);
-                distanceTargetMove = Vector3.Distance(ship.transform.position, targetMovePosition);
-
-                if (distanceTargetMove > minimumDistanceToTarget)
-                {
-                    ship.transform.position += transform.forward * Time.deltaTime * thrust;
-
-                    if (thrust < thrustHigh)
-                    {
-                        thrust += acceleration;
-
-                        if (thrust > thrustHigh)
-                        {
-                            thrust = thrustHigh;
-                        }
-                    }
-
-                    if (handling < handlingHigh)
-                    {
-                        handling += acceleration;
-
-                        if (handling > handlingHigh)
-                        {
-                            handling = handlingHigh;
-                        }
-                    }
-
-                    Vector3 targetDirection = targetMovePosition - transform.position;
-                    float singleStep = handling * Time.deltaTime;
-                    Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-                    transform.rotation = Quaternion.LookRotation(newDirection);
-                }
-                else if (distanceTargetMove <= minimumDistanceToTarget && isMoving)
-                {
-                    isMoving = false;
-                }
-            }
-            else
-            {
-                ship.transform.position += transform.forward * Time.deltaTime * thrust;
-
-                if (thrust > thrustLow)
-                {
-                    thrust -= decceleration;
-
-                    if (thrust < thrustLow)
-                    {
-                        thrust = thrustLow;
-                    }
-                }
-
-                if (handling > handlingLow)
-                {
-                    handling -= decceleration;
-
-                    if (handling < handlingLow)
-                    {
-                        handling = handlingLow;
-                    }
-                }
-
-                Vector3 targetDirection = targetMovePosition - transform.position;
-                float singleStep = handling * Time.deltaTime;
-                Vector3 newDirection = Vector3.RotateTowards(transform.forward, targetDirection, singleStep, 0.0f);
-                transform.rotation = Quaternion.LookRotation(newDirection);
             }
         }
     }
