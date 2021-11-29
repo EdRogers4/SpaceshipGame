@@ -42,8 +42,6 @@ public class Ship : MonoBehaviour
     public float acceleration;
     public float decceleration;
     public float handling;
-    public float handlingHigh;
-    public float handlingLow;
     public float velocity;
     public float cooldown;
     public float targeting;
@@ -98,7 +96,6 @@ public class Ship : MonoBehaviour
     private float distanceEnemy;
     public float distanceEnemyShortest;
     private float distanceProton;
-    private float minimumDistanceToTarget = 2.0f;
     private RaycastHit hitTapped;
     private RaycastHit hitAim;
 
@@ -118,7 +115,6 @@ public class Ship : MonoBehaviour
         startShieldBomber = 90.0f;
         startShieldInterceptor = 50.0f;
         startShieldBreaker = 120.0f;
-        acceleration = 10.0f;
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
@@ -263,7 +259,7 @@ public class Ship : MonoBehaviour
                     moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 12.0f;
+                    handling = 400.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
                     blasters = 3.0f;
@@ -276,7 +272,7 @@ public class Ship : MonoBehaviour
                     moveSpeed = 40.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 12.0f;
+                    handling = 600.0f;
                     velocity = 80.0f;
                     cooldown = 1.0f;
                     blasters = 10.0f;
@@ -289,7 +285,7 @@ public class Ship : MonoBehaviour
                     moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 12.0f;
+                    handling = 500.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
                     blasters = 1.0f;
@@ -302,7 +298,7 @@ public class Ship : MonoBehaviour
                     moveSpeed = 60.0f;
                     acceleration = 1.0f;
                     decceleration = 10.0f;
-                    handlingHigh = 12.0f;
+                    handling = 300.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
                     blasters = 3.0f;
@@ -546,12 +542,24 @@ public class Ship : MonoBehaviour
 
     void Move()
     {
-        rb.velocity = new Vector3(moveDirection.x * moveSpeed, 0f, moveDirection.z * moveSpeed);
+        rb.velocity = new Vector3(moveDirection.x * thrust, 0f, moveDirection.z * thrust);
 
         if (moveDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(moveDirection, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, handling * Time.deltaTime);
+
+            if (thrust < thrustHigh)
+            {
+                thrust += acceleration;
+            }
+        }
+        else
+        {
+            if (thrust > thrustLow)
+            {
+                thrust -= decceleration;
+            }
         }
     }
 

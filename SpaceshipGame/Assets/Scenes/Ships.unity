@@ -6665,7 +6665,7 @@ GameObject:
   - component: {fileID: 143639007}
   - component: {fileID: 143639006}
   - component: {fileID: 143639005}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6869,6 +6869,10 @@ PrefabInstance:
     - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_Name
       value: Ship Bomber
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1421609400158560, guid: 5747a219f0bebcd4387cd020b4ba102b, type: 3}
       propertyPath: m_IsActive
@@ -7112,7 +7116,7 @@ GameObject:
   - component: {fileID: 187033840}
   - component: {fileID: 187033839}
   - component: {fileID: 187033838}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (13)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7485,7 +7489,7 @@ GameObject:
   - component: {fileID: 208650679}
   - component: {fileID: 208650678}
   - component: {fileID: 208650677}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7816,7 +7820,7 @@ GameObject:
   - component: {fileID: 264208663}
   - component: {fileID: 264208664}
   - component: {fileID: 264208665}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -7941,11 +7945,9 @@ MonoBehaviour:
   thrust: 0
   thrustHigh: 60
   thrustLow: 0
-  acceleration: 1
+  acceleration: 4
   decceleration: 10
   handling: 400
-  handlingHigh: 12
-  handlingLow: 0
   velocity: 200
   cooldown: 0.1
   targeting: 0
@@ -8366,7 +8368,7 @@ GameObject:
   - component: {fileID: 266638677}
   - component: {fileID: 266638676}
   - component: {fileID: 266638675}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9031,7 +9033,7 @@ GameObject:
   - component: {fileID: 347750149}
   - component: {fileID: 347750148}
   - component: {fileID: 347750147}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9222,7 +9224,7 @@ GameObject:
   - component: {fileID: 361666696}
   - component: {fileID: 361666695}
   - component: {fileID: 361666694}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9661,7 +9663,7 @@ GameObject:
   - component: {fileID: 402257587}
   - component: {fileID: 402257586}
   - component: {fileID: 402257585}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (12)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10675,7 +10677,7 @@ GameObject:
   - component: {fileID: 527279926}
   - component: {fileID: 527279925}
   - component: {fileID: 527279924}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (11)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10845,7 +10847,7 @@ GameObject:
   - component: {fileID: 530054179}
   - component: {fileID: 530054178}
   - component: {fileID: 530054177}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12076,6 +12078,10 @@ PrefabInstance:
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_Name
       value: Exhaust_Trail Left (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
@@ -17907,7 +17913,7 @@ GameObject:
   - component: {fileID: 679964172}
   - component: {fileID: 679964171}
   - component: {fileID: 679964170}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (17)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18627,7 +18633,7 @@ GameObject:
   - component: {fileID: 709126889}
   - component: {fileID: 709126888}
   - component: {fileID: 709126887}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18722,6 +18728,10 @@ PrefabInstance:
       value: Exhaust_Trail Left High
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -18807,7 +18817,7 @@ GameObject:
   - component: {fileID: 709552146}
   - component: {fileID: 709552145}
   - component: {fileID: 709552144}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -18902,7 +18912,7 @@ GameObject:
   - component: {fileID: 714823227}
   - component: {fileID: 714823226}
   - component: {fileID: 714823225}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20172,7 +20182,7 @@ GameObject:
   - component: {fileID: 822088261}
   - component: {fileID: 822088260}
   - component: {fileID: 822088259}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20363,7 +20373,7 @@ GameObject:
   - component: {fileID: 845122691}
   - component: {fileID: 845122690}
   - component: {fileID: 845122689}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (18)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20514,6 +20524,10 @@ PrefabInstance:
     - target: {fileID: 1721860369327728, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_Name
       value: Ship Fighter
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721860369327728, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1721860369327728, guid: bbad770c80b2db742986dcae1946ab2a, type: 3}
       propertyPath: m_IsActive
@@ -20672,7 +20686,7 @@ GameObject:
   - component: {fileID: 855873582}
   - component: {fileID: 855873581}
   - component: {fileID: 855873580}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (24)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21434,7 +21448,7 @@ GameObject:
   - component: {fileID: 913196379}
   - component: {fileID: 913196378}
   - component: {fileID: 913196377}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22341,7 +22355,7 @@ GameObject:
   - component: {fileID: 956128736}
   - component: {fileID: 956128735}
   - component: {fileID: 956128734}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (19)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -22875,6 +22889,10 @@ PrefabInstance:
       value: Exhaust_Trail Left Low
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -23090,7 +23108,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1011152724}
   - component: {fileID: 1011152725}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23447,6 +23465,10 @@ PrefabInstance:
       value: Player Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300352648088576964, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -23466,9 +23488,17 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7341818455631723493, guid: d3851e5474256e044956e23b6b628a24, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 7773267061135457238, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8720082618901888949, guid: d3851e5474256e044956e23b6b628a24, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8765727307973375946, guid: d3851e5474256e044956e23b6b628a24, type: 3}
       propertyPath: m_RootOrder
@@ -23540,7 +23570,7 @@ GameObject:
   - component: {fileID: 1036395858}
   - component: {fileID: 1036395857}
   - component: {fileID: 1036395856}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (16)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23799,7 +23829,7 @@ GameObject:
   - component: {fileID: 1053587536}
   - component: {fileID: 1053587535}
   - component: {fileID: 1053587534}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (14)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23894,7 +23924,7 @@ GameObject:
   - component: {fileID: 1065155978}
   - component: {fileID: 1065155977}
   - component: {fileID: 1065155976}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (21)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24701,7 +24731,7 @@ GameObject:
   - component: {fileID: 1113448589}
   - component: {fileID: 1113448588}
   - component: {fileID: 1113448587}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25116,7 +25146,7 @@ GameObject:
   - component: {fileID: 1145510547}
   - component: {fileID: 1145510546}
   - component: {fileID: 1145510545}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25933,6 +25963,10 @@ PrefabInstance:
     - target: {fileID: 1846824306798204, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_Name
       value: Ship Interceptor
+      objectReference: {fileID: 0}
+    - target: {fileID: 1846824306798204, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1846824306798204, guid: 42ea65cfa6f57ad4d8f7a5194cc38e90, type: 3}
       propertyPath: m_IsActive
@@ -26822,9 +26856,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2152249394438712035, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2152421049228498813, guid: faaf2f2db3178e741809773f8e305530, type: 3}
       propertyPath: m_Name
       value: DomeNukeRed
+      objectReference: {fileID: 0}
+    - target: {fileID: 2152421049228498813, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2240881461636865497, guid: faaf2f2db3178e741809773f8e305530, type: 3}
       propertyPath: playOnAwake
@@ -26854,6 +26896,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3982619409812257393, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3982689930738592639, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4643648222725531219, guid: faaf2f2db3178e741809773f8e305530, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
@@ -26869,6 +26919,14 @@ PrefabInstance:
     - target: {fileID: 4645293012578189027, guid: faaf2f2db3178e741809773f8e305530, type: 3}
       propertyPath: m_Materials.Array.size
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4805630841637736575, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4807501224348724767, guid: faaf2f2db3178e741809773f8e305530, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: faaf2f2db3178e741809773f8e305530, type: 3}
@@ -27674,7 +27732,7 @@ GameObject:
   - component: {fileID: 1315963106}
   - component: {fileID: 1315963105}
   - component: {fileID: 1315963104}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (10)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28244,6 +28302,10 @@ PrefabInstance:
       value: Exhaust_Trail Right
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -28692,7 +28754,7 @@ GameObject:
   - component: {fileID: 1411995454}
   - component: {fileID: 1411995453}
   - component: {fileID: 1411995452}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (8)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28937,7 +28999,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1423157793}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Raycast Points
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29164,6 +29226,10 @@ PrefabInstance:
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_Name
       value: Exhaust_Trail Right High
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
@@ -29848,6 +29914,10 @@ PrefabInstance:
       value: Exhaust_Trail Left
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -30198,7 +30268,7 @@ GameObject:
   - component: {fileID: 1496942269}
   - component: {fileID: 1496942268}
   - component: {fileID: 1496942267}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30499,6 +30569,10 @@ PrefabInstance:
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_Name
       value: Exhaust_Trail Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
@@ -30899,6 +30973,10 @@ PrefabInstance:
       value: Exhaust_Trail Right (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -31160,6 +31238,10 @@ PrefabInstance:
     - target: {fileID: 1942475052120288, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
       propertyPath: m_Name
       value: Gun Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942475052120288, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4831203132392440, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
       propertyPath: m_RootOrder
@@ -36852,7 +36934,7 @@ GameObject:
   - component: {fileID: 1624701931}
   - component: {fileID: 1624701930}
   - component: {fileID: 1624701929}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37317,7 +37399,7 @@ GameObject:
   - component: {fileID: 1649511828}
   - component: {fileID: 1649511827}
   - component: {fileID: 1649511826}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (15)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37412,6 +37494,10 @@ PrefabInstance:
       value: Ship Breaker
       objectReference: {fileID: 0}
     - target: {fileID: 1838645756749026, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1838645756749026, guid: 67cd22977cbc18f408333a7a99a56e8f, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -37488,13 +37574,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 264208662}
     m_Modifications:
+    - target: {fileID: 1076723814778322, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_Name
       value: Player Spawn Indicator
       objectReference: {fileID: 0}
     - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1425585707762180, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1940018662049300, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4592934022823910, guid: d31e79ff454836c488b2f403df6a3d96, type: 3}
       propertyPath: m_RootOrder
@@ -38353,6 +38451,10 @@ PrefabInstance:
       value: Exhaust_Trail Right Low
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -38517,6 +38619,10 @@ PrefabInstance:
       value: Exhaust_Trail Left
       objectReference: {fileID: 0}
     - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1598324380993774, guid: 7eedf4519460a0842af962a850d94e97, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -38602,7 +38708,7 @@ GameObject:
   - component: {fileID: 1724359376}
   - component: {fileID: 1724359375}
   - component: {fileID: 1724359374}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Barrel Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44924,8 +45030,16 @@ PrefabInstance:
       value: BrightSmokeTrail
       objectReference: {fileID: 0}
     - target: {fileID: 1062157001075556, guid: eac7894746a985341a280e45d7abac75, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1062157001075556, guid: eac7894746a985341a280e45d7abac75, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1881064779184948, guid: eac7894746a985341a280e45d7abac75, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4058907019804076, guid: eac7894746a985341a280e45d7abac75, type: 3}
       propertyPath: m_RootOrder
@@ -45466,6 +45580,10 @@ PrefabInstance:
     - target: {fileID: 1942475052120288, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
       propertyPath: m_Name
       value: Gun Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 1942475052120288, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4831203132392440, guid: 7b2c5680b2adee1448fd0d1b210256f9, type: 3}
       propertyPath: m_RootOrder
@@ -46473,6 +46591,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FX_Ship_Trail
       objectReference: {fileID: 0}
+    - target: {fileID: 1160080498521440, guid: a040b23558fd6b442819f2618ade38b7, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 4575511260320902, guid: a040b23558fd6b442819f2618ade38b7, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -46980,7 +47102,7 @@ GameObject:
   - component: {fileID: 2020348077}
   - component: {fileID: 2020348076}
   - component: {fileID: 2020348075}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (20)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47899,7 +48021,7 @@ GameObject:
   - component: {fileID: 2094859379}
   - component: {fileID: 2094859378}
   - component: {fileID: 2094859377}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Point Shoot (23)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
