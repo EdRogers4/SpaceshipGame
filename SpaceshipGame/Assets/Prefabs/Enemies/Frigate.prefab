@@ -394,13 +394,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2519086299027489358}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 10
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 84
+  m_Constraints: 116
   m_CollisionDetection: 0
 --- !u!114 &2187032401658638646
 MonoBehaviour:
@@ -419,15 +419,24 @@ MonoBehaviour:
   - {fileID: 409505519960680168}
   scriptEnemies: {fileID: 0}
   enemyName: Frigate
+  isDead: 0
   shield: 20
   startShield: 10
   reloadTime: 10
   reloadMinimum: 5
   reloadMaximum: 20
+  isStartShoot: 0
+  isInFlyPosition: 0
+  isFlyPointEntrance: 0
+  flyGroupNumber: 0
+  flyPositionNumber: 0
   clipShootProton:
   - {fileID: 8300000, guid: 31ab86704ac31cb4d87a0c2498c0263e, type: 3}
   - {fileID: 8300000, guid: 123f010a5470a824fbb77991828a83f5, type: 3}
   - {fileID: 8300000, guid: 0d8c169d4797e194f80f45256b38795e, type: 3}
+  clipShootPlasma: []
+  clipShootRocket: []
+  animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 7452979972672988267}
 --- !u!82 &1023720961257868665
 AudioSource:
