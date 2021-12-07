@@ -116,10 +116,10 @@ public class Enemies : MonoBehaviour
 
     public void StartCameraShake()
     {
-        StartCoroutine(CameraShake());
+        StartCoroutine(CameraShakeDestroyed());
     }
 
-    public IEnumerator CameraShake()
+    public IEnumerator CameraShakeDestroyed()
     {
         animatorCamera.SetInteger("Shake", Random.Range(1, 3));
         yield return new WaitForSeconds(0.25f);

@@ -101,13 +101,14 @@ public class Ship : MonoBehaviour
     [Header("Animations")]
     public Animator animatorCamera;
 
-    [Header("Audio")]
+    [Header("Sound")]
     private AudioSource audioSource;
     public AudioClip[] clipShootFighter;
     public AudioClip[] clipShootBomber;
     public AudioClip[] clipShootInterceptor;
     public AudioClip[] clipShootBreaker;
     public AudioClip[] clipShipDestroyed;
+    public AudioClip[] clipShipWhoosh;
     public AudioClip clipSelectShip;
     public bool[] isPlayLowHealth;
 
@@ -148,6 +149,13 @@ public class Ship : MonoBehaviour
         animatorCamera.SetBool("isBoost", false);
     }
 
+    public IEnumerator CameraShakeRandom()
+    {
+        animatorCamera.SetInteger("Shake", Random.Range(1, 3));
+        yield return new WaitForSeconds(0.25f);
+        animatorCamera.SetInteger("Shake", 0);
+    }
+
     public void StartBoosting()
     {
         if (boostMeter >= boostMeterHigh)
@@ -159,15 +167,19 @@ public class Ship : MonoBehaviour
             {
                 case "Fighter":
                     boostExhaustFighter.SetActive(true);
+                    audioSource.PlayOneShot(clipShipWhoosh[0], 1.0f);
                     break;
                 case "Bomber":
                     boostExhaustBomber.SetActive(true);
+                    audioSource.PlayOneShot(clipShipWhoosh[1], 2.0f);
                     break;
                 case "Interceptor":
                     boostExhaustInterceptor.SetActive(true);
+                    audioSource.PlayOneShot(clipShipWhoosh[2], 1.0f);
                     break;
                 case "Breaker":
                     boostExhaustBreaker.SetActive(true);
+                    audioSource.PlayOneShot(clipShipWhoosh[3], 1.0f);
                     break;
                 default:
                     print("Not a ship 5");
@@ -235,7 +247,8 @@ public class Ship : MonoBehaviour
                     newProjectile1.GetComponent<Rigidbody>().AddForce(newProjectile1.transform.right * velocity);
                     i++;
                 }
-                
+
+                //StartCoroutine(CameraShakeRandom());
                 audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.3f);
             }
         }
