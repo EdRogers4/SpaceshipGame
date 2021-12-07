@@ -11,6 +11,7 @@ public class GameSettings : MonoBehaviour
     public Animator animatorMessage;
     public GameObject gameOver;
     public Text textGameOver;
+    public Text textResolution;
 
     [Header("Score")]
     public int scoreValue = 0;
@@ -55,6 +56,14 @@ public class GameSettings : MonoBehaviour
     public AudioClip clipMenuSwitchOff;
     public AudioClip clipMenuSelect;
 
+    [Header("Screen")]
+    private float screenWidth;
+    private float screenHeight;
+    public float screenRatio;
+    public GameObject[] boarderPhone;
+    public GameObject[] boarder10point5;
+    public GameObject[] boarder12point9;
+
     private void Awake()
     {
         dimmer.gameObject.SetActive(true);
@@ -66,6 +75,27 @@ public class GameSettings : MonoBehaviour
         scoreString = scoreValue.ToString("0");
         scoreText.text = scoreString + "00";
         StartCoroutine(FadeTo(0f, 2.0f));
+
+        screenWidth = Screen.currentResolution.width;
+        screenHeight = Screen.currentResolution.height;
+        screenRatio = screenWidth / screenHeight;
+        textResolution.text = "Ratio: " + screenRatio;
+
+        if (screenRatio >= 2.2f)
+        {
+            boarderPhone[0].SetActive(true);
+            boarderPhone[1].SetActive(true);
+        }
+        else if (screenRatio < 1.6f)
+        {
+            boarder12point9[0].SetActive(true);
+            boarder12point9[1].SetActive(true);
+        }
+        else
+        {
+            boarder10point5[0].SetActive(true);
+            boarder10point5[1].SetActive(true);
+        }
     }
 
     IEnumerator FadeTo(float aValue, float aTime)
