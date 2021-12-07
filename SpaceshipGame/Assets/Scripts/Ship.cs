@@ -306,7 +306,6 @@ public class Ship : MonoBehaviour
                     shipModel[0].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldFighter / startShieldFighter;
                     thrustHigh = 60.0f;
-                    moveSpeed = 60.0f;
                     acceleration = 4.0f;
                     decceleration = 4.0f;
                     handling = 400.0f;
@@ -314,12 +313,12 @@ public class Ship : MonoBehaviour
                     cooldown = 0.1f;
                     blasters = 3.0f;
                     targeting = 0.0f;
+                    boostHigh = 150f;
                     break;
                 case "Bomber":
                     shipModel[1].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBomber / startShieldBomber;
                     thrustHigh = 40.0f;
-                    moveSpeed = 40.0f;
                     acceleration = 4.0f;
                     decceleration = 4.0f;
                     handling = 600.0f;
@@ -327,12 +326,12 @@ public class Ship : MonoBehaviour
                     cooldown = 1.0f;
                     blasters = 10.0f;
                     targeting = 4.0f;
+                    boostHigh = 130f;
                     break;
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
                     thrustHigh = 70.0f;
-                    moveSpeed = 70.0f;
                     acceleration = 2.0f;
                     decceleration = 4.0f;
                     handling = 500.0f;
@@ -340,12 +339,12 @@ public class Ship : MonoBehaviour
                     cooldown = 0.25f;
                     blasters = 1.0f;
                     targeting = 10.0f;
+                    boostHigh = 200f;
                     break;
                 case "Breaker":
                     shipModel[3].gameObject.SetActive(true);
                     shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                    thrustHigh = 60.0f;
-                    moveSpeed = 60.0f;
+                    thrustHigh = 50.0f;
                     acceleration = 1.0f;
                     decceleration = 4.0f;
                     handling = 300.0f;
@@ -353,6 +352,7 @@ public class Ship : MonoBehaviour
                     cooldown = 0.5f;
                     blasters = 3.0f;
                     targeting = 0.5f;
+                    boostHigh = 120f;
                     break;
                 default:
                     print("Not a ship 2");
@@ -592,7 +592,7 @@ public class Ship : MonoBehaviour
             {
                 rb.velocity = transform.forward * boost;
             }
-            if (!isBoosting && boostMeter < boostMeterHigh)
+            if (!isBoosting && boostMeter < 50f)
             {
                 rb.velocity = transform.forward * boost;
             }
@@ -659,22 +659,24 @@ public class Ship : MonoBehaviour
 
             if (isBoosting && boostMeter > 0f)
             {
-                boostMeter -= 1.0f;
+                boostMeter -= 1.1f;
                 boostBar.fillAmount = boostMeter / boostMeterHigh;
             }
             else if (isBoosting && boostMeter <= 0f)
             {
                 isBoosting = false;
+                boostBar.color = new Color32(255, 0, 0, 100);
             }
             else if (!isBoosting && boostMeter < boostMeterHigh)
             {
-                boostMeter += 1.01f;
+                boostMeter += 0.51f;
                 boostBar.fillAmount = boostMeter / boostMeterHigh;
             }
             else if (!isBoosting && boostMeter > boostMeterHigh)
             {
                 boostMeter = boostMeterHigh;
                 boostBar.fillAmount = boostMeter / boostMeterHigh;
+                boostBar.color = new Color32(0, 255, 255, 150);
 
                 switch (shipName)
                 {
