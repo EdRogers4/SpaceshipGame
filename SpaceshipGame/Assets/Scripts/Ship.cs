@@ -378,7 +378,8 @@ public class Ship : MonoBehaviour
                     break;
             }
 
-            gameObject.GetComponent<CapsuleCollider>().enabled = true;
+            gameObject.layer = 11;
+            boarderCollisionEffect.GetComponent<MeshRenderer>().enabled = true;
             thrust = thrustLow;
         }
     }
@@ -476,7 +477,8 @@ public class Ship : MonoBehaviour
             particleDestroyed.gameObject.transform.parent = instances.transform;
             particleDestroyed.Play();
             audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.4f);
-            gameObject.GetComponent<CapsuleCollider>().enabled = false;
+            gameObject.layer = 7;
+            boarderCollisionEffect.GetComponent<MeshRenderer>().enabled = false;
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);
             animatorLevel1.speed = 0.0f;
@@ -611,7 +613,7 @@ public class Ship : MonoBehaviour
             {
                 rb.velocity = transform.forward * boost;
             }
-            if (!isBoosting && boostMeter < 50f)
+            if (!isBoosting && boostMeter < 30f)
             {
                 rb.velocity = transform.forward * boost;
             }
