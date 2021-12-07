@@ -10,6 +10,7 @@ public class Ship : MonoBehaviour
     public bool isMoving;
     public bool isShoot;
     public bool isShooting;
+    public bool isBoosting;
     public bool isDead;
     public bool isDeadFighter;
     public bool isDeadBomber;
@@ -46,6 +47,13 @@ public class Ship : MonoBehaviour
     public float cooldown;
     public float targeting;
     public float blasters;
+    public float boost;
+    public float boostHigh;
+    public float boostLow;
+    public float boostAcceleration;
+    public float boostDecceleration;
+    public float boostMeter;
+    public float boostMeterHigh;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
@@ -66,6 +74,12 @@ public class Ship : MonoBehaviour
     public GameObject boarderCollisionEffect;
     private Vector3 effectStartPosition;
     public Animator animatorLevel1;
+
+    [Header("Effects")]
+    public GameObject boostExhaustFighter;
+    public GameObject boostExhaustBomber;
+    public GameObject boostExhaustInterceptor;
+    public GameObject boostExhaustBreaker;
 
     [Header("Barrels")]
     public GameObject barrelLeftFighter;
@@ -103,6 +117,7 @@ public class Ship : MonoBehaviour
 
     [Header("UI")]
     public Image shieldBar;
+    public Image boostBar;
     public GameObject screenGameOver;
     public Image[] imageDead;
 
@@ -121,6 +136,38 @@ public class Ship : MonoBehaviour
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
+    }
+
+    public void StartBoosting()
+    {
+        if (boostMeter >= boostMeterHigh)
+        {
+            isBoosting = true;
+
+            switch (shipName)
+            {
+                case "Fighter":
+                    boostExhaustFighter.SetActive(true);
+                    break;
+                case "Bomber":
+                    boostExhaustBomber.SetActive(true);
+                    break;
+                case "Interceptor":
+                    boostExhaustInterceptor.SetActive(true);
+                    break;
+                case "Breaker":
+                    boostExhaustBreaker.SetActive(true);
+                    break;
+                default:
+                    print("Not a ship 5");
+                    break;
+            }
+        }
+    }
+
+    public void StopBoosting()
+    {
+        //isBoosting = false;
     }
 
     public IEnumerator ShootProjectile()
@@ -260,8 +307,8 @@ public class Ship : MonoBehaviour
                     shieldBar.fillAmount = shieldFighter / startShieldFighter;
                     thrustHigh = 60.0f;
                     moveSpeed = 60.0f;
-                    acceleration = 1.0f;
-                    decceleration = 10.0f;
+                    acceleration = 4.0f;
+                    decceleration = 4.0f;
                     handling = 400.0f;
                     velocity = 200.0f;
                     cooldown = 0.1f;
@@ -273,8 +320,8 @@ public class Ship : MonoBehaviour
                     shieldBar.fillAmount = shieldBomber / startShieldBomber;
                     thrustHigh = 40.0f;
                     moveSpeed = 40.0f;
-                    acceleration = 1.0f;
-                    decceleration = 10.0f;
+                    acceleration = 4.0f;
+                    decceleration = 4.0f;
                     handling = 600.0f;
                     velocity = 80.0f;
                     cooldown = 1.0f;
@@ -287,7 +334,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 70.0f;
                     moveSpeed = 70.0f;
                     acceleration = 2.0f;
-                    decceleration = 10.0f;
+                    decceleration = 4.0f;
                     handling = 500.0f;
                     velocity = 250.0f;
                     cooldown = 0.25f;
@@ -300,7 +347,7 @@ public class Ship : MonoBehaviour
                     thrustHigh = 60.0f;
                     moveSpeed = 60.0f;
                     acceleration = 1.0f;
-                    decceleration = 10.0f;
+                    decceleration = 4.0f;
                     handling = 300.0f;
                     velocity = 200.0f;
                     cooldown = 0.5f;
@@ -492,41 +539,6 @@ public class Ship : MonoBehaviour
         StartCoroutine(TargetEnemy());
     }
 
-    private void FixedUpdate()
-    {
-        if (!isDead)
-        {
-            Move();
-        }
-
-        if (listProjectiles.Count > 0)
-        {
-            for (int i = 0; i < listProjectiles.Count; i++)
-            {
-                if (listProjectiles[i] != null)
-                {
-                    listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
-                }
-            }
-        }
-
-        if (shipName == "Interceptor")
-        {
-            if (targetEnemy != null)
-            {
-                for (int i = 0; i < listProjectiles.Count; i++)
-                {
-                    //float step = targeting * Time.deltaTime;
-                    //listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
-                    Vector3 targetDirection = targetEnemy.transform.position - listProjectiles[i].transform.position;
-                    float singleStep = targeting * Time.deltaTime;
-                    Vector3 newDirection = Vector3.RotateTowards(listProjectiles[i].transform.forward, targetDirection, singleStep, 0.0f);
-                    listProjectiles[i].transform.rotation = Quaternion.LookRotation(newDirection);
-                }
-            }
-        }
-    }
-
     void ProcessInputs()
     {
         if (isKeyboard)
@@ -562,6 +574,54 @@ public class Ship : MonoBehaviour
             if (thrust > thrustLow)
             {
                 thrust -= decceleration;
+                rb.velocity = transform.forward * thrust;
+            }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (!isDead)
+        {
+            Move();
+        }
+
+        if ((shipName == "Fighter" && shieldFighter > 0f) || (shipName == "Bomber" && shieldBomber > 0f) || (shipName == "Interceptor" && shieldInterceptor > 0f) || (shipName == "Breaker" && shieldBreaker > 0f))
+        {
+            if (isBoosting)
+            {
+                rb.velocity = transform.forward * boost;
+            }
+            if (!isBoosting && boostMeter < boostMeterHigh)
+            {
+                rb.velocity = transform.forward * boost;
+            }
+        }
+
+        if (listProjectiles.Count > 0)
+        {
+            for (int i = 0; i < listProjectiles.Count; i++)
+            {
+                if (listProjectiles[i] != null)
+                {
+                    listProjectiles[i].transform.position += listProjectiles[i].transform.forward * Time.deltaTime * velocity;
+                }
+            }
+        }
+
+        if (shipName == "Interceptor")
+        {
+            if (targetEnemy != null)
+            {
+                for (int i = 0; i < listProjectiles.Count; i++)
+                {
+                    //float step = targeting * Time.deltaTime;
+                    //listProjectiles[i].transform.position = Vector3.MoveTowards(listProjectiles[i].transform.position, targetEnemy.transform.position, step);
+                    Vector3 targetDirection = targetEnemy.transform.position - listProjectiles[i].transform.position;
+                    float singleStep = targeting * Time.deltaTime;
+                    Vector3 newDirection = Vector3.RotateTowards(listProjectiles[i].transform.forward, targetDirection, singleStep, 0.0f);
+                    listProjectiles[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                }
             }
         }
     }
@@ -574,7 +634,7 @@ public class Ship : MonoBehaviour
             ProcessInputs();
         }
 
-        if (!isDead)
+        if ((shipName == "Fighter" && shieldFighter > 0f) || (shipName == "Bomber" && shieldBomber > 0f) || (shipName == "Interceptor" && shieldInterceptor > 0f) || (shipName == "Breaker" && shieldBreaker > 0f))
         {
             if (Input.GetKeyDown("space"))
             {
@@ -587,6 +647,81 @@ public class Ship : MonoBehaviour
             {
                 ShootProjectileOff();
             }
+
+            if (Input.GetKeyDown("left shift"))
+            {
+                StartBoosting();
+            }
+            else if (Input.GetKeyUp("left shift"))
+            {
+                StopBoosting();
+            }
+
+            if (isBoosting && boostMeter > 0f)
+            {
+                boostMeter -= 1.0f;
+                boostBar.fillAmount = boostMeter / boostMeterHigh;
+            }
+            else if (isBoosting && boostMeter <= 0f)
+            {
+                isBoosting = false;
+            }
+            else if (!isBoosting && boostMeter < boostMeterHigh)
+            {
+                boostMeter += 1.01f;
+                boostBar.fillAmount = boostMeter / boostMeterHigh;
+            }
+            else if (!isBoosting && boostMeter > boostMeterHigh)
+            {
+                boostMeter = boostMeterHigh;
+                boostBar.fillAmount = boostMeter / boostMeterHigh;
+
+                switch (shipName)
+                {
+                    case "Fighter":
+                        boostExhaustFighter.SetActive(false);
+                        break;
+                    case "Bomber":
+                        boostExhaustBomber.SetActive(false);
+                        break;
+                    case "Interceptor":
+                        boostExhaustInterceptor.SetActive(false);
+                        break;
+                    case "Breaker":
+                        boostExhaustBreaker.SetActive(false);
+                        break;
+                    default:
+                        print("Not a ship 5");
+                        break;
+                }
+            }
+
+            if (isBoosting)
+            {
+                if (boost < boostHigh)
+                {
+                    boost += boostAcceleration;
+                }
+                else if (boost > boostHigh)
+                {
+                    boost = boostHigh;
+                }
+            }
+            else if (!isBoosting)
+            {
+                if (boost > 0f)
+                {
+                    boost -= boostDecceleration;
+                }
+                else if (boost < 0f)
+                {
+                    boost = 0f;
+                }
+            }
+        }
+        else if (isShooting)
+        {
+            isShoot = false;
         }
     }
 

@@ -79,7 +79,7 @@ public class GameSettings : MonoBehaviour
         screenWidth = Screen.currentResolution.width;
         screenHeight = Screen.currentResolution.height;
         screenRatio = screenWidth / screenHeight;
-        textResolution.text = "Ratio: " + screenRatio;
+        //textResolution.text = "Ratio: " + screenRatio;
 
         if (screenRatio >= 2.2f)
         {
