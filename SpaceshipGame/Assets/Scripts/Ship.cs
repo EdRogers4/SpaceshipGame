@@ -98,6 +98,9 @@ public class Ship : MonoBehaviour
     //Input
     public Vector3 previousPosition;
 
+    [Header("Animations")]
+    public Animator animatorCamera;
+
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] clipShootFighter;
@@ -138,11 +141,19 @@ public class Ship : MonoBehaviour
         StartCoroutine(TargetProton());
     }
 
+    public IEnumerator CameraShakeBoost()
+    {
+        animatorCamera.SetBool("isBoost", true);
+        yield return new WaitForSeconds(0.5f);
+        animatorCamera.SetBool("isBoost", false);
+    }
+
     public void StartBoosting()
     {
         if (boostMeter >= boostMeterHigh)
         {
             isBoosting = true;
+            //StartCoroutine(CameraShakeBoost());
 
             switch (shipName)
             {
@@ -163,11 +174,6 @@ public class Ship : MonoBehaviour
                     break;
             }
         }
-    }
-
-    public void StopBoosting()
-    {
-        //isBoosting = false;
     }
 
     public IEnumerator ShootProjectile()
@@ -651,10 +657,6 @@ public class Ship : MonoBehaviour
             if (Input.GetKeyDown("left shift"))
             {
                 StartBoosting();
-            }
-            else if (Input.GetKeyUp("left shift"))
-            {
-                StopBoosting();
             }
 
             if (isBoosting && boostMeter > 0f)

@@ -141,6 +141,7 @@ public class Enemy : MonoBehaviour
             scriptEnemies.listEnemy.Remove(gameObject);
             scriptEnemies.enemyDestroyed = gameObject;
             scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
+            scriptEnemies.StartCameraShake();
 
             if (projectile == "Projectile" && !isDead)
             {

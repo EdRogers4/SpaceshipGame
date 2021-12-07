@@ -88,6 +88,9 @@ public class Enemies : MonoBehaviour
     public AudioClip[] clipAsteroidDestroyed;
     public AudioClip[] clipTeleport;
 
+    [Header("Animations")]
+    public Animator animatorCamera;
+
     [Header("Particles")]
     private ParticleSystem particleDestroyed;
     public ParticleSystem particleProtonDestroyed;
@@ -109,6 +112,18 @@ public class Enemies : MonoBehaviour
     {
         audioSource = gameObject.GetComponent<AudioSource>();
         StartCoroutine(SpawnAsteroid());
+    }
+
+    public void StartCameraShake()
+    {
+        StartCoroutine(CameraShake());
+    }
+
+    public IEnumerator CameraShake()
+    {
+        animatorCamera.SetInteger("Shake", Random.Range(1, 3));
+        yield return new WaitForSeconds(0.25f);
+        animatorCamera.SetInteger("Shake", 0);
     }
 
     public IEnumerator SpawnAsteroid()

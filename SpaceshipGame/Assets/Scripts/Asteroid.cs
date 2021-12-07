@@ -65,6 +65,7 @@ public class Asteroid : MonoBehaviour
             newParticleFallingRocks.Play();
             newParticleRockSlide.Play();
             scriptEnemies.listAsteroid.Remove(gameObject);
+            scriptEnemies.StartCameraShake();
 
             if (projectile == "Projectile" && !isDead)
             {
