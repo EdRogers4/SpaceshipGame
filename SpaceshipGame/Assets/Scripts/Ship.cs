@@ -112,6 +112,7 @@ public class Ship : MonoBehaviour
     public AudioClip[] clipShootBreaker;
     public AudioClip[] clipShipDestroyed;
     public AudioClip[] clipShipWhoosh;
+    public AudioClip[] clipShipBarrelRoll;
     public AudioClip clipSelectShip;
     public bool[] isPlayLowHealth;
 
@@ -161,7 +162,30 @@ public class Ship : MonoBehaviour
 
     public void StartBarrelRoll()
     {
-        isBarrelRoll = true;
+        if (!isBarrelRoll)
+        {
+            isBarrelRoll = true;
+            gameObject.layer = 7;
+
+            switch (shipName)
+            {
+                case "Fighter":
+                    audioSource.PlayOneShot(clipShipBarrelRoll[0], 0.75f);
+                    break;
+                case "Bomber":
+                    audioSource.PlayOneShot(clipShipBarrelRoll[1], 2.0f);
+                    break;
+                case "Interceptor":
+                    audioSource.PlayOneShot(clipShipBarrelRoll[2], 0.75f);
+                    break;
+                case "Breaker":
+                    audioSource.PlayOneShot(clipShipBarrelRoll[3], 0.5f);
+                    break;
+                default:
+                    print("Not a ship 7");
+                    break;
+            }
+        }
     }
 
     public void StartBoosting()
@@ -698,6 +722,7 @@ public class Ship : MonoBehaviour
                     rotation = rotationLeft;
                     rotationLeft = 360;
                     isBarrelRoll = false;
+                    gameObject.layer = 11;
                 }
 
                 
