@@ -11,6 +11,7 @@ public class Ship : MonoBehaviour
     public bool isShoot;
     public bool isShooting;
     public bool isBoosting;
+    public bool isBarrelRoll;
     public bool isDead;
     public bool isDeadFighter;
     public bool isDeadBomber;
@@ -25,6 +26,8 @@ public class Ship : MonoBehaviour
     private Vector3 moveDirection;
     private float moveX;
     private float moveZ;
+    public float rotationLeft = 360;
+    public float rotationspeed = 10;
 
     [Header("Stats")]
     public string shipName;
@@ -156,12 +159,16 @@ public class Ship : MonoBehaviour
         animatorCamera.SetInteger("Shake", 0);
     }
 
+    public void StartBarrelRoll()
+    {
+        isBarrelRoll = true;
+    }
+
     public void StartBoosting()
     {
         if (boostMeter >= boostMeterHigh)
         {
             isBoosting = true;
-            //StartCoroutine(CameraShakeBoost());
 
             switch (shipName)
             {
@@ -248,7 +255,6 @@ public class Ship : MonoBehaviour
                     i++;
                 }
 
-                //StartCoroutine(CameraShakeRandom());
                 audioSource.PlayOneShot(clipShootBreaker[Random.Range(0, clipShootBreaker.Length)], 0.3f);
             }
         }
@@ -672,6 +678,47 @@ public class Ship : MonoBehaviour
             if (Input.GetKeyDown("left shift"))
             {
                 StartBoosting();
+            }
+
+            if (Input.GetKeyDown("q"))
+            {
+                StartBarrelRoll();
+            }
+
+            if (isBarrelRoll)
+            {
+                float rotation = rotationspeed * Time.deltaTime;
+
+                if (rotationLeft > rotation)
+                {
+                    rotationLeft -= rotation;
+                }
+                else
+                {
+                    rotation = rotationLeft;
+                    rotationLeft = 360;
+                    isBarrelRoll = false;
+                }
+
+                
+                switch (shipName)
+                {
+                    case "Fighter":
+                        shipModel[0].transform.Rotate(0, 0, rotation);
+                        break;
+                    case "Bomber":
+                        shipModel[1].transform.Rotate(0, 0, rotation);
+                        break;
+                    case "Interceptor":
+                        shipModel[2].transform.Rotate(0, 0, rotation);
+                        break;
+                    case "Breaker":
+                        shipModel[3].transform.Rotate(0, 0, rotation);
+                        break;
+                    default:
+                        print("Not a ship 6");
+                        break;
+                }
             }
 
             if (isBoosting && boostMeter > 0f)
