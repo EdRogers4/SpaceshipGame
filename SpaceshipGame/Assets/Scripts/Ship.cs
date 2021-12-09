@@ -170,7 +170,7 @@ public class Ship : MonoBehaviour
             switch (shipName)
             {
                 case "Fighter":
-                    audioSource.PlayOneShot(clipShipBarrelRoll[0], 0.75f);
+                    audioSource.PlayOneShot(clipShipBarrelRoll[0], 0.5f);
                     break;
                 case "Bomber":
                     audioSource.PlayOneShot(clipShipBarrelRoll[1], 2.0f);
@@ -179,7 +179,7 @@ public class Ship : MonoBehaviour
                     audioSource.PlayOneShot(clipShipBarrelRoll[2], 0.75f);
                     break;
                 case "Breaker":
-                    audioSource.PlayOneShot(clipShipBarrelRoll[3], 0.5f);
+                    audioSource.PlayOneShot(clipShipBarrelRoll[3], 0.25f);
                     break;
                 default:
                     print("Not a ship 7");
