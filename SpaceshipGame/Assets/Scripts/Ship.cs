@@ -131,6 +131,7 @@ public class Ship : MonoBehaviour
 
     [Header("Particles")]
     public ParticleSystem particleDestroyed;
+    public ParticleSystem particleSwitchShip;
 
     private void Start()
     {
@@ -341,6 +342,8 @@ public class Ship : MonoBehaviour
             playerSpawnIndicator.SetActive(false);
             animatorLevel1.speed = 1.0f;
             scriptGameSettings.animatorMessage.SetBool("isSelectShip", false);
+            particleSwitchShip.transform.position = transform.position;
+            particleSwitchShip.Play();
             audioSource.PlayOneShot(clipSelectShip, 0.55f);
 
             if (scriptGameSettings.isMusicPaused)
