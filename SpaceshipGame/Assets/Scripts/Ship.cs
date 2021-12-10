@@ -114,6 +114,8 @@ public class Ship : MonoBehaviour
     public AudioClip[] clipShipWhoosh;
     public AudioClip[] clipShipBarrelRoll;
     public AudioClip clipSelectShip;
+    public AudioClip clipShipSwap;
+    public AudioClip clipShipBeep;
     public bool[] isPlayLowHealth;
 
     [Header("Distance")]
@@ -345,6 +347,8 @@ public class Ship : MonoBehaviour
             particleSwitchShip.transform.position = transform.position;
             particleSwitchShip.Play();
             audioSource.PlayOneShot(clipSelectShip, 0.55f);
+            audioSource.PlayOneShot(clipShipSwap, 0.55f);
+            audioSource.PlayOneShot(clipShipBeep, 0.55f);
 
             if (scriptGameSettings.isMusicPaused)
             {
