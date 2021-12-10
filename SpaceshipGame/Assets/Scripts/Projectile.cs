@@ -119,6 +119,7 @@ public class Projectile : MonoBehaviour
             if (scriptShip.shipName == "Bomber" && !isExploding)
             {
                 newPrefabExplosive = Instantiate(prefabNukeExplosion, collision.contacts[0].point, transform.rotation);
+                newPrefabExplosive.transform.GetChild(0).transform.parent = scriptShip.instances.transform;
                 newPrefabExplosive.GetComponent<Projectile>().scriptShip = scriptShip;
                 newPrefabExplosive.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
                 newPrefabExplosive.GetComponent<Projectile>().isExploding = true;
