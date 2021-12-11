@@ -21,6 +21,7 @@ public class Ship : MonoBehaviour
     public bool isUpgradeBomber;
     public bool isUpgradeInterceptor;
     public bool isUpgradeBreaker;
+    public bool isPickupShield;
 
     [Header("Movement")]
     public bool isKeyboard;
@@ -36,6 +37,8 @@ public class Ship : MonoBehaviour
     [Header("Stats")]
     public string shipName;
     public float pickupShieldAmount;
+    public float pickupShieldCount;
+    public float pickupShieldInterval;
     public float shieldFighter;
     public float shieldBomber;
     public float shieldInterceptor;
@@ -768,6 +771,58 @@ public class Ship : MonoBehaviour
                 StartBarrelRoll();
             }
 
+            if (isPickupShield)
+            {
+                if (pickupShieldCount > 0f)
+                {
+                    switch (shipName)
+                    {
+                        case "Fighter":
+                            shieldFighter += pickupShieldInterval;
+                            if (shieldFighter > startShieldFighter)
+                            {
+                                shieldFighter = startShieldFighter;
+                            }
+                            shieldBar.fillAmount = shieldFighter / startShieldFighter;
+                            break;
+                        case "Bomber":
+                            shieldBomber += pickupShieldInterval;
+                            if (shieldBomber > startShieldBomber)
+                            {
+                                shieldBomber = startShieldBomber;
+                            }
+                            shieldBar.fillAmount = shieldBomber / startShieldBomber;
+                            break;
+                        case "Interceptor":
+                            shieldInterceptor += pickupShieldInterval;
+                            if (shieldInterceptor > startShieldInterceptor)
+                            {
+                                shieldInterceptor = startShieldInterceptor;
+                            }
+                            shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+                            break;
+                        case "Breaker":
+                            shieldBreaker += pickupShieldInterval;
+                            if (shieldBreaker > startShieldBreaker)
+                            {
+                                shieldBreaker = startShieldBreaker;
+                            }
+                            shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+                            break;
+                        default:
+                            print("Not a ship 8");
+                            break;
+                    }
+
+                    pickupShieldCount -= pickupShieldInterval;
+                }
+                else
+                {
+                    pickupShieldCount = pickupShieldAmount;
+                    isPickupShield = false;
+                }
+            }
+
             if (isBarrelRoll)
             {
                 float rotation = rotationspeed * Time.deltaTime;
@@ -882,45 +937,7 @@ public class Ship : MonoBehaviour
             if (collision.gameObject.GetComponent<Pickup>().isShield)
             {
                 collision.gameObject.GetComponent<Pickup>().ShieldUpgrade();
-
-                switch (shipName)
-                {
-                    case "Fighter":
-                        shieldFighter += pickupShieldAmount;
-                        if (shieldFighter > startShieldFighter)
-                        {
-                            shieldFighter = startShieldFighter;
-                        }
-                        shieldBar.fillAmount = shieldFighter / startShieldFighter;
-                        break;
-                    case "Bomber":
-                        shieldBomber += pickupShieldAmount;
-                        if (shieldBomber > startShieldBomber)
-                        {
-                            shieldBomber = startShieldBomber;
-                        }
-                        shieldBar.fillAmount = shieldBomber / startShieldBomber;
-                        break;
-                    case "Interceptor":
-                        shieldInterceptor += pickupShieldAmount;
-                        if (shieldInterceptor > startShieldInterceptor)
-                        {
-                            shieldInterceptor = startShieldInterceptor;
-                        }
-                        shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
-                        break;
-                    case "Breaker":
-                        shieldBreaker += pickupShieldAmount;
-                        if (shieldBreaker > startShieldBreaker)
-                        {
-                            shieldBreaker = startShieldBreaker;
-                        }
-                        shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-                        break;
-                    default:
-                        print("Not a ship 8");
-                        break;
-                }
+                isPickupShield = true;
             }
             else if (collision.gameObject.GetComponent<Pickup>().isWeapon)
             {
