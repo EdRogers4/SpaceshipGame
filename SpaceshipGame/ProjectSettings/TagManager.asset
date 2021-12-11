@@ -17,6 +17,7 @@ TagManager:
   - SpaceScene_Camera
   - SpaceScene_Moon
   - Thruster
+  - Pickup
   layers:
   - Default
   - TransparentFX

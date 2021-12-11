@@ -17,6 +17,10 @@ public class Ship : MonoBehaviour
     public bool isDeadBomber;
     public bool isDeadInterceptor;
     public bool isDeadBreaker;
+    public bool isUpgradeFighter;
+    public bool isUpgradeBomber;
+    public bool isUpgradeInterceptor;
+    public bool isUpgradeBreaker;
 
     [Header("Movement")]
     public bool isKeyboard;
@@ -31,6 +35,7 @@ public class Ship : MonoBehaviour
 
     [Header("Stats")]
     public string shipName;
+    public float pickupShieldAmount;
     public float shieldFighter;
     public float shieldBomber;
     public float shieldInterceptor;
@@ -97,6 +102,13 @@ public class Ship : MonoBehaviour
     public GameObject projectileBomber;
     public GameObject projectileInterceptor;
     public GameObject projectileBreaker;
+
+    public GameObject projectileLaserGreen;
+    public GameObject projectileNukeGreen;
+    public GameObject projectileSniperGreen;
+    public GameObject projectileLaserViolet;
+    public GameObject projectileNukeViolet;
+    public GameObject projectileSniperViolet;
 
     //Input
     public Vector3 previousPosition;
@@ -365,11 +377,21 @@ public class Ship : MonoBehaviour
                     acceleration = 4.0f;
                     decceleration = 4.0f;
                     handling = 400.0f;
-                    velocity = 200.0f;
-                    cooldown = 0.1f;
-                    blasters = 3.0f;
-                    targeting = 0.0f;
                     boostHigh = 150f;
+                    velocity = 200.0f;
+                    targeting = 0.0f;
+                    
+                    if (!isUpgradeFighter)
+                    {
+                        cooldown = 0.15f;
+                        blasters = 2.0f;   
+                    }
+                    else
+                    {
+                        cooldown = 0.1f;
+                        blasters = 3.0f;  
+                    }
+
                     break;
                 case "Bomber":
                     shipModel[1].gameObject.SetActive(true);
@@ -378,11 +400,21 @@ public class Ship : MonoBehaviour
                     acceleration = 4.0f;
                     decceleration = 4.0f;
                     handling = 600.0f;
-                    velocity = 80.0f;
-                    cooldown = 1.0f;
-                    blasters = 10.0f;
-                    targeting = 4.0f;
                     boostHigh = 130f;
+                    velocity = 80.0f;
+                    targeting = 4.0f;
+
+                    if (!isUpgradeBomber)
+                    {
+                        cooldown = 1.5f;
+                        blasters = 5.0f;    
+                    }
+                    else
+                    {
+                        cooldown = 1.0f;
+                        blasters = 10.0f;
+                    }
+
                     break;
                 case "Interceptor":
                     shipModel[2].gameObject.SetActive(true);
@@ -391,11 +423,21 @@ public class Ship : MonoBehaviour
                     acceleration = 2.0f;
                     decceleration = 4.0f;
                     handling = 500.0f;
-                    velocity = 250.0f;
-                    cooldown = 0.25f;
-                    blasters = 1.0f;
-                    targeting = 10.0f;
                     boostHigh = 200f;
+                    velocity = 250.0f;
+                    targeting = 10.0f;
+
+                    if (!isUpgradeInterceptor)
+                    {                 
+                        cooldown = 0.35f;
+                        blasters = 0.5f;                  
+                    }
+                    else
+                    {
+                        cooldown = 0.25f;
+                        blasters = 1.0f;
+                    }
+
                     break;
                 case "Breaker":
                     shipModel[3].gameObject.SetActive(true);
@@ -404,11 +446,21 @@ public class Ship : MonoBehaviour
                     acceleration = 1.0f;
                     decceleration = 4.0f;
                     handling = 300.0f;
-                    velocity = 200.0f;
-                    cooldown = 0.5f;
-                    blasters = 3.0f;
-                    targeting = 0.5f;
                     boostHigh = 120f;
+                    velocity = 200.0f;
+                    targeting = 0.5f;
+
+                    if (!isUpgradeBreaker)
+                    { 
+                        cooldown = 1.0f;
+                        blasters = 2.0f; 
+                    }
+                    else
+                    {
+                        cooldown = 0.5f;
+                        blasters = 3.0f;
+                    }
+
                     break;
                 default:
                     print("Not a ship 2");
@@ -820,6 +872,91 @@ public class Ship : MonoBehaviour
         else if (isShooting)
         {
             isShoot = false;
+        }
+    }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.transform.tag == "Pickup")
+        {
+            if (collision.gameObject.GetComponent<Pickup>().isShield)
+            {
+                collision.gameObject.GetComponent<Pickup>().ShieldUpgrade();
+
+                switch (shipName)
+                {
+                    case "Fighter":
+                        shieldFighter += pickupShieldAmount;
+                        if (shieldFighter > startShieldFighter)
+                        {
+                            shieldFighter = startShieldFighter;
+                        }
+                        shieldBar.fillAmount = shieldFighter / startShieldFighter;
+                        break;
+                    case "Bomber":
+                        shieldBomber += pickupShieldAmount;
+                        if (shieldBomber > startShieldBomber)
+                        {
+                            shieldBomber = startShieldBomber;
+                        }
+                        shieldBar.fillAmount = shieldBomber / startShieldBomber;
+                        break;
+                    case "Interceptor":
+                        shieldInterceptor += pickupShieldAmount;
+                        if (shieldInterceptor > startShieldInterceptor)
+                        {
+                            shieldInterceptor = startShieldInterceptor;
+                        }
+                        shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+                        break;
+                    case "Breaker":
+                        shieldBreaker += pickupShieldAmount;
+                        if (shieldBreaker > startShieldBreaker)
+                        {
+                            shieldBreaker = startShieldBreaker;
+                        }
+                        shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+                        break;
+                    default:
+                        print("Not a ship 8");
+                        break;
+                }
+            }
+            else if (collision.gameObject.GetComponent<Pickup>().isWeapon)
+            {
+                collision.gameObject.GetComponent<Pickup>().WeaponUpgrade();
+
+                switch (shipName)
+                {
+                    case "Fighter":
+                        projectileFighter = projectileLaserViolet;
+                        isUpgradeFighter = true;
+                        cooldown = 0.1f;
+                        blasters = 3.0f;
+                        break;
+                    case "Bomber":
+                        projectileBomber = projectileNukeViolet;
+                        isUpgradeBomber = true;
+                        cooldown = 1.0f;
+                        blasters = 10.0f;
+                        break;
+                    case "Interceptor":
+                        projectileInterceptor = projectileSniperViolet;
+                        isUpgradeInterceptor = true;
+                        cooldown = 0.25f;
+                        blasters = 1.0f;
+                        break;
+                    case "Breaker":
+                        projectileBreaker = projectileLaserViolet;
+                        isUpgradeBreaker = true;
+                        cooldown = 0.5f;
+                        blasters = 3.0f;
+                        break;
+                    default:
+                        print("Not a ship 9");
+                        break;
+                }
+            }
         }
     }
 
