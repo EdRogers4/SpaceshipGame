@@ -45,6 +45,7 @@ public class GameSettings : MonoBehaviour
     public AudioClip clipGetReady;
     public AudioClip clipMissionComplete;
     public AudioClip clipUntouchable;
+    public AudioClip clipUltimate;
     public AudioClip clipGameMissionCompleteSFX;
     public AudioClip clipGameOverSFX;
     public AudioClip clipGamePausedSFX;
@@ -214,6 +215,20 @@ public class GameSettings : MonoBehaviour
         {
             audioSource.PlayOneShot(clipUntouchable, 1.0f);
         }
+    }
+
+    public void AudioClipPlayUltimate()
+    {
+        if (!isVoiceMute)
+        {
+            StartCoroutine(DelayAudioClipPlayUltimate());  
+        }
+    }
+
+    public IEnumerator DelayAudioClipPlayUltimate()
+    {
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipUltimate, 1.0f);
     }
 
     public void UpdateEnemyKOValue()

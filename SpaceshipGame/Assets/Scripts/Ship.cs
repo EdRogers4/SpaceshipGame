@@ -131,6 +131,8 @@ public class Ship : MonoBehaviour
     public AudioClip clipSelectShip;
     public AudioClip clipShipSwap;
     public AudioClip clipShipBeep;
+    public AudioClip clipWeaponUpgrade;
+    public AudioClip[] clipShieldUpgrade;
     public bool[] isPlayLowHealth;
 
     [Header("Distance")]
@@ -386,7 +388,7 @@ public class Ship : MonoBehaviour
                     
                     if (!isUpgradeFighter)
                     {
-                        cooldown = 0.15f;
+                        cooldown = 0.125f;
                         blasters = 2.0f;   
                     }
                     else
@@ -455,7 +457,7 @@ public class Ship : MonoBehaviour
 
                     if (!isUpgradeBreaker)
                     { 
-                        cooldown = 1.0f;
+                        cooldown = 0.75f;
                         blasters = 2.0f; 
                     }
                     else
@@ -930,6 +932,14 @@ public class Ship : MonoBehaviour
         }
     }
 
+    public IEnumerator PlayClipShieldUpgrade()
+    {
+        audioSource.PlayOneShot(clipShieldUpgrade[0], 1.0f);
+        audioSource.PlayOneShot(clipShieldUpgrade[1], 1.0f);
+        yield return new WaitForSeconds(0.7f);
+        audioSource.PlayOneShot(clipShieldUpgrade[2], 1.0f);
+    }
+
     void OnTriggerEnter(Collider collision)
     {
         if (collision.transform.tag == "Pickup")
@@ -937,11 +947,14 @@ public class Ship : MonoBehaviour
             if (collision.gameObject.GetComponent<Pickup>().isShield)
             {
                 collision.gameObject.GetComponent<Pickup>().ShieldUpgrade();
+                StartCoroutine(PlayClipShieldUpgrade());
                 isPickupShield = true;
             }
             else if (collision.gameObject.GetComponent<Pickup>().isWeapon)
             {
                 collision.gameObject.GetComponent<Pickup>().WeaponUpgrade();
+                scriptGameSettings.AudioClipPlayUltimate();
+                audioSource.PlayOneShot(clipWeaponUpgrade, 1.0f);
 
                 switch (shipName)
                 {
