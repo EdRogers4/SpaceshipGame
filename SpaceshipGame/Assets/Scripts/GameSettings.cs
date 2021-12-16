@@ -114,6 +114,9 @@ public class GameSettings : MonoBehaviour
         {
             audioSource.PlayOneShot(clipGetReady, 1.0f);
         }
+
+        yield return new WaitForSeconds(1.0f);
+        audioSourceMusic.enabled = true;
     }
 
     public IEnumerator AudioClipPlayBullseye(int number)
