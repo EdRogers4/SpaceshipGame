@@ -58,6 +58,7 @@ public class Enemies : MonoBehaviour
     public float speedAsteroidMaximum;
     private int countSpawnAsteroid;
     private bool isSpawnFirstAsteroid;
+    public bool isNoAsteroidsOnThisLevel;
     private GameObject spawnedEnemy;
     private GameObject spawnedEnemyProjectile;
     private GameObject spawnedAsteroid;
@@ -111,7 +112,11 @@ public class Enemies : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
-        StartCoroutine(SpawnAsteroid());
+
+        if (!isNoAsteroidsOnThisLevel)
+        {
+            StartCoroutine(SpawnAsteroid());
+        }
     }
 
     public void StartCameraShake()

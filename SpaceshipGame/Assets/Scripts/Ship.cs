@@ -84,7 +84,7 @@ public class Ship : MonoBehaviour
     public GameObject playerSpawnIndicator;
     public GameObject boarderCollisionEffect;
     private Vector3 effectStartPosition;
-    public Animator animatorLevel1;
+    public Animator animatorLevel;
 
     [Header("Effects")]
     public GameObject boostExhaustFighter;
@@ -359,7 +359,7 @@ public class Ship : MonoBehaviour
             particleDestroyed.gameObject.transform.position = transform.position;
             playerIndicator.SetActive(true);
             playerSpawnIndicator.SetActive(false);
-            animatorLevel1.speed = 1.0f;
+            animatorLevel.speed = 1.0f;
             scriptGameSettings.animatorMessage.SetBool("isSelectShip", false);
             particleSwitchShip.transform.position = transform.position;
             particleSwitchShip.Play();
@@ -389,12 +389,12 @@ public class Ship : MonoBehaviour
                     if (!isUpgradeFighter)
                     {
                         cooldown = 0.125f;
-                        blasters = 2.0f;   
+                        blasters = 3.0f;   
                     }
                     else
                     {
                         cooldown = 0.1f;
-                        blasters = 3.0f;  
+                        blasters = 4.0f;  
                     }
 
                     break;
@@ -575,7 +575,7 @@ public class Ship : MonoBehaviour
             boarderCollisionEffect.GetComponent<MeshRenderer>().enabled = false;
             playerIndicator.SetActive(false);
             playerSpawnIndicator.SetActive(true);
-            animatorLevel1.speed = 0.0f;
+            animatorLevel.speed = 0.0f;
             scriptGameSettings.audioSourceMusic.Pause();
             scriptGameSettings.isMusicPaused = true;
             StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
@@ -962,7 +962,7 @@ public class Ship : MonoBehaviour
                         projectileFighter = projectileLaserViolet;
                         isUpgradeFighter = true;
                         cooldown = 0.1f;
-                        blasters = 3.0f;
+                        blasters = 4.0f;
                         break;
                     case "Bomber":
                         projectileBomber = projectileNukeViolet;
