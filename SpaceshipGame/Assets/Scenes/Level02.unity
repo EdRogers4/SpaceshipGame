@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 2a8b73be44af3f64289e2581a6347f6e, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: cd89fb23c0aa5844ba2337992ca4eb10, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3338018, g: 0.5555024, b: 0.5443288, a: 1}
+  m_IndirectSpecularColor: {r: 0.67073554, g: 0.69110906, b: 0.7258826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -27103,21 +27103,21 @@ MonoBehaviour:
   _height: 12
   _heightFallOff: 0.6
   _deepObscurance: 1
-  _baselineHeight: -41.15
+  _baselineHeight: -10
   _baselineRelativeToCamera: 0
   _baselineRelativeToCameraDelay: 0
   _noiseScale: 3
   _alpha: 0.96
   _color: {r: 0.609, g: 0.609, b: 0.609, a: 1}
-  _specularColor: {r: 0.589, g: 0.621, b: 0.207, a: 1}
+  _specularColor: {r: 0.5754717, g: 0.5470522, b: 0.42707962, a: 1}
   _specularThreshold: 0.6
   _specularIntensity: 0.505
   _lightDirection: {x: -1, y: 0, z: -1}
   _lightIntensity: 0.581
-  _lightColor: {r: 0.726, g: 0.742, b: 0.507, a: 1}
+  _lightColor: {r: 0.7411765, g: 0.7172617, b: 0.5058824, a: 1}
   _updateTextureSpread: 1
   _speed: 0.168
-  _windDirection: {x: 1, y: 0, z: 0}
+  _windDirection: {x: -1, y: 0, z: 0}
   _useRealTime: 0
   _skyColor: {r: 0.609, g: 0.609, b: 0.609, a: 0.55}
   _skyHaze: 0
