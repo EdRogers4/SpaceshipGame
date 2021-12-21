@@ -372,10 +372,13 @@ public class GameSettings : MonoBehaviour
         }
         else
         {
-            Time.timeScale = 1.0f;
-            audioSourceMusic.Play();
-            AudioClipPlayGamePaused(1);
-            isPause = false;
+            if (audioSourceMusic.isActiveAndEnabled)
+            {
+                Time.timeScale = 1.0f;
+                audioSourceMusic.Play();
+                AudioClipPlayGamePaused(1);
+                isPause = false;
+            }
         }
     }
 
