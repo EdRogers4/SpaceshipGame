@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         { 
             StartCoroutine(Shoot());
         }
-        else if (enemyName == "Wing" || enemyName == "Drone" || enemyName == "SquidFrigate")
+        else if (enemyName == "Wing" || enemyName == "Drone" || enemyName == "SquidFrigate" || enemyName == "SquidProbe")
         {
             StartCoroutine(DelayShoot());
         }
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
             StartCoroutine(Shoot());
         }
-        else if (enemyName == "Drone")
+        else if (enemyName == "Drone" || enemyName == "SquidProbe")
         {
             for (int i = 0; i < barrel.Length; i++)
             {

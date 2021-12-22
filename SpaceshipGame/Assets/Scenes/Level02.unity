@@ -28024,6 +28024,7 @@ MonoBehaviour:
   listAsteroidSpeed: []
   prefabFrigate: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
   prefabSquidFrigate: {fileID: 8091298657892426294, guid: 7f41828f094754240bafe67235597e05, type: 3}
+  prefabSquidProbe: {fileID: 5712945466112315705, guid: 6db9c47c1413eab41bde9d97b1ba4d69, type: 3}
   prefabWing: {fileID: 4405650498097998219, guid: 38d15eb9651ad724faa26ec959329bd9, type: 3}
   prefabPlasma: {fileID: 7556684332842560569, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
   prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
@@ -28048,6 +28049,8 @@ MonoBehaviour:
   handlingFrigate: 2
   thrustSquidFrigate: 10
   handlingSquidFrigate: 5
+  thrustSquidProbe: 4
+  handlingSquidProbe: 10
   velocityProton: 15
   targetingProton: 2
   thrustWing: 10

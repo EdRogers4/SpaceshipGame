@@ -32,6 +32,7 @@ public class Enemies : MonoBehaviour
     [Header("Spawn")]
     public GameObject prefabFrigate;
     public GameObject prefabSquidFrigate;
+    public GameObject prefabSquidProbe;
     public GameObject prefabWing;
     public GameObject prefabPlasma;
     public GameObject prefabProton;
@@ -71,6 +72,8 @@ public class Enemies : MonoBehaviour
     public float handlingFrigate;
     public float thrustSquidFrigate;
     public float handlingSquidFrigate;
+    public float thrustSquidProbe;
+    public float handlingSquidProbe;
     public float velocityProton;
     public float targetingProton;
     public float thrustWing;
@@ -108,6 +111,8 @@ public class Enemies : MonoBehaviour
     public float distanceTargetMove;
     public float distanceToFlyPoint;
     private float minimumDistanceFrigate = 4.0f;
+    private float minimumDistanceSquidFrigate = 4.0f;
+    private float minimumDistanceSquidProbe = 36.0f;
     private float minimumDistanceWing = 100.0f;
     private float minimumDistanceProton = 0.1f;
 
@@ -283,6 +288,38 @@ public class Enemies : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnSquidProbe0()
+    {
+        for (int i = 0; i < listFlyPointDrone0.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listFlyPointDrone0[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidProbe, listFlyPointDrone0[i].position, listFlyPointDrone0[i].rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
+    public IEnumerator SpawnSquidProbe1()
+    {
+        for (int i = 0; i < listFlyPointDrone1.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listFlyPointDrone1[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidProbe, listFlyPointDrone1[i].position, listFlyPointDrone1[i].rotation);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+            yield return new WaitForSeconds(1.0f);
+        }
+    }
+
     public void SpawnWingGroup0()
     {
         for (int i = 0; i < listSpawnWing0.Count; i++)
@@ -439,11 +476,21 @@ public class Enemies : MonoBehaviour
                 }
                 else if (listEnemy[i].GetComponent<Enemy>().enemyName == "SquidFrigate")
                 {
-                    if (distanceTargetMove > minimumDistanceFrigate)
+                    if (distanceTargetMove > minimumDistanceSquidFrigate)
                     {
                         listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustSquidFrigate;
                         Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
                         float singleStep = handlingSquidFrigate * Time.deltaTime;
+                        Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                        listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                    }
+                }
+                else if (listEnemy[i].GetComponent<Enemy>().enemyName == "SquidProbe")
+                {
+                    if (distanceTargetMove > minimumDistanceSquidProbe)
+                    {
+                        Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                        float singleStep = handlingSquidProbe * Time.deltaTime;
                         Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
                         listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
                     }

@@ -175,14 +175,14 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 8.083333
-    functionName: SpawnSquidFrigateGroup1
+    functionName: SpawnSquidProbe0
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 10.866667
-    functionName: SpawnSquidFrigateGroup3
+    functionName: SpawnSquidProbe1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
