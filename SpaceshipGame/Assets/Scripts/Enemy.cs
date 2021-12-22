@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
         { 
             StartCoroutine(Shoot());
         }
-        else if (enemyName == "Wing" || enemyName == "Drone")
+        else if (enemyName == "Wing" || enemyName == "Drone" || enemyName == "SquidFrigate")
         {
             StartCoroutine(DelayShoot());
         }
@@ -76,7 +76,7 @@ public class Enemy : MonoBehaviour
             spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
             audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
         }
-        else if (enemyName == "Wing")
+        else if (enemyName == "Wing" || enemyName == "SquidFrigate")
         {
             for (int i = 0; i < barrel.Length; i++)
             {

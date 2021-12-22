@@ -28023,8 +28023,9 @@ MonoBehaviour:
   flyPointPunisherEntrance: {fileID: 922869298}
   listAsteroidSpeed: []
   prefabFrigate: {fileID: 2519086299027489358, guid: 81c8f38bbb8cb1543a33dc6809cecc4c, type: 3}
+  prefabSquidFrigate: {fileID: 8091298657892426294, guid: 7f41828f094754240bafe67235597e05, type: 3}
   prefabWing: {fileID: 4405650498097998219, guid: 38d15eb9651ad724faa26ec959329bd9, type: 3}
-  prefabPlasma: {fileID: 515269606916414791, guid: 46fb1a436c649374f9f10bd36853027a, type: 3}
+  prefabPlasma: {fileID: 7556684332842560569, guid: aa5a3b1a907eb6d4b9595556d56ccdb5, type: 3}
   prefabProton: {fileID: 4627395433913328561, guid: 38eb16312babb0143bd4a771698db104, type: 3}
   prefabAsteroid: {fileID: 3135525913807490773, guid: 15dbf82e5607c3a498dd340d1acd6b22, type: 3}
   prefabDrone: {fileID: 855914950336925979, guid: cb38b8488321f2b44ad69095216abe05, type: 3}
@@ -28045,6 +28046,8 @@ MonoBehaviour:
   particleSpawnFrigate: {fileID: 8744936065936199303, guid: d57783876ee54e14faa98174eeadc9d4, type: 3}
   thrustFrigate: 5
   handlingFrigate: 2
+  thrustSquidFrigate: 10
+  handlingSquidFrigate: 5
   velocityProton: 15
   targetingProton: 2
   thrustWing: 10
@@ -28904,6 +28907,7 @@ GameObject:
   - component: {fileID: 1749457252}
   - component: {fileID: 1749457251}
   - component: {fileID: 1749457250}
+  - component: {fileID: 1749457253}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -29086,6 +29090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70604ec62d405b1438d1a60f491768a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentLevel: 2
   dimmer: {fileID: 219788667}
   animatorMessage: {fileID: 583800763}
   gameOver: {fileID: 116786427}
@@ -29219,7 +29224,7 @@ MonoBehaviour:
   _useFogVolumes: 0
   _debugPass: 0
   _showInSceneView: 1
-  _transparencyBlendMode: 0
+  _transparencyBlendMode: 1
   _transparencyBlendPower: 1
   _transparencyLayerMask:
     serializedVersion: 2
@@ -29450,6 +29455,18 @@ MonoBehaviour:
   _maskBrushFuzziness: 0.5
   _maskBrushOpacity: 0.15
   _fogOfWarTexture: {fileID: 0}
+--- !u!114 &1749457253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1749457243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89f7a9dff312e44e5abe7eda9ffd31dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1750322598
 PrefabInstance:
   m_ObjectHideFlags: 0

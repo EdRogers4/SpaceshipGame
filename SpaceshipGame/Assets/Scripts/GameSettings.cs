@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class GameSettings : MonoBehaviour
 {
+    [Header("Level")]
+    public int currentLevel;
+
     [Header("UI")]
     public Image dimmer;
     public Animator animatorMessage;
@@ -207,9 +210,18 @@ public class GameSettings : MonoBehaviour
         audioSource.PlayOneShot(clipMissionComplete, 1.0f);
         animatorMessage.SetBool("isMissionComplete", false);
         yield return new WaitForSeconds(5.5f);
-        gameOver.SetActive(true);
-        textGameOver.text = "Complete";
-        Time.timeScale = 0.0f;
+
+        if (currentLevel == 2)
+        {
+            gameOver.SetActive(true);
+            textGameOver.text = "Complete";
+            Time.timeScale = 0.0f;
+        }
+        else if (currentLevel == 1)
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
+
     }
 
     public void AudioClipPlayUntouchable()

@@ -31,6 +31,7 @@ public class Enemies : MonoBehaviour
 
     [Header("Spawn")]
     public GameObject prefabFrigate;
+    public GameObject prefabSquidFrigate;
     public GameObject prefabWing;
     public GameObject prefabPlasma;
     public GameObject prefabProton;
@@ -68,6 +69,8 @@ public class Enemies : MonoBehaviour
     [Header("Stats")]
     public float thrustFrigate;
     public float handlingFrigate;
+    public float thrustSquidFrigate;
+    public float handlingSquidFrigate;
     public float velocityProton;
     public float targetingProton;
     public float thrustWing;
@@ -214,6 +217,66 @@ public class Enemies : MonoBehaviour
             audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
             yield return new WaitForSeconds(0.75f);
             spawnedEnemy = Instantiate(prefabFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public IEnumerator SpawnSquidFrigateGroup0()
+    {
+        for (int i = 0; i < listSpawnFrigate0.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidFrigate, listSpawnFrigate0[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public IEnumerator SpawnSquidFrigateGroup1()
+    {
+        for (int i = 0; i < listSpawnFrigate1.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidFrigate, listSpawnFrigate1[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public IEnumerator SpawnSquidFrigateGroup2()
+    {
+        for (int i = 0; i < listSpawnFrigate2.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidFrigate, listSpawnFrigate2[i].position, Quaternion.identity);
+            spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+            spawnedEnemy.transform.parent = this.gameObject.transform;
+            listEnemy.Add(spawnedEnemy);
+        }
+    }
+
+    public IEnumerator SpawnSquidFrigateGroup3()
+    {
+        for (int i = 0; i < listSpawnFrigate3.Count; i++)
+        {
+            spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
+            spawnedParticle.transform.parent = particlesObject.transform;
+            audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+            yield return new WaitForSeconds(0.75f);
+            spawnedEnemy = Instantiate(prefabSquidFrigate, listSpawnFrigate3[i].position, Quaternion.identity);
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
@@ -370,6 +433,17 @@ public class Enemies : MonoBehaviour
                         listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustFrigate;
                         Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
                         float singleStep = handlingFrigate * Time.deltaTime;
+                        Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
+                        listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
+                    }
+                }
+                else if (listEnemy[i].GetComponent<Enemy>().enemyName == "SquidFrigate")
+                {
+                    if (distanceTargetMove > minimumDistanceFrigate)
+                    {
+                        listEnemy[i].transform.position += listEnemy[i].transform.forward * Time.deltaTime * thrustSquidFrigate;
+                        Vector3 targetDirection = ship.transform.position - listEnemy[i].transform.position;
+                        float singleStep = handlingSquidFrigate * Time.deltaTime;
                         Vector3 newDirection = Vector3.RotateTowards(listEnemy[i].transform.forward, targetDirection, singleStep, 0.0f);
                         listEnemy[i].transform.rotation = Quaternion.LookRotation(newDirection);
                     }
