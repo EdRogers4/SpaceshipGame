@@ -90,8 +90,8 @@ MonoBehaviour:
   shield: 0
   startShield: 20
   reloadTime: 2
-  reloadMinimum: 2
-  reloadMaximum: 5
+  reloadMinimum: 0
+  reloadMaximum: 2
   isStartShoot: 0
   isInFlyPosition: 0
   isFlyPointEntrance: 0
