@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4088969858021768}
   - component: {fileID: 120107115301763044}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: BeamBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -75,7 +76,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.175
+    widthMultiplier: 4.245466
     widthCurve:
       serializedVersion: 2
       m_Curve:

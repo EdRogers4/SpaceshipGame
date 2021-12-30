@@ -7,6 +7,9 @@ namespace PolygonArsenal
 
 public class PolygonBeamStatic : MonoBehaviour
 {
+    [Header("Custom")]
+    public Enemies scriptEnemies;
+    public float blasters;
 
     [Header("Prefabs")]
     public GameObject beamLineRendererPrefab; //Put a prefab with a line renderer onto here.
@@ -51,10 +54,54 @@ public class PolygonBeamStatic : MonoBehaviour
 
             Vector3 end;
             RaycastHit hit;
-            if (beamCollides && Physics.Raycast(transform.position, transform.forward, out hit)) //Checks for collision
-                end = hit.point - (transform.forward * beamEndOffset);
-            else
-                end = transform.position + (transform.forward * beamLength);
+                if (beamCollides && Physics.Raycast(transform.position, transform.forward, out hit)) //Checks for collision
+                {
+                    end = hit.point - (transform.forward * beamEndOffset);
+
+                    if (hit.transform.tag == "Player")
+                    {
+                        if (scriptEnemies == null)
+                        {
+                            scriptEnemies = hit.transform.GetComponent<Ship>().scriptEnemies;
+                        }
+
+                        if (hit.transform.GetComponent<Ship>().shipName == "Fighter" && hit.transform.GetComponent<Ship>().shieldFighter > 0f ||
+                            hit.transform.GetComponent<Ship>().shipName == "Bomber" && hit.transform.GetComponent<Ship>().shieldBomber > 0f ||
+                            hit.transform.GetComponent<Ship>().shipName == "Interceptor" && hit.transform.GetComponent<Ship>().shieldInterceptor > 0f ||
+                            hit.transform.GetComponent<Ship>().shipName == "Breaker" && hit.transform.GetComponent<Ship>().shieldBreaker > 0f)
+                        {
+                            scriptEnemies.scriptShip.TakeDamage(blasters);
+                        }
+                    }
+                    else if (hit.transform.tag == "Enemy")
+                    {
+                        if (scriptEnemies == null)
+                        {
+                            scriptEnemies = hit.transform.GetComponent<Enemy>().scriptEnemies;
+                        }
+
+                        if (hit.transform.GetComponent<Enemy>().shield > 0f)
+                        {
+                            hit.transform.GetComponent<Enemy>().TakeDamage(blasters, "Plasma");
+                        }
+                    }
+                    else if (hit.transform.tag == "Asteroid")
+                    {
+                        if (scriptEnemies == null)
+                        {
+                            scriptEnemies = hit.transform.GetComponent<Asteroid>().scriptEnemies;
+                        }
+
+                        if (hit.transform.GetComponent<Asteroid>().shield > 0f)
+                        {
+                            hit.transform.GetComponent<Asteroid>().TakeDamage(blasters, "Plasma");
+                        }
+                    }
+                }
+                else
+                {
+                    end = transform.position + (transform.forward * beamLength);
+                }
 
             line.SetPosition(1, end);
 

@@ -411,8 +411,8 @@ public class Ship : MonoBehaviour
 
                     if (!isUpgradeBomber)
                     {
-                        cooldown = 1.5f;
-                        blasters = 5.0f;    
+                        cooldown = 1.25f;
+                        blasters = 7.0f;    
                     }
                     else
                     {
@@ -435,12 +435,12 @@ public class Ship : MonoBehaviour
                     if (!isUpgradeInterceptor)
                     {                 
                         cooldown = 0.35f;
-                        blasters = 0.5f;                  
+                        blasters = 1.0f;                  
                     }
                     else
                     {
                         cooldown = 0.25f;
-                        blasters = 1.0f;
+                        blasters = 1.5f;
                     }
 
                     break;
@@ -974,7 +974,7 @@ public class Ship : MonoBehaviour
                         projectileInterceptor = projectileSniperViolet;
                         isUpgradeInterceptor = true;
                         cooldown = 0.25f;
-                        blasters = 1.0f;
+                        blasters = 1.5f;
                         break;
                     case "Breaker":
                         projectileBreaker = projectileLaserViolet;

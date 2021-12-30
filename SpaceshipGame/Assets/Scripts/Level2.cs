@@ -63,6 +63,16 @@ public class Level2 : MonoBehaviour
         StartCoroutine(scriptEnemies.SpawnSquidProbe1());
     }
 
+    public void SpawnSquidDestroyer0()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidDestroyer0());
+    }
+
+    public void SpawnSquidDestroyer1()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidDestroyer1());
+    }
+
     public void SpawnWingGroup0()
     {
         scriptEnemies.SpawnWingGroup0();

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private GameObject spawnedProjectile;
     public GameObject[] barrel;
     private int countBarrel;
+    public GameObject polygonBeamStatic;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
@@ -56,6 +57,19 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(DelayShoot());
         }
+        else if (enemyName == "SquidDestroyer")
+        {
+            StartCoroutine(ShootLaser());
+        }
+    }
+
+    public IEnumerator ShootLaser()
+    {
+        yield return new WaitForSeconds(3.0f);
+        polygonBeamStatic.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+        polygonBeamStatic.SetActive(false);;
+        StartCoroutine(ShootLaser());
     }
 
     public IEnumerator DelayShoot()
