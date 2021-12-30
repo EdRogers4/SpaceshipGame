@@ -305,7 +305,6 @@ public class Enemies : MonoBehaviour
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
-            yield return new WaitForSeconds(1.0f);
         }
     }
 
@@ -321,7 +320,6 @@ public class Enemies : MonoBehaviour
             spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
             spawnedEnemy.transform.parent = this.gameObject.transform;
             listEnemy.Add(spawnedEnemy);
-            yield return new WaitForSeconds(1.0f);
         }
     }
 

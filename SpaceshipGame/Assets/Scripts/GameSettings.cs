@@ -440,7 +440,7 @@ public class GameSettings : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(0, LoadSceneMode.Single);
+        SceneManager.LoadScene(currentLevel, LoadSceneMode.Single);
         audioSource.PlayOneShot(clipGameRestartSFX, 1.0f);
         Time.timeScale = 1.0f;
     }
