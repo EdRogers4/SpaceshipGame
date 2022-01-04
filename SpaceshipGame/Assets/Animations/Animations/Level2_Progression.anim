@@ -167,13 +167,6 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0
-    functionName: SpawnSquidDestroyer0
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 5.983333
     functionName: SpawnSquidFrigateGroup0
     data: 
@@ -308,6 +301,34 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 200.11667
+    functionName: SpawnSquidFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 214.53334
+    functionName: SpawnSquidFrigateGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 225.06667
+    functionName: SpawnWingGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 233.93333
+    functionName: SpawnWingGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 244.46666
     functionName: SpawnSquidFrigateGroup0
     data: 
     objectReferenceParameter: {fileID: 0}

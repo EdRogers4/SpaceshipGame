@@ -52,11 +52,12 @@ MonoBehaviour:
   particleDestroyed: {fileID: 948169020612052600, guid: c4b18a005b843d443852a5d67864d5c0, type: 3}
   barrel:
   - {fileID: 8091298659749739674}
+  polygonBeamStatic: {fileID: 0}
   scriptEnemies: {fileID: 0}
   enemyName: SquidFrigate
   isDead: 0
-  shield: 15
-  startShield: 15
+  shield: 14
+  startShield: 14
   reloadTime: 2
   reloadMinimum: 2
   reloadMaximum: 5
@@ -71,6 +72,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d293b24279de3574eae6d6070e6bf229, type: 3}
   - {fileID: 8300000, guid: a4a2f0260a8abce4e8692e51291da79b, type: 3}
   clipShootRocket: []
+  clipShootLaser: []
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 8091298658241468741}
 --- !u!65 &8091298657892426293

@@ -68,9 +68,9 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(3.0f);
         polygonBeamStatic.SetActive(true);
-        audioSource.PlayOneShot(clipShootLaser[0], 1.0f);
-        audioSource.PlayOneShot(clipShootLaser[1], 1.0f);
-        audioSource.PlayOneShot(clipShootLaser[2], 1.0f);
+        audioSource.PlayOneShot(clipShootLaser[0], 0.5f);
+        audioSource.PlayOneShot(clipShootLaser[1], 0.5f);
+        audioSource.PlayOneShot(clipShootLaser[2], 0.5f);
         yield return new WaitForSeconds(3.0f);
         polygonBeamStatic.SetActive(false);;
         StartCoroutine(ShootLaser());

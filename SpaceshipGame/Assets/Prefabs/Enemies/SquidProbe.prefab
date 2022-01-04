@@ -84,10 +84,11 @@ MonoBehaviour:
   barrel:
   - {fileID: 5712945467715877077}
   - {fileID: 5712945467935814914}
+  polygonBeamStatic: {fileID: 0}
   scriptEnemies: {fileID: 0}
   enemyName: SquidProbe
   isDead: 0
-  shield: 0
+  shield: 20
   startShield: 20
   reloadTime: 2
   reloadMinimum: 0
@@ -103,6 +104,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7d37d8e1dade2647804cb7b960fa775, type: 3}
   - {fileID: 8300000, guid: b9f6887437419f24ca43306654951c1a, type: 3}
   - {fileID: 8300000, guid: c26aecef391dce24195763942cda1a9a, type: 3}
+  clipShootLaser: []
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 5712945466393354723}
 --- !u!82 &-7702860667254348640
