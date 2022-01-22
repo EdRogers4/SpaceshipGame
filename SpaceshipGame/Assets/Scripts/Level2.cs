@@ -117,4 +117,9 @@ public class Level2 : MonoBehaviour
     {
         StartCoroutine(scriptEnemies.SpawnPunisher());
     }
+
+    public void SpawnSquidShark()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidShark());
+    }
 }

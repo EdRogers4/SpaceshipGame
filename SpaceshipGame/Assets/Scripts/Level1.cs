@@ -92,6 +92,11 @@ public class Level1 : MonoBehaviour
         StartCoroutine(scriptEnemies.SpawnPunisher());
     }
 
+    public void SpawnSquidShark()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidShark());
+    }
+
     public void AudioClipPlayWarning()
     {
         audioSource.PlayOneShot(clipWarning, 0.5f);

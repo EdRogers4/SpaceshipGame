@@ -88,8 +88,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: SquidProbe
   isDead: 0
-  shield: 20
-  startShield: 20
+  shield: 14
+  startShield: 14
   reloadTime: 2
   reloadMinimum: 0
   reloadMaximum: 2

@@ -27,6 +27,7 @@ public class Enemies : MonoBehaviour
     public List<Transform> listFlyPointDrone1;
     public List<Transform> listFlyPointPunisher0;
     public List<Transform> listFlyPointPunisher1;
+    public List<Transform> listFlyPointSquidShark;
     public Transform flyPointPunisherEntrance;
     public List<float> listAsteroidSpeed;
 
@@ -42,6 +43,7 @@ public class Enemies : MonoBehaviour
     public GameObject prefabDrone;
     public GameObject prefabRocket;
     public GameObject prefabPunisher;
+    public GameObject prefabSquidShark;
 
     [Header("Scripts")]
     public Ship scriptShip;
@@ -89,6 +91,7 @@ public class Enemies : MonoBehaviour
     public float targetingRocket;
     public float thrustPunisher;
     public float handlingPunisher;
+    public float thrustSquidShark;
 
     [Header("Audio")]
     private AudioSource audioSource;
@@ -118,6 +121,7 @@ public class Enemies : MonoBehaviour
     private float minimumDistanceSquidFrigate = 4.0f;
     private float minimumDistanceSquidProbe = 36.0f;
     private float minimumDistanceSquidDestroyer = 10f;
+    private float minimumDistanceSquidShark = 50f;
     private float minimumDistanceWing = 100.0f;
     private float minimumDistanceProton = 0.1f;
 
@@ -430,6 +434,15 @@ public class Enemies : MonoBehaviour
         listEnemy.Add(spawnedEnemy);
     }
 
+    public IEnumerator SpawnSquidShark()
+    {
+        yield return new WaitForSeconds(1.0f);
+        spawnedEnemy = Instantiate(prefabSquidShark, spawnPunisher.position, spawnPunisher.rotation);
+        spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+        spawnedEnemy.transform.parent = this.gameObject.transform;
+        listEnemy.Add(spawnedEnemy);
+    }
+
     public void EnemyDestroyed()
     {
         audioSource.PlayOneShot(clipDestroyed[Random.Range(0, clipDestroyed.Length)], 0.15f);
@@ -643,6 +656,50 @@ public class Enemies : MonoBehaviour
                         else if (listEnemy[i].GetComponent<Enemy>().flyPositionNumber == 1)
                         {
                             thisFlyPoint = listFlyPointPunisher0[listEnemy[i].GetComponent<Enemy>().flyPositionNumber];
+                            float step = thrustPunisher * Time.deltaTime;
+                            listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().flyPositionNumber = 0;
+                            }
+                        }
+                    }
+                }
+                else if (listEnemy[i].GetComponent<Enemy>().enemyName == "SquidShark")
+                {
+                    if (!listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance)
+                    {
+                        thisFlyPoint = listFlyPointSquidShark[0];
+                        float step = thrustPunisher * Time.deltaTime;
+                        listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                        distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                        if (distanceToFlyPoint <= 0.1f)
+                        {
+                            listEnemy[i].GetComponent<Enemy>().isFlyPointEntrance = true;
+                            thrustSquidShark = 25.0f;
+                            listEnemy[i].GetComponent<Enemy>().reloadTime = 5.0f;
+                        }
+                    }
+                    else if (listEnemy[i].GetComponent<Enemy>().flyGroupNumber == 0)
+                    {
+                        if (listEnemy[i].GetComponent<Enemy>().flyPositionNumber == 0)
+                        {
+                            thisFlyPoint = listFlyPointSquidShark[1];
+                            float step = thrustSquidShark * Time.deltaTime;
+                            listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
+                            distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
+
+                            if (distanceToFlyPoint <= 0.1f)
+                            {
+                                listEnemy[i].GetComponent<Enemy>().flyPositionNumber = 1;
+                            }
+                        }
+                        else if (listEnemy[i].GetComponent<Enemy>().flyPositionNumber == 1)
+                        {
+                            thisFlyPoint = listFlyPointSquidShark[2];
                             float step = thrustPunisher * Time.deltaTime;
                             listEnemy[i].transform.position = Vector3.MoveTowards(listEnemy[i].transform.position, thisFlyPoint.position, step);
                             distanceToFlyPoint = Vector3.Distance(listEnemy[i].transform.position, thisFlyPoint.position);
