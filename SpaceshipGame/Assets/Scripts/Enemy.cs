@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     public GameObject[] barrel;
     private int countBarrel;
     public GameObject polygonBeamStatic;
+    private bool isEnemyDestroyed;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
@@ -171,6 +172,17 @@ public class Enemy : MonoBehaviour
             if (enemyName == "Punisher")
             {
                 scriptEnemies.scriptGameSettings.PlayMissionComplete();
+            }
+
+            if (enemyName == "SquidDestroyer" && !isEnemyDestroyed)
+            {
+                isEnemyDestroyed = true;
+                scriptEnemies.countSquidDestroyerDestroyed += 1;
+
+                if (scriptEnemies.countSquidDestroyerDestroyed >= 4)
+                {
+                    scriptEnemies.scriptGameSettings.PlayMissionComplete();
+                }
             }
 
             scriptEnemies.EnemyDestroyed();

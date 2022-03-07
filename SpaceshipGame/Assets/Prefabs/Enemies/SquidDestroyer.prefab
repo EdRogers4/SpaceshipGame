@@ -161,8 +161,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: SquidDestroyer
   isDead: 0
-  shield: 200
-  startShield: 200
+  shield: 300
+  startShield: 300
   reloadTime: 3
   reloadMinimum: 3
   reloadMaximum: 6

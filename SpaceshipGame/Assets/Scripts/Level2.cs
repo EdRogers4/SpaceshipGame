@@ -7,6 +7,8 @@ public class Level2 : MonoBehaviour
     public Animator animator;
     public Enemies scriptEnemies;
     private AudioSource audioSource;
+    public AudioClip clipWarning;
+    public AudioClip clipSiren;
 
     void Start()
     {
@@ -73,6 +75,16 @@ public class Level2 : MonoBehaviour
         StartCoroutine(scriptEnemies.SpawnSquidDestroyer1());
     }
 
+    public void SpawnSquidDestroyer2()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidDestroyer2());
+    }
+
+    public void SpawnSquidDestroyer3()
+    {
+        StartCoroutine(scriptEnemies.SpawnSquidDestroyer3());
+    }
+
     public void SpawnWingGroup0()
     {
         scriptEnemies.SpawnWingGroup0();
@@ -121,5 +133,15 @@ public class Level2 : MonoBehaviour
     public void SpawnSquidShark()
     {
         StartCoroutine(scriptEnemies.SpawnSquidShark());
+    }
+
+    public void AudioClipPlayWarning()
+    {
+        audioSource.PlayOneShot(clipWarning, 0.5f);
+    }
+
+    public void AudioClipPlaySiren()
+    {
+        audioSource.PlayOneShot(clipSiren, 0.3f);
     }
 }

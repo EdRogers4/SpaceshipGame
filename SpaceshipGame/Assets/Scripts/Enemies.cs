@@ -56,6 +56,7 @@ public class Enemies : MonoBehaviour
     public GameObject enemyDestroyed;
     public Camera cameraMain;
     private Vector3 newTargetPosition;
+    public int countSquidDestroyerDestroyed;
 
     [Header("Spawn")]
     public float timeMinimumSpawnAsteroid;
@@ -347,6 +348,32 @@ public class Enemies : MonoBehaviour
         audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
         yield return new WaitForSeconds(0.75f);
         spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[1].position, listSpawnDestroyer[1].rotation);
+        spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+        spawnedEnemy.transform.parent = this.gameObject.transform;
+        listEnemy.Add(spawnedEnemy);
+        yield return new WaitForSeconds(1.0f);
+    }
+
+    public IEnumerator SpawnSquidDestroyer2()
+    {
+        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[2].position, Quaternion.identity);
+        spawnedParticle.transform.parent = particlesObject.transform;
+        audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+        yield return new WaitForSeconds(0.75f);
+        spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[2].position, listSpawnDestroyer[2].rotation);
+        spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
+        spawnedEnemy.transform.parent = this.gameObject.transform;
+        listEnemy.Add(spawnedEnemy);
+        yield return new WaitForSeconds(1.0f);
+    }
+
+    public IEnumerator SpawnSquidDestroyer3()
+    {
+        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[3].position, Quaternion.identity);
+        spawnedParticle.transform.parent = particlesObject.transform;
+        audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
+        yield return new WaitForSeconds(0.75f);
+        spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[3].position, listSpawnDestroyer[3].rotation);
         spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
         spawnedEnemy.transform.parent = this.gameObject.transform;
         listEnemy.Add(spawnedEnemy);
