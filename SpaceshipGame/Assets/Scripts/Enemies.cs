@@ -122,7 +122,6 @@ public class Enemies : MonoBehaviour
     private float minimumDistanceSquidFrigate = 4.0f;
     private float minimumDistanceSquidProbe = 36.0f;
     private float minimumDistanceSquidDestroyer = 10f;
-    private float minimumDistanceSquidShark = 50f;
     private float minimumDistanceWing = 100.0f;
     private float minimumDistanceProton = 0.1f;
 

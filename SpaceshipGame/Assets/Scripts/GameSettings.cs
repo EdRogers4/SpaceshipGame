@@ -8,6 +8,7 @@ public class GameSettings : MonoBehaviour
 {
     [Header("Level")]
     public int currentLevel;
+    public bool isCompleteDemo;
 
     [Header("UI")]
     public Image dimmer;
@@ -15,6 +16,7 @@ public class GameSettings : MonoBehaviour
     public GameObject gameOver;
     public Text textGameOver;
     public Text textResolution;
+    public GameObject completeText;
 
     [Header("Score")]
     public int scoreValue = 0;
@@ -121,6 +123,12 @@ public class GameSettings : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         audioSourceMusic.enabled = true;
     }
+    public void FadeOut()
+    {
+        dimmer.gameObject.SetActive(true);
+        Color newColor = new Color(0, 0, 0, 255);
+        dimmer.color = newColor;
+    }
 
     public IEnumerator AudioClipPlayBullseye(int number)
     {
@@ -215,7 +223,10 @@ public class GameSettings : MonoBehaviour
         {
             gameOver.SetActive(true);
             textGameOver.text = "Complete";
-            Time.timeScale = 0.0f;
+            FadeOut();
+            completeText.SetActive(true);
+            isCompleteDemo = true;
+            Time.timeScale = 0.0f; 
         }
         else if (currentLevel == 1)
         {
@@ -440,7 +451,15 @@ public class GameSettings : MonoBehaviour
 
     public void Restart()
     {
-        SceneManager.LoadScene(currentLevel, LoadSceneMode.Single);
+        if (!isCompleteDemo)
+        {
+            SceneManager.LoadScene(currentLevel, LoadSceneMode.Single);
+        }
+        else
+        {
+            SceneManager.LoadScene(1, LoadSceneMode.Single);
+        }
+
         audioSource.PlayOneShot(clipGameRestartSFX, 1.0f);
         Time.timeScale = 1.0f;
     }

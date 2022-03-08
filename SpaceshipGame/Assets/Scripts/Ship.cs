@@ -394,7 +394,7 @@ public class Ship : MonoBehaviour
                     else
                     {
                         cooldown = 0.1f;
-                        blasters = 4.0f;  
+                        blasters = 5.0f;  
                     }
 
                     break;
@@ -417,7 +417,7 @@ public class Ship : MonoBehaviour
                     else
                     {
                         cooldown = 1.0f;
-                        blasters = 10.0f;
+                        blasters = 15.0f;
                     }
 
                     break;
@@ -434,13 +434,13 @@ public class Ship : MonoBehaviour
 
                     if (!isUpgradeInterceptor)
                     {                 
-                        cooldown = 0.35f;
-                        blasters = 1.0f;                  
+                        cooldown = 0.15f;
+                        blasters = 0.5f;                  
                     }
                     else
                     {
-                        cooldown = 0.25f;
-                        blasters = 1.5f;
+                        cooldown = 0.1f;
+                        blasters = 1f;
                     }
 
                     break;
@@ -962,19 +962,19 @@ public class Ship : MonoBehaviour
                         projectileFighter = projectileLaserViolet;
                         isUpgradeFighter = true;
                         cooldown = 0.1f;
-                        blasters = 4.0f;
+                        blasters = 5.0f;
                         break;
                     case "Bomber":
                         projectileBomber = projectileNukeViolet;
                         isUpgradeBomber = true;
                         cooldown = 1.0f;
-                        blasters = 10.0f;
+                        blasters = 15.0f;
                         break;
                     case "Interceptor":
                         projectileInterceptor = projectileSniperViolet;
                         isUpgradeInterceptor = true;
-                        cooldown = 0.25f;
-                        blasters = 1.5f;
+                        cooldown = 0.1f;
+                        blasters = 1.0f;
                         break;
                     case "Breaker":
                         projectileBreaker = projectileLaserViolet;
