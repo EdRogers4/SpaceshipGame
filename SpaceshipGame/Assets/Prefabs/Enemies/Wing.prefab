@@ -708,14 +708,15 @@ MonoBehaviour:
   barrel:
   - {fileID: 660210352777340411}
   - {fileID: 3311415223663778252}
+  polygonBeamStatic: {fileID: 0}
   scriptEnemies: {fileID: 0}
   enemyName: Wing
   isDead: 0
   shield: 10
   startShield: 10
   reloadTime: 0
-  reloadMinimum: 3
-  reloadMaximum: 6
+  reloadMinimum: 2
+  reloadMaximum: 5
   isStartShoot: 0
   isInFlyPosition: 0
   isFlyPointEntrance: 0
@@ -727,6 +728,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d293b24279de3574eae6d6070e6bf229, type: 3}
   - {fileID: 8300000, guid: a4a2f0260a8abce4e8692e51291da79b, type: 3}
   clipShootRocket: []
+  clipShootLaser: []
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 8904576166376591022}
 --- !u!82 &3340961666449609715

@@ -417,14 +417,15 @@ MonoBehaviour:
   particleDestroyed: {fileID: 948169020612052600, guid: c4b18a005b843d443852a5d67864d5c0, type: 3}
   barrel:
   - {fileID: 409505519960680168}
+  polygonBeamStatic: {fileID: 0}
   scriptEnemies: {fileID: 0}
   enemyName: Frigate
   isDead: 0
   shield: 20
   startShield: 10
-  reloadTime: 10
-  reloadMinimum: 5
-  reloadMaximum: 20
+  reloadTime: 0
+  reloadMinimum: 2
+  reloadMaximum: 5
   isStartShoot: 0
   isInFlyPosition: 0
   isFlyPointEntrance: 0
@@ -436,6 +437,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0d8c169d4797e194f80f45256b38795e, type: 3}
   clipShootPlasma: []
   clipShootRocket: []
+  clipShootLaser: []
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 7452979972672988267}
 --- !u!82 &1023720961257868665

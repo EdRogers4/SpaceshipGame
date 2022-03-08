@@ -457,7 +457,7 @@ public class GameSettings : MonoBehaviour
         }
         else
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene(0, LoadSceneMode.Single);
         }
 
         audioSource.PlayOneShot(clipGameRestartSFX, 1.0f);

@@ -210,14 +210,15 @@ MonoBehaviour:
   barrel:
   - {fileID: 9053973324233528617}
   - {fileID: 2720691429136439536}
+  polygonBeamStatic: {fileID: 0}
   scriptEnemies: {fileID: 0}
   enemyName: Drone
   isDead: 0
-  shield: 10
-  startShield: 10
-  reloadTime: 5
-  reloadMinimum: 5
-  reloadMaximum: 10
+  shield: 50
+  startShield: 50
+  reloadTime: 0
+  reloadMinimum: 1
+  reloadMaximum: 2
   isStartShoot: 0
   isInFlyPosition: 0
   isFlyPointEntrance: 0
@@ -229,6 +230,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: f7d37d8e1dade2647804cb7b960fa775, type: 3}
   - {fileID: 8300000, guid: b9f6887437419f24ca43306654951c1a, type: 3}
   - {fileID: 8300000, guid: c26aecef391dce24195763942cda1a9a, type: 3}
+  clipShootLaser: []
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 455615040588896366}
 --- !u!82 &2981843610197542311
