@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6707341, g: 0.69110763, b: 0.72588134, a: 1}
+  m_IndirectSpecularColor: {r: 0.67073554, g: 0.69110906, b: 0.7258826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29858,6 +29858,15 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6cf803df470293546939fc9afec7f54b, type: 3}
   - {fileID: 8300000, guid: 001c89271a5c89142bd58f8368bdc66e, type: 3}
   - {fileID: 8300000, guid: 16799f6d199d8d546a67214be6cab059, type: 3}
+  clipLightningExplosion:
+  - {fileID: 8300000, guid: c65d9b9efa9e46b4fb4fe7d5480fbd9a, type: 3}
+  - {fileID: 8300000, guid: fc02bf15f1722ec49bd0148b6bf46629, type: 3}
+  - {fileID: 8300000, guid: e3e44deec8309a64282902bbd2420e33, type: 3}
+  - {fileID: 8300000, guid: 4ccb16e5ecbe14744844cace2bd6c0c5, type: 3}
+  - {fileID: 8300000, guid: 704854ec57187ad41a5a608acba7fc14, type: 3}
+  - {fileID: 8300000, guid: 322071d2e3eda1b4598fdc10d9ff0d5b, type: 3}
+  clipDomeExplosion: {fileID: 8300000, guid: 50e0ecbdbfb984b40a21ce97c3778efb, type: 3}
+  clipNovaExplosion: {fileID: 8300000, guid: e0b05ef9c6e250f44985d30b5c84bc84, type: 3}
   animatorCamera: {fileID: 1749457249}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}

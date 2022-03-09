@@ -114,6 +114,9 @@ public class Enemies : MonoBehaviour
     public AudioClip[] clipMS_Light;
     public AudioClip[] clipMS_Target;
     public AudioClip[] clipMS_Voice;
+    public AudioClip[] clipLightningExplosion;
+    public AudioClip clipDomeExplosion;
+    public AudioClip clipNovaExplosion;
 
     [Header("Animations")]
     public Animator animatorCamera;
@@ -151,6 +154,11 @@ public class Enemies : MonoBehaviour
     public void StartCameraShake()
     {
         StartCoroutine(CameraShakeDestroyed());
+    }
+
+    public void PlayClipDomeExplosion()
+    {
+        audioSource.PlayOneShot(clipDomeExplosion, 1.0f);
     }
 
     public IEnumerator CameraShakeDestroyed()
@@ -366,11 +374,11 @@ public class Enemies : MonoBehaviour
         audioSource.PlayOneShot(clipMS_Start[0], 1.0f);
         audioSource.PlayOneShot(clipMS_Start[1], 1.0f);
         audioSource.PlayOneShot(clipMS_Start[2], 1.0f);
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(1.25f);
         audioSource.PlayOneShot(clipMS_Blast[0], 1.0f);
         audioSource.PlayOneShot(clipMS_Blast[1], 1.0f);
         audioSource.PlayOneShot(clipMS_Blast[2], 1.0f);
-        yield return new WaitForSeconds(1.25f);
+        yield return new WaitForSeconds(1.00f);
         spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[1].position, listSpawnDestroyer[1].rotation);
         spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
         spawnedEnemy.transform.parent = this.gameObject.transform;
