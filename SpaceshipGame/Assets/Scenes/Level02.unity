@@ -29828,6 +29828,35 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1aa15e7feea6f2c45b3975d3ae50c261, type: 3}
   - {fileID: 8300000, guid: 91f2a4d665656d64eb99aa9c7cde170c, type: 3}
   - {fileID: 8300000, guid: 0bafb1c4890c033498baf7f0eb2eddb6, type: 3}
+  clipMS_Charge:
+  - {fileID: 8300000, guid: ac3a7799cbb996445a5d0bfc35d232de, type: 3}
+  - {fileID: 8300000, guid: 48b695e7872fd484fb04be4f38a07419, type: 3}
+  clipMS_Device:
+  - {fileID: 8300000, guid: 8e562039d9df42c43b7c06622b4e2813, type: 3}
+  - {fileID: 8300000, guid: 81e4a2a4c916ba6419b8b7192f9793f7, type: 3}
+  clipMS_Energy:
+  - {fileID: 8300000, guid: 4f1ad1a2a4d33484db06895ac4295c80, type: 3}
+  - {fileID: 8300000, guid: 363b4d1420d444b8c8d6955f7bd1fbde, type: 3}
+  - {fileID: 8300000, guid: 69445cce8a60f47a59a639a565185c15, type: 3}
+  clipMS_Feedback:
+  - {fileID: 8300000, guid: 0df1a5307bc52024389c86cd0bfc3222, type: 3}
+  - {fileID: 8300000, guid: e0b05ef9c6e250f44985d30b5c84bc84, type: 3}
+  clipMS_Gears:
+  - {fileID: 8300000, guid: f0ce5bb6bc8231049a45856d35ebc88f, type: 3}
+  - {fileID: 8300000, guid: 7f66e5e5269ba2e41b4fc77c118b1df8, type: 3}
+  clipMS_Light:
+  - {fileID: 8300000, guid: 3c0e187177812484abcf4fa2b43976fe, type: 3}
+  - {fileID: 8300000, guid: 7e0f2b326697a4d459d8653fd2d71edd, type: 3}
+  clipMS_Target:
+  - {fileID: 8300000, guid: 50c60cdcbabca2644ada64a4e4bbf69c, type: 3}
+  - {fileID: 8300000, guid: fe997012828b4564d8dae41d786ab561, type: 3}
+  - {fileID: 8300000, guid: 2084fc484f069964baeadfeece8fef66, type: 3}
+  clipMS_Voice:
+  - {fileID: 8300000, guid: 6e85d79a5a7e842449ba32bc4ed77c14, type: 3}
+  - {fileID: 8300000, guid: ef5b4b5e9d6903441ab53045fbe2f45f, type: 3}
+  - {fileID: 8300000, guid: 6cf803df470293546939fc9afec7f54b, type: 3}
+  - {fileID: 8300000, guid: 001c89271a5c89142bd58f8368bdc66e, type: 3}
+  - {fileID: 8300000, guid: 16799f6d199d8d546a67214be6cab059, type: 3}
   animatorCamera: {fileID: 1749457249}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}

@@ -106,6 +106,14 @@ public class Enemies : MonoBehaviour
     public AudioClip[] clipMS_Start;
     public AudioClip[] clipMS_Blast;
     public AudioClip[] clipMS_Echo;
+    public AudioClip[] clipMS_Charge;
+    public AudioClip[] clipMS_Device;
+    public AudioClip[] clipMS_Energy;
+    public AudioClip[] clipMS_Feedback;
+    public AudioClip[] clipMS_Gears;
+    public AudioClip[] clipMS_Light;
+    public AudioClip[] clipMS_Target;
+    public AudioClip[] clipMS_Voice;
 
     [Header("Animations")]
     public Animator animatorCamera;
