@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6707341, g: 0.69110763, b: 0.72588134, a: 1}
+  m_IndirectSpecularColor: {r: 0.67073554, g: 0.69110906, b: 0.7258826, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -31259,7 +31259,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8388608
   _maskDownsampling: 1
-  isRendering: 1
+  isRendering: 0
   fogRenderer: {fileID: 1749457252}
   _fogOfWarEnabled: 0
   _fogOfWarCenter: {x: 0, y: 0, z: 0}
