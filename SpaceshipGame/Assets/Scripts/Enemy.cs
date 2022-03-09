@@ -69,13 +69,18 @@ public class Enemy : MonoBehaviour
     {
         scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
         yield return new WaitForSeconds(1.0f);
+        scriptEnemies.handlingSquidDestroyer = 1.25f;
+        scriptEnemies.thrustSquidDestroyer = 3.0f;
         scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
         yield return new WaitForSeconds(2.0f);
+        scriptEnemies.handlingSquidDestroyer = 0.1f;
         polygonBeamStatic.SetActive(true);
         audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
         audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
         audioSource.PlayOneShot(clipShootLaser[2], 0.75f);
         yield return new WaitForSeconds(3.0f);
+        scriptEnemies.handlingSquidDestroyer = 0.25f;
+        scriptEnemies.thrustSquidDestroyer = 20.0f;
         polygonBeamStatic.SetActive(false);;
         StartCoroutine(ShootLaser());
     }
