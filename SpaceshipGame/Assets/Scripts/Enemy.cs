@@ -173,7 +173,7 @@ public class Enemy : MonoBehaviour
         shield -= amount;
         shieldBar.fillAmount = shield / startShield;
 
-        if (shield <= 0f && enemyName != "SquidDestroyer")
+        if (shield <= 0f && enemyName != "SquidDestroyer" && enemyName != "Punisher")
         {
             var newParticle = Instantiate(particleDestroyed, transform.position, transform.rotation);
             newParticle.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
@@ -197,15 +197,50 @@ public class Enemy : MonoBehaviour
 
             scriptEnemies.EnemyDestroyed();
         }
+        else if (shield <= 0f && enemyName == "Punisher")
+        {
+            isEnemyDestroyed = true;
+            StartCoroutine(DestroyPunisher());
+        }
         else if (shield <= 0f && enemyName == "SquidDestroyer")
         {
             if (!isEnemyDestroyed)
             {
                 isEnemyDestroyed = true;
                 scriptEnemies.countSquidDestroyerDestroyed += 1;
-                StartCoroutine(DestroyMothership()); 
+                StartCoroutine(DestroyMothership());
             }
         }
+    }
+
+    public IEnumerator DestroyPunisher()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            for (int i = 0; i < explosionPoint.Length; i++)
+            {
+                Instantiate(particleLightningExplosion, explosionPoint[i].position, transform.rotation);
+                audioSource.PlayOneShot(scriptEnemies.clipLightningExplosion[Random.Range(0, scriptEnemies.clipLightningExplosion.Length)], 1.0f);
+                scriptEnemies.handlingPunisher = 0.0f;
+                scriptEnemies.thrustPunisher = 0.0f;
+                yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
+            }
+
+            Instantiate(particleNovaExplosion, transform.position, transform.rotation);
+            audioSource.PlayOneShot(scriptEnemies.clipNovaExplosion, 1.0f);
+        }
+
+        Instantiate(particleDomeExplosion, transform.position, transform.rotation);
+        scriptEnemies.PlayClipDomeExplosion();
+        var newParticle = Instantiate(particleDestroyed, transform.position, transform.rotation);
+        newParticle.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+        newParticle.Play();
+        scriptEnemies.listEnemy.Remove(gameObject);
+        scriptEnemies.enemyDestroyed = gameObject;
+        scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
+        scriptEnemies.StartCameraShake();
+        scriptEnemies.scriptGameSettings.PlayMissionComplete();
+        scriptEnemies.EnemyDestroyed();
     }
 
     public IEnumerator DestroyMothership()
