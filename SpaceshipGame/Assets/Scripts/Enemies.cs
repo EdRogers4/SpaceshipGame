@@ -96,7 +96,7 @@ public class Enemies : MonoBehaviour
     public float thrustSquidShark;
 
     [Header("Audio")]
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip[] clipDestroyed;
     public AudioClip[] clipProtonDestroyed;
     public AudioClip[] clipPlasmaDestroyed;
@@ -356,7 +356,13 @@ public class Enemies : MonoBehaviour
     {
         spawnedParticle = Instantiate(particleSpawnMothership, listSpawnDestroyer[1].position, particleSpawnMothership.gameObject.transform.rotation);
         spawnedParticle.transform.parent = particlesObject.transform;
-        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Light[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Light[1], 1.0f);
+        yield return new WaitForSeconds(0.25f);
+        audioSource.PlayOneShot(clipMS_Energy[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Energy[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Energy[2], 1.0f);
+        yield return new WaitForSeconds(0.25f);
         audioSource.PlayOneShot(clipMS_Start[0], 1.0f);
         audioSource.PlayOneShot(clipMS_Start[1], 1.0f);
         audioSource.PlayOneShot(clipMS_Start[2], 1.0f);
@@ -365,13 +371,29 @@ public class Enemies : MonoBehaviour
         audioSource.PlayOneShot(clipMS_Blast[1], 1.0f);
         audioSource.PlayOneShot(clipMS_Blast[2], 1.0f);
         yield return new WaitForSeconds(1.25f);
-        audioSource.PlayOneShot(clipMS_Echo[0], 1.0f);
-        audioSource.PlayOneShot(clipMS_Echo[1], 1.0f);
-        audioSource.PlayOneShot(clipMS_Echo[2], 1.0f);
         spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[1].position, listSpawnDestroyer[1].rotation);
         spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
         spawnedEnemy.transform.parent = this.gameObject.transform;
         listEnemy.Add(spawnedEnemy);
+        audioSource.PlayOneShot(clipMS_Echo[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Echo[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Echo[2], 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Feedback[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Feedback[1], 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Gears[0], 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Gears[1], 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Gears[2], 1.0f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Device[0], 1.0f);
+        yield return new WaitForSeconds(0.25f);
+        audioSource.PlayOneShot(clipMS_Device[1], 1.0f);
+        yield return new WaitForSeconds(0.25f);
+        audioSource.PlayOneShot(clipMS_Charge[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Charge[1], 1.0f);
         yield return new WaitForSeconds(1.0f);
     }
 

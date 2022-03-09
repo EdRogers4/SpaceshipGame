@@ -67,11 +67,14 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShootLaser()
     {
-        yield return new WaitForSeconds(3.0f);
+        scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
+        yield return new WaitForSeconds(2.0f);
         polygonBeamStatic.SetActive(true);
-        audioSource.PlayOneShot(clipShootLaser[0], 0.5f);
-        audioSource.PlayOneShot(clipShootLaser[1], 0.5f);
-        audioSource.PlayOneShot(clipShootLaser[2], 0.5f);
+        audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
+        audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
+        audioSource.PlayOneShot(clipShootLaser[2], 0.75f);
         yield return new WaitForSeconds(3.0f);
         polygonBeamStatic.SetActive(false);;
         StartCoroutine(ShootLaser());
@@ -188,51 +191,4 @@ public class Enemy : MonoBehaviour
             scriptEnemies.EnemyDestroyed();
         }
     }
-
-    /*
- *
-public IEnumerator Shoot()
-{
-yield return new WaitForSeconds(cooldown);
-
-for (int i = 0; i < pointShoot.Length; i++)
-{
-    if (Physics.Raycast(pointShoot[i].position, pointShoot[i].TransformDirection(Vector3.forward), out hitAim, targeting))
-    {
-        if (hitAim.transform.tag == "Enemy" && targetEnemy != null)
-        {
-            var newProjectile = Instantiate(projectile, gunFront.transform.position, gunFront.transform.rotation) as GameObject;
-            listProjectiles.Add(newProjectile);
-            newProjectile.GetComponent<Projectile>().scriptShip = this;
-            newProjectile.GetComponent<Projectile>().scriptEnemies = scriptEnemies;
-            newProjectile.transform.parent = instances.transform;
-            audioSource.PlayOneShot(clipShoot, 0.1f);
-        }
-    }
-}
-
-StartCoroutine(Shoot());
-}
-
-public IEnumerator TargetEnemy()
-{
-yield return new WaitForSeconds(1.0f);
-
-for (int i = 0; i < scriptEnemies.listEnemy.Count; i++)
-{
-    distanceEnemy = Vector3.Distance(ship.transform.position, scriptEnemies.listEnemy[i].transform.position);
-
-    if (distanceEnemy > 0 && distanceEnemy < targeting)
-    {
-        if (distanceEnemy <= distanceEnemyShortest)
-        {
-            distanceEnemyShortest = distanceEnemy;
-            targetEnemy = scriptEnemies.listEnemy[i];
-        }
-    }
-}
-
-StartCoroutine(TargetEnemy());
-}
-*/
 }
