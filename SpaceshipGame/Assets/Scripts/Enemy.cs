@@ -32,12 +32,21 @@ public class Enemy : MonoBehaviour
     public int flyGroupNumber;
     public int flyPositionNumber;
 
+    [Header("Mothership")]
+    public Transform[] explosionPoint;
+    public ParticleSystem particleLightningExplosion;
+    public ParticleSystem particleDomeExplosion;
+    public ParticleSystem particleNovaExplosion;
+
     [Header("Audio")]
     private AudioSource audioSource;
     public AudioClip[] clipShootProton;
     public AudioClip[] clipShootPlasma;
     public AudioClip[] clipShootRocket;
     public AudioClip[] clipShootLaser;
+    public AudioClip[] clipLightningExplosion;
+    public AudioClip clipDomeExplosion;
+    public AudioClip clipNovaExplosion;
 
     [Header("Animation")]
     public Animator animatorPunisher;
@@ -67,22 +76,24 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShootLaser()
     {
-        scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
-        yield return new WaitForSeconds(1.0f);
-        scriptEnemies.handlingSquidDestroyer = 1.25f;
-        scriptEnemies.thrustSquidDestroyer = 3.0f;
-        scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
-        yield return new WaitForSeconds(2.0f);
-        scriptEnemies.handlingSquidDestroyer = 0.1f;
-        polygonBeamStatic.SetActive(true);
-        audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
-        audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
-        audioSource.PlayOneShot(clipShootLaser[2], 0.75f);
-        yield return new WaitForSeconds(3.0f);
-        scriptEnemies.handlingSquidDestroyer = 0.25f;
-        scriptEnemies.thrustSquidDestroyer = 20.0f;
-        polygonBeamStatic.SetActive(false);;
-        StartCoroutine(ShootLaser());
+        if (!isEnemyDestroyed)
+        {
+            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
+            yield return new WaitForSeconds(1.0f);
+            scriptEnemies.handlingSquidDestroyer = 1.25f;
+            scriptEnemies.thrustSquidDestroyer = 3.0f;
+            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
+            yield return new WaitForSeconds(2.0f);
+            scriptEnemies.handlingSquidDestroyer = 0.1f;
+            polygonBeamStatic.SetActive(true);
+            audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
+            audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
+            yield return new WaitForSeconds(3.0f);
+            scriptEnemies.handlingSquidDestroyer = 0.25f;
+            scriptEnemies.thrustSquidDestroyer = 20.0f;
+            polygonBeamStatic.SetActive(false); ;
+            StartCoroutine(ShootLaser());
+        }
     }
 
     public IEnumerator DelayShoot()
@@ -160,7 +171,7 @@ public class Enemy : MonoBehaviour
         shield -= amount;
         shieldBar.fillAmount = shield / startShield;
 
-        if (shield <= 0f)
+        if (shield <= 0f && enemyName != "SquidDestroyer")
         {
             var newParticle = Instantiate(particleDestroyed, transform.position, transform.rotation);
             newParticle.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
@@ -182,18 +193,48 @@ public class Enemy : MonoBehaviour
                 scriptEnemies.scriptGameSettings.PlayMissionComplete();
             }
 
-            if (enemyName == "SquidDestroyer" && !isEnemyDestroyed)
+            scriptEnemies.EnemyDestroyed();
+        }
+        else if (shield <= 0f && enemyName == "SquidDestroyer")
+        {
+            if (!isEnemyDestroyed)
             {
                 isEnemyDestroyed = true;
                 scriptEnemies.countSquidDestroyerDestroyed += 1;
+                StartCoroutine(DestroyMothership()); 
+            }
+        }
+    }
 
-                if (scriptEnemies.countSquidDestroyerDestroyed >= 4)
-                {
-                    scriptEnemies.scriptGameSettings.PlayMissionComplete();
-                }
+    public IEnumerator DestroyMothership()
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            for (int i = 0; i < explosionPoint.Length; i++)
+            {
+                Instantiate(particleLightningExplosion, explosionPoint[i].position, transform.rotation);
+                scriptEnemies.thrustSquidDestroyer = 0.0f;
+                yield return new WaitForSeconds(Random.Range(0.05f, 0.1f));
             }
 
-            scriptEnemies.EnemyDestroyed();
+            Instantiate(particleNovaExplosion, transform.position, transform.rotation);
+        }
+
+        Instantiate(particleDomeExplosion, transform.position, transform.rotation);
+        var newParticle = Instantiate(particleDestroyed, transform.position, transform.rotation);
+        newParticle.gameObject.transform.parent = scriptEnemies.particlesObject.transform;
+        newParticle.Play();
+        scriptEnemies.listEnemy.Remove(gameObject);
+        scriptEnemies.enemyDestroyed = gameObject;
+        scriptEnemies.scriptShip.distanceEnemyShortest = 200f;
+        scriptEnemies.StartCameraShake();
+        scriptEnemies.EnemyDestroyed();
+
+        yield return new WaitForSeconds(3.0f);
+
+        if (scriptEnemies.countSquidDestroyerDestroyed >= 4)
+        { 
+            scriptEnemies.scriptGameSettings.PlayMissionComplete();
         }
     }
 }

@@ -384,16 +384,13 @@ public class Enemies : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         audioSource.PlayOneShot(clipMS_Gears[0], 1.0f);
         yield return new WaitForSeconds(0.5f);
-        audioSource.PlayOneShot(clipMS_Gears[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Gears[0], 1.0f);
         yield return new WaitForSeconds(0.5f);
-        audioSource.PlayOneShot(clipMS_Gears[2], 1.0f);
+        audioSource.PlayOneShot(clipMS_Gears[1], 1.0f);
         yield return new WaitForSeconds(0.5f);
         audioSource.PlayOneShot(clipMS_Device[0], 1.0f);
         yield return new WaitForSeconds(0.25f);
         audioSource.PlayOneShot(clipMS_Device[1], 1.0f);
-        yield return new WaitForSeconds(0.25f);
-        audioSource.PlayOneShot(clipMS_Charge[0], 1.0f);
-        audioSource.PlayOneShot(clipMS_Charge[1], 1.0f);
         yield return new WaitForSeconds(1.0f);
     }
 

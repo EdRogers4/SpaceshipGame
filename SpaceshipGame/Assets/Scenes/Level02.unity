@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.67073554, g: 0.69110906, b: 0.7258826, a: 1}
+  m_IndirectSpecularColor: {r: 0.6707341, g: 0.69110763, b: 0.72588134, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -29794,6 +29794,7 @@ MonoBehaviour:
   thrustPunisher: 10
   handlingPunisher: 1
   thrustSquidShark: 50
+  audioSource: {fileID: 0}
   clipDestroyed:
   - {fileID: 8300000, guid: bd655634768742e4dbdb169f741a982e, type: 3}
   - {fileID: 8300000, guid: c9b8dc9625e865a479e7087c2816de8b, type: 3}
