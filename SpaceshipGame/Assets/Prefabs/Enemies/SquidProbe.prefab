@@ -88,8 +88,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: SquidProbe
   isDead: 0
-  shield: 30
-  startShield: 30
+  shield: 14
+  startShield: 14
   reloadTime: 2
   reloadMinimum: 0
   reloadMaximum: 2
@@ -98,6 +98,10 @@ MonoBehaviour:
   isFlyPointEntrance: 0
   flyGroupNumber: 0
   flyPositionNumber: 0
+  explosionPoint: []
+  particleLightningExplosion: {fileID: 0}
+  particleDomeExplosion: {fileID: 0}
+  particleNovaExplosion: {fileID: 0}
   clipShootProton: []
   clipShootPlasma: []
   clipShootRocket:

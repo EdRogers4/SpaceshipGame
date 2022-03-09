@@ -214,8 +214,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: Drone
   isDead: 0
-  shield: 50
-  startShield: 50
+  shield: 30
+  startShield: 30
   reloadTime: 0
   reloadMinimum: 1
   reloadMaximum: 2
@@ -224,6 +224,10 @@ MonoBehaviour:
   isFlyPointEntrance: 0
   flyGroupNumber: 0
   flyPositionNumber: 0
+  explosionPoint: []
+  particleLightningExplosion: {fileID: 0}
+  particleDomeExplosion: {fileID: 0}
+  particleNovaExplosion: {fileID: 0}
   clipShootProton: []
   clipShootPlasma: []
   clipShootRocket:

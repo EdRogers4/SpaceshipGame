@@ -5475,8 +5475,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: SquidDestroyer
   isDead: 0
-  shield: 1
-  startShield: 1
+  shield: 750
+  startShield: 750
   reloadTime: 3
   reloadMinimum: 3
   reloadMaximum: 6
@@ -5507,15 +5507,6 @@ MonoBehaviour:
   clipShootLaser:
   - {fileID: 8300000, guid: 1685ab486d7d3b64cbecde87cc300c41, type: 3}
   - {fileID: 8300000, guid: 332975e2527078a4ca1da164bdbbf99f, type: 3}
-  clipLightningExplosion:
-  - {fileID: 8300000, guid: c65d9b9efa9e46b4fb4fe7d5480fbd9a, type: 3}
-  - {fileID: 8300000, guid: fc02bf15f1722ec49bd0148b6bf46629, type: 3}
-  - {fileID: 8300000, guid: e3e44deec8309a64282902bbd2420e33, type: 3}
-  - {fileID: 8300000, guid: 4ccb16e5ecbe14744844cace2bd6c0c5, type: 3}
-  - {fileID: 8300000, guid: 704854ec57187ad41a5a608acba7fc14, type: 3}
-  - {fileID: 8300000, guid: 322071d2e3eda1b4598fdc10d9ff0d5b, type: 3}
-  clipDomeExplosion: {fileID: 8300000, guid: d5f2b8b068e41b44e905e447d2a3b0ff, type: 3}
-  clipNovaExplosion: {fileID: 8300000, guid: e0b05ef9c6e250f44985d30b5c84bc84, type: 3}
   animatorPunisher: {fileID: 0}
   shieldBar: {fileID: 3639113151023561557}
 --- !u!82 &3501000626545670829

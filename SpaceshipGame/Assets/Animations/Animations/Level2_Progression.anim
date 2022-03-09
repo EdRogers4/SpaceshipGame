@@ -581,13 +581,6 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 2.7666667
-    functionName: SpawnSquidDestroyer1
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
   - time: 5.983333
     functionName: SpawnSquidFrigateGroup0
     data: 
@@ -644,7 +637,21 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 74.816666
+  - time: 62.95
+    functionName: SpawnWingGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 69.23333
+    functionName: SpawnWingGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 76.8
     functionName: SpawnSquidProbe0
     data: 
     objectReferenceParameter: {fileID: 0}
@@ -672,8 +679,36 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 104
+    functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 106.98333
+    functionName: SpawnDroneGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 116.583336
     functionName: SpawnWingGroup3
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 121.9
+    functionName: SpawnFrigateGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 124.53333
+    functionName: SpawnFrigateGroup3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -743,49 +778,77 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 159.65
-    functionName: SpawnSquidDestroyer0
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 167.98334
     functionName: SpawnSquidDestroyer1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 167.98334
+    functionName: SpawnSquidFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 176
-    functionName: SpawnSquidDestroyer2
+    functionName: SpawnSquidFrigateGroup2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 184
-    functionName: SpawnSquidDestroyer3
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
-  - time: 185.7
     functionName: SpawnSquidFrigateGroup1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 189.58333
-    functionName: SpawnSquidFrigateGroup3
+  - time: 186.03334
+    functionName: SpawnSquidFrigateGroup2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 200.11667
-    functionName: SpawnSquidFrigateGroup0
+  - time: 189.58333
+    functionName: SpawnDroneGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 194.81667
+    functionName: SpawnDroneGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 200.71666
+    functionName: SpawnWingGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 203.03334
+    functionName: SpawnWingGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 205.03334
+    functionName: SpawnWingGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 208
+    functionName: SpawnWingGroup3
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

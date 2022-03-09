@@ -714,14 +714,18 @@ MonoBehaviour:
   isDead: 0
   shield: 10
   startShield: 10
-  reloadTime: 0
-  reloadMinimum: 2
+  reloadTime: 3
+  reloadMinimum: 3
   reloadMaximum: 5
   isStartShoot: 0
   isInFlyPosition: 0
   isFlyPointEntrance: 0
   flyGroupNumber: 0
   flyPositionNumber: 0
+  explosionPoint: []
+  particleLightningExplosion: {fileID: 0}
+  particleDomeExplosion: {fileID: 0}
+  particleNovaExplosion: {fileID: 0}
   clipShootProton: []
   clipShootPlasma:
   - {fileID: 8300000, guid: 8736330e7541c7c45aa4856d7248c106, type: 3}
