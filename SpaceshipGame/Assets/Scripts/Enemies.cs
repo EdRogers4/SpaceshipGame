@@ -71,6 +71,7 @@ public class Enemies : MonoBehaviour
     private GameObject spawnedAsteroid;
     private ParticleSystem spawnedParticle;
     public ParticleSystem particleSpawnFrigate;
+    public ParticleSystem particleSpawnMothership;
 
     [Header("Stats")]
     public float thrustFrigate;
@@ -102,6 +103,9 @@ public class Enemies : MonoBehaviour
     public AudioClip[] clipRocketDestroyed;
     public AudioClip[] clipAsteroidDestroyed;
     public AudioClip[] clipTeleport;
+    public AudioClip[] clipMS_Start;
+    public AudioClip[] clipMS_Blast;
+    public AudioClip[] clipMS_Echo;
 
     [Header("Animations")]
     public Animator animatorCamera;
@@ -329,7 +333,7 @@ public class Enemies : MonoBehaviour
 
     public IEnumerator SpawnSquidDestroyer0()
     {
-        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[0].position, Quaternion.identity);
+        spawnedParticle = Instantiate(particleSpawnMothership, listSpawnDestroyer[0].position, particleSpawnMothership.gameObject.transform.rotation);
         spawnedParticle.transform.parent = particlesObject.transform;
         audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
         yield return new WaitForSeconds(0.75f);
@@ -342,10 +346,20 @@ public class Enemies : MonoBehaviour
 
     public IEnumerator SpawnSquidDestroyer1()
     {
-        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[1].position, Quaternion.identity);
+        spawnedParticle = Instantiate(particleSpawnMothership, listSpawnDestroyer[1].position, particleSpawnMothership.gameObject.transform.rotation);
         spawnedParticle.transform.parent = particlesObject.transform;
-        audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
+        audioSource.PlayOneShot(clipMS_Start[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Start[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Start[2], 1.0f);
+        yield return new WaitForSeconds(1.0f);
+        audioSource.PlayOneShot(clipMS_Blast[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Blast[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Blast[2], 1.0f);
+        yield return new WaitForSeconds(1.25f);
+        audioSource.PlayOneShot(clipMS_Echo[0], 1.0f);
+        audioSource.PlayOneShot(clipMS_Echo[1], 1.0f);
+        audioSource.PlayOneShot(clipMS_Echo[2], 1.0f);
         spawnedEnemy = Instantiate(prefabSquidDestroyer, listSpawnDestroyer[1].position, listSpawnDestroyer[1].rotation);
         spawnedEnemy.GetComponent<Enemy>().scriptEnemies = this;
         spawnedEnemy.transform.parent = this.gameObject.transform;
@@ -355,7 +369,7 @@ public class Enemies : MonoBehaviour
 
     public IEnumerator SpawnSquidDestroyer2()
     {
-        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[2].position, Quaternion.identity);
+        spawnedParticle = Instantiate(particleSpawnMothership, listSpawnDestroyer[2].position, particleSpawnMothership.gameObject.transform.rotation);
         spawnedParticle.transform.parent = particlesObject.transform;
         audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
         yield return new WaitForSeconds(0.75f);
@@ -368,7 +382,7 @@ public class Enemies : MonoBehaviour
 
     public IEnumerator SpawnSquidDestroyer3()
     {
-        spawnedParticle = Instantiate(particleSpawnFrigate, listSpawnDestroyer[3].position, Quaternion.identity);
+        spawnedParticle = Instantiate(particleSpawnMothership, listSpawnDestroyer[3].position, particleSpawnMothership.gameObject.transform.rotation);
         spawnedParticle.transform.parent = particlesObject.transform;
         audioSource.PlayOneShot(clipTeleport[Random.Range(0, clipTeleport.Length)], 0.3f);
         yield return new WaitForSeconds(0.75f);

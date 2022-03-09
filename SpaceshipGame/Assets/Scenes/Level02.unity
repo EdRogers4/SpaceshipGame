@@ -29773,6 +29773,7 @@ MonoBehaviour:
   speedAsteroidMaximum: 30
   isNoAsteroidsOnThisLevel: 1
   particleSpawnFrigate: {fileID: 8744936065936199303, guid: d57783876ee54e14faa98174eeadc9d4, type: 3}
+  particleSpawnMothership: {fileID: 986177422682023355, guid: f4fe3015681665c41bb345e2ce749634, type: 3}
   thrustFrigate: 5
   handlingFrigate: 2
   thrustSquidFrigate: 10
@@ -29815,6 +29816,18 @@ MonoBehaviour:
   clipTeleport:
   - {fileID: 8300000, guid: 533413c453380e641b3ef35109bcd35e, type: 3}
   - {fileID: 8300000, guid: 0818d0d55a6487f49a34fcc8754a0713, type: 3}
+  clipMS_Start:
+  - {fileID: 8300000, guid: 88a4778eeda67c44591080b83778443f, type: 3}
+  - {fileID: 8300000, guid: 76c0d31998799a042b28b680abd6be7a, type: 3}
+  - {fileID: 8300000, guid: 7ff39cc74e0b7d649bd7bc2c0bb1ba42, type: 3}
+  clipMS_Blast:
+  - {fileID: 8300000, guid: 1b7f847a4ccc7004f925d1972f393a72, type: 3}
+  - {fileID: 8300000, guid: 50e0ecbdbfb984b40a21ce97c3778efb, type: 3}
+  - {fileID: 8300000, guid: f81ac7e2f812ab748a36d0e18e735d89, type: 3}
+  clipMS_Echo:
+  - {fileID: 8300000, guid: 1aa15e7feea6f2c45b3975d3ae50c261, type: 3}
+  - {fileID: 8300000, guid: 91f2a4d665656d64eb99aa9c7cde170c, type: 3}
+  - {fileID: 8300000, guid: 0bafb1c4890c033498baf7f0eb2eddb6, type: 3}
   animatorCamera: {fileID: 1749457249}
   particleProtonDestroyed: {fileID: 5685585769368368902, guid: 07cca93776408a24b94825ff5e2e19a3, type: 3}
   particlePlasmaDestroyed: {fileID: 964198785522899614, guid: 72a168b540ba12441a4b7a2ecd0f7d70, type: 3}
@@ -31259,7 +31272,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8388608
   _maskDownsampling: 1
-  isRendering: 0
+  isRendering: 1
   fogRenderer: {fileID: 1749457252}
   _fogOfWarEnabled: 0
   _fogOfWarCenter: {x: 0, y: 0, z: 0}
