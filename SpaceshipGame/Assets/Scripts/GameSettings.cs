@@ -230,7 +230,7 @@ public class GameSettings : MonoBehaviour
         }
         else if (currentLevel == 1)
         {
-            SceneManager.LoadScene(1, LoadSceneMode.Single);
+            SceneManager.LoadScene(2, LoadSceneMode.Single);
         }
 
     }
