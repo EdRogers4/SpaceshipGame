@@ -143,20 +143,20 @@ public class GameSettings : MonoBehaviour
     {
         if (!isVoiceMute)
         {
-            yield return new WaitForSeconds(1.0f);
-            if (countCombo == 2)
+            yield return new WaitForSeconds(0.5f);
+            if (countCombo == 3)
             {
-                //audioSource.PlayOneShot(clipCombo[0], 1.0f);
-            }
-            else if (countCombo == 3)
-            {
-                audioSource.PlayOneShot(clipCombo[1], 1.0f);
+                audioSource.PlayOneShot(clipCombo[0], 1.0f);
             }
             else if (countCombo == 4)
             {
+                audioSource.PlayOneShot(clipCombo[1], 1.0f);
+            }
+            else if (countCombo == 5)
+            {
                 audioSource.PlayOneShot(clipCombo[2], 1.0f);
             }
-            else if (countCombo >= 5)
+            else if (countCombo >= 6)
             {
                 audioSource.PlayOneShot(clipCombo[3], 1.0f);
             }

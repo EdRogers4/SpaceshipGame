@@ -11,7 +11,6 @@ public class Enemy : MonoBehaviour
     public GameObject[] barrel;
     private int countBarrel;
     public GameObject polygonBeamStatic;
-    private bool isEnemyDestroyed;
 
     [Header("Scripts")]
     public Enemies scriptEnemies;
@@ -73,7 +72,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShootLaser()
     {
-        if (!isEnemyDestroyed)
+        if (!scriptEnemies.isEnemyDestroyed)
         {
             scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
             yield return new WaitForSeconds(1.0f);
@@ -83,7 +82,7 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(2.0f);
             scriptEnemies.handlingSquidDestroyer = 0.1f;
 
-            if (!isEnemyDestroyed)
+            if (!scriptEnemies.isEnemyDestroyed)
             {
                 polygonBeamStatic.SetActive(true);
                 audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
@@ -190,23 +189,21 @@ public class Enemy : MonoBehaviour
                 scriptEnemies.scriptGameSettings.UpdateEnemyKOValue();
             }
 
-            if (enemyName == "Punisher")
-            {
-                scriptEnemies.scriptGameSettings.PlayMissionComplete();
-            }
-
             scriptEnemies.EnemyDestroyed();
         }
         else if (shield <= 0f && enemyName == "Punisher")
         {
-            isEnemyDestroyed = true;
-            StartCoroutine(DestroyPunisher());
+            if (!scriptEnemies.isEnemyDestroyed)
+            {
+                scriptEnemies.isEnemyDestroyed = true;
+                StartCoroutine(DestroyPunisher());
+            }
         }
         else if (shield <= 0f && enemyName == "SquidDestroyer")
         {
-            if (!isEnemyDestroyed)
+            if (!scriptEnemies.isEnemyDestroyed)
             {
-                isEnemyDestroyed = true;
+                scriptEnemies.isEnemyDestroyed = true;
                 scriptEnemies.countSquidDestroyerDestroyed += 1;
                 StartCoroutine(DestroyMothership());
             }

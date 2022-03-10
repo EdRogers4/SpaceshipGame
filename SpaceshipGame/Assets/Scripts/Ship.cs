@@ -499,117 +499,121 @@ public class Ship : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        if (scriptGameSettings.difficulty == 1)
+        if (!scriptEnemies.isEnemyDestroyed)
         {
-            amount = amount / 2.0f;
-        }
-        else if (scriptGameSettings.difficulty == 2)
-        {
-            amount = amount * 2.0f;
-        }
 
-        switch (shipName)
-        {
-            case "Fighter":
-                shieldFighter -= amount;
-                shieldBar.fillAmount = shieldFighter / startShieldFighter;
-
-                if (shieldFighter <= 30f && !isPlayLowHealth[0])
-                {
-                    isPlayLowHealth[0] = true;
-                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
-                }
-
-                break;
-            case "Bomber":
-                shieldBomber -= amount;
-                shieldBar.fillAmount = shieldBomber / startShieldBomber;
-
-                if (shieldBomber <= 30f && !isPlayLowHealth[1])
-                {
-                    isPlayLowHealth[1] = true;
-                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
-                }
-
-                break;
-            case "Interceptor":
-                shieldInterceptor -= amount;
-                shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
-
-                if (shieldInterceptor <= 30f && !isPlayLowHealth[2])
-                {
-                    isPlayLowHealth[2] = true;
-                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
-                }
-
-                break;
-            case "Breaker":
-                shieldBreaker -= amount;
-                shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
-
-                if (shieldBreaker <= 30f && !isPlayLowHealth[3])
-                {
-                    isPlayLowHealth[3] = true;
-                    StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
-                }
-
-                break;
-            default:
-                print("Not a ship 3");
-                break;
-        }
-
-        if (shieldFighter <= 0f && shieldBomber <= 0f && shieldInterceptor <= 0f && shieldBreaker <= 0f)
-        {
-            isDead = true;
-            screenGameOver.SetActive(true);
-            StartCoroutine(scriptGameSettings.AudioClipPlayGameOver());
-        }
-
-        if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f))
-        {
-            particleDestroyed.gameObject.transform.parent = instances.transform;
-            particleDestroyed.Play();
-            audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.4f);
-            gameObject.layer = 7;
-            boarderCollisionEffect.GetComponent<MeshRenderer>().enabled = false;
-            playerIndicator.SetActive(false);
-            playerSpawnIndicator.SetActive(true);
-            animatorLevel.speed = 0.0f;
-            scriptGameSettings.audioSourceMusic.Pause();
-            scriptGameSettings.isMusicPaused = true;
-            StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
-
-            if (!isDead)
+            if (scriptGameSettings.difficulty == 1)
             {
-                scriptGameSettings.animatorMessage.SetBool("isSelectShip", true);
+                amount = amount / 2.0f;
+            }
+            else if (scriptGameSettings.difficulty == 2)
+            {
+                amount = amount * 2.0f;
             }
 
             switch (shipName)
             {
                 case "Fighter":
-                    shipModel[0].gameObject.SetActive(false);
-                    isDeadFighter = true;
-                    imageDead[0].enabled = true;
+                    shieldFighter -= amount;
+                    shieldBar.fillAmount = shieldFighter / startShieldFighter;
+
+                    if (shieldFighter <= 30f && !isPlayLowHealth[0])
+                    {
+                        isPlayLowHealth[0] = true;
+                        StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                    }
+
                     break;
                 case "Bomber":
-                    shipModel[1].gameObject.SetActive(false);
-                    isDeadBomber = true;
-                    imageDead[1].enabled = true;
+                    shieldBomber -= amount;
+                    shieldBar.fillAmount = shieldBomber / startShieldBomber;
+
+                    if (shieldBomber <= 30f && !isPlayLowHealth[1])
+                    {
+                        isPlayLowHealth[1] = true;
+                        StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                    }
+
                     break;
                 case "Interceptor":
-                    shipModel[2].gameObject.SetActive(false);
-                    isDeadInterceptor = true;
-                    imageDead[2].enabled = true;
+                    shieldInterceptor -= amount;
+                    shieldBar.fillAmount = shieldInterceptor / startShieldInterceptor;
+
+                    if (shieldInterceptor <= 30f && !isPlayLowHealth[2])
+                    {
+                        isPlayLowHealth[2] = true;
+                        StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                    }
+
                     break;
                 case "Breaker":
-                    shipModel[3].gameObject.SetActive(false);
-                    isDeadBreaker = true;
-                    imageDead[3].enabled = true;
+                    shieldBreaker -= amount;
+                    shieldBar.fillAmount = shieldBreaker / startShieldBreaker;
+
+                    if (shieldBreaker <= 30f && !isPlayLowHealth[3])
+                    {
+                        isPlayLowHealth[3] = true;
+                        StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(0));
+                    }
+
                     break;
                 default:
-                    print("Not a ship 4");
+                    print("Not a ship 3");
                     break;
+            }
+
+            if (shieldFighter <= 0f && shieldBomber <= 0f && shieldInterceptor <= 0f && shieldBreaker <= 0f)
+            {
+                isDead = true;
+                screenGameOver.SetActive(true);
+                StartCoroutine(scriptGameSettings.AudioClipPlayGameOver());
+            }
+
+            if ((shipName == "Fighter" && shieldFighter <= 0f) || (shipName == "Bomber" && shieldBomber <= 0f) || (shipName == "Interceptor" && shieldInterceptor <= 0f) || (shipName == "Breaker" && shieldBreaker <= 0f))
+            {
+                particleDestroyed.gameObject.transform.parent = instances.transform;
+                particleDestroyed.Play();
+                audioSource.PlayOneShot(clipShipDestroyed[Random.Range(0, clipShipDestroyed.Length)], 0.4f);
+                gameObject.layer = 7;
+                boarderCollisionEffect.GetComponent<MeshRenderer>().enabled = false;
+                playerIndicator.SetActive(false);
+                playerSpawnIndicator.SetActive(true);
+                animatorLevel.speed = 0.0f;
+                scriptGameSettings.audioSourceMusic.Pause();
+                scriptGameSettings.isMusicPaused = true;
+                StartCoroutine(scriptGameSettings.AudioClipPlayHealthLow(1));
+
+                if (!isDead)
+                {
+                    scriptGameSettings.animatorMessage.SetBool("isSelectShip", true);
+                }
+
+                switch (shipName)
+                {
+                    case "Fighter":
+                        shipModel[0].gameObject.SetActive(false);
+                        isDeadFighter = true;
+                        imageDead[0].enabled = true;
+                        break;
+                    case "Bomber":
+                        shipModel[1].gameObject.SetActive(false);
+                        isDeadBomber = true;
+                        imageDead[1].enabled = true;
+                        break;
+                    case "Interceptor":
+                        shipModel[2].gameObject.SetActive(false);
+                        isDeadInterceptor = true;
+                        imageDead[2].enabled = true;
+                        break;
+                    case "Breaker":
+                        shipModel[3].gameObject.SetActive(false);
+                        isDeadBreaker = true;
+                        imageDead[3].enabled = true;
+                        break;
+                    default:
+                        print("Not a ship 4");
+                        break;
+                }
             }
         }
     }

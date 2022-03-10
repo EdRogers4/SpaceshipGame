@@ -57,6 +57,7 @@ public class Enemies : MonoBehaviour
     public Camera cameraMain;
     private Vector3 newTargetPosition;
     public int countSquidDestroyerDestroyed;
+    public bool isEnemyDestroyed;
 
     [Header("Spawn")]
     public float timeMinimumSpawnAsteroid;
