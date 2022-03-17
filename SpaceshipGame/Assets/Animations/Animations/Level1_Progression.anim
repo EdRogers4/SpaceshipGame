@@ -4680,6 +4680,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 14.566667
+    functionName: SpawnFrigateGroup3
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 22.016666
     functionName: SpawnFrigateGroup1
     data: 
@@ -4687,8 +4694,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 26.683332
+    functionName: SpawnFrigateGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 32
-    functionName: SpawnFrigateGroup3
+    functionName: SpawnFrigateGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 40.166668
+    functionName: SpawnFrigateGroup1
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4724,6 +4745,13 @@ AnimationClip:
     messageOptions: 0
   - time: 89.916664
     functionName: SpawnWingGroup0
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 98.916664
+    functionName: SpawnFrigateGroup2
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4876,8 +4904,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 209.98334
+    functionName: SpawnDroneGroup1
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 215.5
     functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 219.95
+    functionName: SpawnDroneGroup0
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
@@ -4890,8 +4932,22 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 226.98334
+    functionName: SpawnFrigateGroup2
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: 230.5
     functionName: PlayColossalShipFly
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 233.05
+    functionName: SpawnFrigateGroup0
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
