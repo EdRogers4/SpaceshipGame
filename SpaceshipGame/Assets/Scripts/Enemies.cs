@@ -568,7 +568,12 @@ public class Enemies : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < listPlasma.Count; i++)
+        if (scriptGameSettings.isMusicPaused)
+        {
+            return;
+        }
+
+                for (int i = 0; i < listPlasma.Count; i++)
         {
             listPlasma[i].transform.position += listPlasma[i].transform.forward * Time.deltaTime * velocityPlasma;
         }

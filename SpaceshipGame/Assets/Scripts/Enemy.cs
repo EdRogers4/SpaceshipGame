@@ -72,98 +72,107 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShootLaser()
     {
-        if (!scriptEnemies.isEnemyDestroyed)
+        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
         {
-            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
-            yield return new WaitForSeconds(1.0f);
-            scriptEnemies.handlingSquidDestroyer = 1.25f;
-            scriptEnemies.thrustSquidDestroyer = 3.0f;
-            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
-            yield return new WaitForSeconds(2.0f);
-            scriptEnemies.handlingSquidDestroyer = 0.1f;
-
             if (!scriptEnemies.isEnemyDestroyed)
             {
-                polygonBeamStatic.SetActive(true);
-                audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
-                audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
-                yield return new WaitForSeconds(3.0f);
-                scriptEnemies.handlingSquidDestroyer = 0.25f;
-                scriptEnemies.thrustSquidDestroyer = 20.0f;
-            }
+                scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
+                yield return new WaitForSeconds(1.0f);
+                scriptEnemies.handlingSquidDestroyer = 1.25f;
+                scriptEnemies.thrustSquidDestroyer = 3.0f;
+                scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
+                yield return new WaitForSeconds(2.0f);
+                scriptEnemies.handlingSquidDestroyer = 0.1f;
 
-            polygonBeamStatic.SetActive(false);
-            StartCoroutine(ShootLaser());
+                if (!scriptEnemies.isEnemyDestroyed)
+                {
+                    polygonBeamStatic.SetActive(true);
+                    audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
+                    audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
+                    yield return new WaitForSeconds(3.0f);
+                    scriptEnemies.handlingSquidDestroyer = 0.25f;
+                    scriptEnemies.thrustSquidDestroyer = 20.0f;
+                }
+
+                polygonBeamStatic.SetActive(false);
+                StartCoroutine(ShootLaser());
+            }
         }
     }
 
     public IEnumerator DelayShoot()
     {
-        yield return new WaitForSeconds(3.0f);
-        StartCoroutine(Shoot());
+        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
+        {
+            yield return new WaitForSeconds(3.0f);
+            StartCoroutine(Shoot());
+        }
     }
     
     public IEnumerator Shoot()
     {
         yield return new WaitForSeconds(reloadTime);
 
-        if (enemyName == "Frigate")
+        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
         {
-            spawnedProjectile = Instantiate(scriptEnemies.prefabProton, barrel[0].transform.position, barrel[0].transform.rotation);
-            scriptEnemies.listProton.Add(spawnedProjectile);
-            spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-            spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
-            audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
-        }
-        else if (enemyName == "Wing" || enemyName == "SquidFrigate")
-        {
-            for (int i = 0; i < barrel.Length; i++)
+            if (enemyName == "Frigate")
             {
-                spawnedProjectile = Instantiate(scriptEnemies.prefabPlasma, barrel[i].transform.position, barrel[i].transform.rotation);
-                scriptEnemies.listPlasma.Add(spawnedProjectile);
+                spawnedProjectile = Instantiate(scriptEnemies.prefabProton, barrel[0].transform.position, barrel[0].transform.rotation);
+                scriptEnemies.listProton.Add(spawnedProjectile);
                 spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-                spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
-                audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.25f);
+                spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
+                audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
             }
-
-            StartCoroutine(Shoot());
-        }
-        else if (enemyName == "Drone" || enemyName == "SquidProbe")
-        {
-            for (int i = 0; i < barrel.Length; i++)
+            else if (enemyName == "Wing" || enemyName == "SquidFrigate")
             {
-                spawnedProjectile = Instantiate(scriptEnemies.prefabRocket, barrel[i].transform.position, barrel[i].transform.rotation);
-                scriptEnemies.listRocket.Add(spawnedProjectile);
-                spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-                spawnedProjectile.GetComponent<Rocket>().scriptEnemies = scriptEnemies;
-                audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
-                yield return new WaitForSeconds(1.5f);
-            }
-
-            StartCoroutine(Shoot());
-        }
-        else if (enemyName == "Punisher")
-        {
-            animatorPunisher.SetBool("Fire Attack Front", true);
-
-            for (int i = 0; i < 48; i++)
-            {
-                spawnedProjectile = Instantiate(scriptEnemies.prefabRocket, barrel[countBarrel].transform.position, barrel[countBarrel].transform.rotation);
-                scriptEnemies.listRocket.Add(spawnedProjectile);
-                spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-                spawnedProjectile.GetComponent<Rocket>().scriptEnemies = scriptEnemies;
-                audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
-                countBarrel += 1;
-                yield return new WaitForSeconds(0.1f);
-
-                if (countBarrel >= barrel.Length)
+                for (int i = 0; i < barrel.Length; i++)
                 {
-                    countBarrel = 0;
+                    spawnedProjectile = Instantiate(scriptEnemies.prefabPlasma, barrel[i].transform.position, barrel[i].transform.rotation);
+                    scriptEnemies.listPlasma.Add(spawnedProjectile);
+                    spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+                    spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
+                    audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.25f);
                 }
-            }
 
-            animatorPunisher.SetBool("Fire Attack Front", false);
-            StartCoroutine(Shoot());
+                StartCoroutine(Shoot());
+            }
+            else if (enemyName == "Drone" || enemyName == "SquidProbe")
+            {
+                for (int i = 0; i < barrel.Length; i++)
+                {
+                    spawnedProjectile = Instantiate(scriptEnemies.prefabRocket, barrel[i].transform.position, barrel[i].transform.rotation);
+                    scriptEnemies.listRocket.Add(spawnedProjectile);
+                    spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+                    spawnedProjectile.GetComponent<Rocket>().scriptEnemies = scriptEnemies;
+                    audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
+                    yield return new WaitForSeconds(1.5f);
+                }
+
+                StartCoroutine(Shoot());
+            }
+            else if (enemyName == "Punisher")
+            {
+                animatorPunisher.SetBool("Fire Attack Front", true);
+
+                for (int i = 0; i < 48; i++)
+                {
+                    spawnedProjectile = Instantiate(scriptEnemies.prefabRocket, barrel[countBarrel].transform.position, barrel[countBarrel].transform.rotation);
+                    scriptEnemies.listRocket.Add(spawnedProjectile);
+                    spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+                    spawnedProjectile.GetComponent<Rocket>().scriptEnemies = scriptEnemies;
+                    audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
+                    countBarrel += 1;
+                    yield return new WaitForSeconds(0.1f);
+
+                    if (countBarrel >= barrel.Length)
+                    {
+                        countBarrel = 0;
+                    }
+                }
+
+                animatorPunisher.SetBool("Fire Attack Front", false);
+                StartCoroutine(Shoot());
+            }
         }
     }
 
