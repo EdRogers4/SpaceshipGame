@@ -181,8 +181,8 @@ MonoBehaviour:
   scriptEnemies: {fileID: 0}
   enemyName: Punisher
   isDead: 0
-  shield: 500
-  startShield: 500
+  shield: 750
+  startShield: 750
   reloadTime: 5
   reloadMinimum: 2
   reloadMaximum: 2
