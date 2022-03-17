@@ -22,6 +22,7 @@ public class Ship : MonoBehaviour
     public bool isUpgradeInterceptor;
     public bool isUpgradeBreaker;
     public bool isPickupShield;
+    public bool isFirstSelectShip;
 
     [Header("Movement")]
     public bool isKeyboard;
@@ -118,6 +119,7 @@ public class Ship : MonoBehaviour
 
     [Header("Animations")]
     public Animator animatorCamera;
+    public Animator animatorSelectShip;
 
     [Header("Sound")]
     private AudioSource audioSource;
@@ -155,12 +157,20 @@ public class Ship : MonoBehaviour
     private void Start()
     {
         audioSource = gameObject.GetComponent<AudioSource>();
+        thrustHigh = 0f;
         distanceEnemyShortest = 200f;
         startShieldFighter = 70.0f;
         startShieldBomber = 90.0f;
         startShieldInterceptor = 50.0f;
         startShieldBreaker = 120.0f;
         effectStartPosition = boarderCollisionEffect.transform.position;
+
+        scriptGameSettings.animatorMessage.SetBool("isSelectShip", true);
+        playerIndicator.SetActive(false);
+        playerSpawnIndicator.SetActive(true);
+        animatorLevel.speed = 0.0f;
+        scriptGameSettings.audioSourceMusic.Pause();
+        scriptGameSettings.isMusicPaused = true;
 
         StartCoroutine(TargetEnemy());
         StartCoroutine(TargetProton());
@@ -182,7 +192,11 @@ public class Ship : MonoBehaviour
 
     public void StartBarrelRoll()
     {
-        if (!isBarrelRoll)
+        if (!isFirstSelectShip)
+        {
+            return;
+        }
+        else if (!isBarrelRoll)
         {
             isBarrelRoll = true;
             gameObject.layer = 7;
@@ -210,7 +224,11 @@ public class Ship : MonoBehaviour
 
     public void StartBoosting()
     {
-        if (boostMeter >= boostMeterHigh)
+        if (!isFirstSelectShip)
+        {
+            return;
+        }
+        else if (boostMeter >= boostMeterHigh)
         {
             isBoosting = true;
 
@@ -319,7 +337,7 @@ public class Ship : MonoBehaviour
 
     public void SwitchShip(string name)
     {
-        if ((name == "Fighter" && shieldFighter <= 0f || (name == "Bomber" && shieldBomber <= 0f) || name == "Interceptor" && shieldInterceptor <= 0f) || (name == "Breaker" && shieldBreaker <= 0f))
+        if ((scriptGameSettings.isPause) || ((name == "Fighter" && shieldFighter <= 0f || (name == "Bomber" && shieldBomber <= 0f) || name == "Interceptor" && shieldInterceptor <= 0f) || (name == "Breaker" && shieldBreaker <= 0f)))
         {
             return;
         }
@@ -352,6 +370,13 @@ public class Ship : MonoBehaviour
                 default:
                     print("Not a ship 1");
                     break;
+            }
+
+            if (!isFirstSelectShip)
+            {
+                isFirstSelectShip = true;
+                animatorSelectShip.SetBool("isSelectShip", true);
+                StartCoroutine(scriptGameSettings.AudioClipPlayGetReady());
             }
 
             shipName = name;
@@ -480,7 +505,7 @@ public class Ship : MonoBehaviour
 
     public void ShootProjectileOn()
     {
-        if ((shipName == "Fighter" && isDeadFighter) || (shipName == "Bomber" && isDeadBomber) || (shipName == "Interceptor" && isDeadInterceptor) || (shipName == "Breaker" && isDeadBreaker))
+        if ((!isFirstSelectShip) || ((shipName == "Fighter" && isDeadFighter) || (shipName == "Bomber" && isDeadBomber) || (shipName == "Interceptor" && isDeadInterceptor) || (shipName == "Breaker" && isDeadBreaker)))
         {
             return;
         }

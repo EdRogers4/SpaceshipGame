@@ -10,6 +10,9 @@ public class GameSettings : MonoBehaviour
     public int currentLevel;
     public bool isCompleteDemo;
 
+    [Header("Scripts")]
+    public Ship scriptShip;
+
     [Header("UI")]
     public Image dimmer;
     public Animator animatorMessage;
@@ -38,10 +41,10 @@ public class GameSettings : MonoBehaviour
 
     [Header("Audio")]
     static float volume;
-    private bool isVoiceMute;
+    public bool isVoiceMute;
     public bool isMusicPaused;
     public AudioSource audioSourceMusic;
-    private AudioSource audioSource;
+    public AudioSource audioSource;
     public AudioClip[] clipBullseye;
     public AudioClip[] clipCombo;
     public AudioClip[] clipGameOver;
@@ -113,12 +116,7 @@ public class GameSettings : MonoBehaviour
             dimmer.color = newColor;
             yield return null;
         }
-        dimmer.gameObject.SetActive(false);
-
-        if (!isVoiceMute)
-        {
-            audioSource.PlayOneShot(clipGetReady, 1.0f);
-        }
+        dimmer.gameObject.SetActive(false); 
 
         yield return new WaitForSeconds(1.0f);
         audioSourceMusic.enabled = true;
@@ -128,6 +126,16 @@ public class GameSettings : MonoBehaviour
         dimmer.gameObject.SetActive(true);
         Color newColor = new Color(0, 0, 0, 255);
         dimmer.color = newColor;
+    }
+
+    public IEnumerator AudioClipPlayGetReady()
+    {
+        yield return new WaitForSeconds(2.0f);
+
+        if (!isVoiceMute)
+        {
+            audioSource.PlayOneShot(clipGetReady, 1.0f);
+        }
     }
 
     public IEnumerator AudioClipPlayBullseye(int number)
@@ -190,14 +198,6 @@ public class GameSettings : MonoBehaviour
         {
             yield return new WaitForSeconds(1.5f);
             audioSource.PlayOneShot(clipHealthLow[number], 1.0f);
-        }
-    }
-
-    public void AudioClipPlayGetReady()
-    {
-        if (!isVoiceMute)
-        {
-            audioSource.PlayOneShot(clipGetReady, 1.0f);
         }
     }
 
@@ -342,7 +342,12 @@ public class GameSettings : MonoBehaviour
         if (isPause && isSettings)
         {
             Time.timeScale = 1.0f;
-            audioSourceMusic.Play();
+
+            if (scriptShip.isFirstSelectShip)
+            {
+                audioSourceMusic.Play();
+            }
+
             AudioClipPlayGamePaused(1);
             audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isSettings = false;
@@ -366,7 +371,12 @@ public class GameSettings : MonoBehaviour
         if (isPause && isMenu)
         {
             Time.timeScale = 1.0f;
-            audioSourceMusic.Play();
+
+            if (scriptShip.isFirstSelectShip)
+            {
+                audioSourceMusic.Play();
+            }
+            
             AudioClipPlayGamePaused(1);
             audioSource.PlayOneShot(clipGameResumedSFX, 1.0f);
             isMenu = false;
@@ -395,7 +405,13 @@ public class GameSettings : MonoBehaviour
         }
         else
         {
-            if (audioSourceMusic.isActiveAndEnabled)
+            if (!scriptShip.isFirstSelectShip)
+            {
+                Time.timeScale = 1.0f;
+                AudioClipPlayGamePaused(1);
+                isPause = false;
+            }
+            else if (audioSourceMusic.isActiveAndEnabled)
             {
                 Time.timeScale = 1.0f;
                 audioSourceMusic.Play();
