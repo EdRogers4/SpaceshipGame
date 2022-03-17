@@ -72,58 +72,52 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator ShootLaser()
     {
-        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
+        if (!scriptEnemies.isEnemyDestroyed)
         {
-            if (!scriptEnemies.isEnemyDestroyed)
+            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
+            yield return new WaitForSeconds(1.0f);
+            scriptEnemies.handlingSquidDestroyer = 1.25f;
+            scriptEnemies.thrustSquidDestroyer = 3.0f;
+            scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
+            yield return new WaitForSeconds(2.0f);
+            scriptEnemies.handlingSquidDestroyer = 0.1f;
+
+            if (!scriptEnemies.isEnemyDestroyed && !scriptEnemies.scriptGameSettings.isMusicPaused)
             {
-                scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Target[Random.Range(0, scriptEnemies.clipMS_Target.Length)], 1.0f);
-                yield return new WaitForSeconds(1.0f);
-                scriptEnemies.handlingSquidDestroyer = 1.25f;
-                scriptEnemies.thrustSquidDestroyer = 3.0f;
-                scriptEnemies.audioSource.PlayOneShot(scriptEnemies.clipMS_Voice[Random.Range(0, scriptEnemies.clipMS_Voice.Length)], 1.0f);
-                yield return new WaitForSeconds(2.0f);
-                scriptEnemies.handlingSquidDestroyer = 0.1f;
-
-                if (!scriptEnemies.isEnemyDestroyed)
-                {
-                    polygonBeamStatic.SetActive(true);
-                    audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
-                    audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
-                    yield return new WaitForSeconds(3.0f);
-                    scriptEnemies.handlingSquidDestroyer = 0.25f;
-                    scriptEnemies.thrustSquidDestroyer = 20.0f;
-                }
-
-                polygonBeamStatic.SetActive(false);
-                StartCoroutine(ShootLaser());
+                polygonBeamStatic.SetActive(true);
+                audioSource.PlayOneShot(clipShootLaser[0], 0.75f);
+                audioSource.PlayOneShot(clipShootLaser[1], 0.75f);
+                yield return new WaitForSeconds(3.0f);
+                scriptEnemies.handlingSquidDestroyer = 0.25f;
+                scriptEnemies.thrustSquidDestroyer = 20.0f;
             }
+
+            polygonBeamStatic.SetActive(false);
+            StartCoroutine(ShootLaser());
         }
     }
 
     public IEnumerator DelayShoot()
     {
-        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
-        {
-            yield return new WaitForSeconds(3.0f);
-            StartCoroutine(Shoot());
-        }
+        yield return new WaitForSeconds(3.0f);
+        StartCoroutine(Shoot());
     }
     
     public IEnumerator Shoot()
     {
         yield return new WaitForSeconds(reloadTime);
 
-        if (!scriptEnemies.scriptGameSettings.isMusicPaused)
+        if (enemyName == "Frigate" && !scriptEnemies.scriptGameSettings.isMusicPaused)
         {
-            if (enemyName == "Frigate")
-            {
-                spawnedProjectile = Instantiate(scriptEnemies.prefabProton, barrel[0].transform.position, barrel[0].transform.rotation);
-                scriptEnemies.listProton.Add(spawnedProjectile);
-                spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
-                spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
-                audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
-            }
-            else if (enemyName == "Wing" || enemyName == "SquidFrigate")
+            spawnedProjectile = Instantiate(scriptEnemies.prefabProton, barrel[0].transform.position, barrel[0].transform.rotation);
+            scriptEnemies.listProton.Add(spawnedProjectile);
+            spawnedProjectile.transform.parent = scriptEnemies.gameObject.transform;
+            spawnedProjectile.GetComponent<Proton>().scriptEnemies = scriptEnemies;
+            audioSource.PlayOneShot(clipShootProton[Random.Range(0, clipShootProton.Length)], 0.55f);
+        }
+        else if (enemyName == "Wing" || enemyName == "SquidFrigate")
+        {
+            if (!scriptEnemies.scriptGameSettings.isMusicPaused)
             {
                 for (int i = 0; i < barrel.Length; i++)
                 {
@@ -133,10 +127,13 @@ public class Enemy : MonoBehaviour
                     spawnedProjectile.GetComponent<Plasma>().scriptEnemies = scriptEnemies;
                     audioSource.PlayOneShot(clipShootPlasma[Random.Range(0, clipShootPlasma.Length)], 0.25f);
                 }
-
-                StartCoroutine(Shoot());
             }
-            else if (enemyName == "Drone" || enemyName == "SquidProbe")
+
+            StartCoroutine(Shoot());
+        }
+        else if (enemyName == "Drone" || enemyName == "SquidProbe")
+        {
+            if (!scriptEnemies.scriptGameSettings.isMusicPaused)
             {
                 for (int i = 0; i < barrel.Length; i++)
                 {
@@ -147,10 +144,13 @@ public class Enemy : MonoBehaviour
                     audioSource.PlayOneShot(clipShootRocket[Random.Range(0, clipShootRocket.Length)], 0.25f);
                     yield return new WaitForSeconds(1.5f);
                 }
-
-                StartCoroutine(Shoot());
             }
-            else if (enemyName == "Punisher")
+
+            StartCoroutine(Shoot());
+        }
+        else if (enemyName == "Punisher")
+        {
+            if (!scriptEnemies.scriptGameSettings.isMusicPaused)
             {
                 animatorPunisher.SetBool("Fire Attack Front", true);
 
@@ -169,10 +169,10 @@ public class Enemy : MonoBehaviour
                         countBarrel = 0;
                     }
                 }
-
-                animatorPunisher.SetBool("Fire Attack Front", false);
-                StartCoroutine(Shoot());
             }
+
+            animatorPunisher.SetBool("Fire Attack Front", false);
+            StartCoroutine(Shoot());
         }
     }
 

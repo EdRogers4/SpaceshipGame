@@ -566,17 +566,7 @@ public class Enemies : MonoBehaviour
                 float step = listAsteroidSpeed[i] * Time.deltaTime;
                 listAsteroid[i].transform.position = Vector3.MoveTowards(listAsteroid[i].transform.position, listAsteroid[i].GetComponent<Asteroid>().destination.position, step);
             }
-        }
-
-        if (scriptGameSettings.isMusicPaused)
-        {
-            return;
-        }
-
-                for (int i = 0; i < listPlasma.Count; i++)
-        {
-            listPlasma[i].transform.position += listPlasma[i].transform.forward * Time.deltaTime * velocityPlasma;
-        }
+        }  
 
         if ((scriptShip.shipName == "Fighter" && !scriptShip.isDeadFighter) || (scriptShip.shipName == "Bomber" && !scriptShip.isDeadBomber) 
             || (scriptShip.shipName == "Interceptor" && !scriptShip.isDeadInterceptor) || (scriptShip.shipName == "Breaker" && !scriptShip.isDeadBreaker))
@@ -792,6 +782,11 @@ public class Enemies : MonoBehaviour
                         }
                     }
                 }
+            }
+
+            for (int i = 0; i < listPlasma.Count; i++)
+            {
+                listPlasma[i].transform.position += listPlasma[i].transform.forward * Time.deltaTime * velocityPlasma;
             }
 
             for (int i = 0; i < listProton.Count; i++)
